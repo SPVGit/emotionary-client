@@ -6,9 +6,6 @@ import { AuthContext } from "../context/auth.context"
 
 const API_URL = "http://localhost:5005";
 
-
-
-
 const LoginPage = (props) => {
 
   const [email, setEmail] = useState("");

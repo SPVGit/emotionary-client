@@ -1,37 +1,56 @@
-import React from 'react'
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { NavLink, Link } from "react-router-dom";
+import { AuthContext } from "../context/auth.context";
 
 const Navbar = () => {
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+
   return (
     <nav className="Navbar">
       <ul>
-        {/* <Link to="/"> Home </Link> */}
-        {/* <Link to="/about"> About </Link> */}
-        {/* <Link to="/projects"> Projects </Link> */}
-        
-        {/*    ADD    */}
-        <NavLink to="/" className={({ isActive }) => isActive ? "selected" : ""}>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "selected" : "")}
+        >
           Home
         </NavLink>
-        
-        <NavLink 
-          to="/signup" 
-          className={({ isActive }) => isActive ? "selected" : ""}
-         >
-          Sign up
-        </NavLink>
-        
-        <NavLink 
-          to="/login" 
-          className={({ isActive }) => isActive ? "selected" : ""}
-        >
-          Login
-        </NavLink>
-        
-      </ul>
-      
-    </nav>
-  )
-}
 
-export default Navbar
+        {/*If logged in show Posts Button and Logout Button */}
+        {isLoggedIn && (
+          <>
+            <Link
+              to="/posts"
+              className={({ isActive }) => (isActive ? "selected" : "")}
+            >
+              <button>Posts</button>{" "}
+            </Link>
+
+            <button onClick={logOutUser}>Logout</button>
+            <span>{user && user.name}</span>
+          </>
+        )}
+
+        {/*If not logged in show login and signup button  */}
+
+        {!isLoggedIn && (
+          <>
+            <NavLink
+              to="/signup"
+              className={({ isActive }) => (isActive ? "selected" : "")}
+            >
+              Sign up
+            </NavLink>
+            <NavLink
+              to="/login"
+              className={({ isActive }) => (isActive ? "selected" : "")}
+            >
+              Login
+            </NavLink>
+          </>
+        )}
+      </ul>
+    </nav>
+  );
+};
+
+export default Navbar;
