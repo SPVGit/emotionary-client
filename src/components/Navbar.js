@@ -27,7 +27,7 @@ const Navbar = () => {
             </NavLink>
 
             <NavLink onClick={logOutUser}>Logout</NavLink>
-            <span className="text-light">{user && user.name}</span>
+            <span className="text-light">Welcome back, {user && user.name}</span>
           </>
         )}
 

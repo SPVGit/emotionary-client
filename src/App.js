@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import {Route, Routes} from "react-router-dom"
@@ -7,6 +6,8 @@ import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUpPage";
 import PostsPage from "./pages/PostsPage";
 import SinglePostPage from "./pages/SinglePostPage";
+import IsAnon from "./components/IsAnon";
+import IsPrivate from "./components/IsPrivate";
 
 function App() {
   return (
@@ -16,10 +17,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<isAnon><LoginPage /></isAnon>} />
-        <Route path="/signup" element={<isAnon><SignUpPage /></isAnon>} />
-        <Route path= "/posts" element={<PostsPage /> } />
-        <Route path="/posts/:postid" element={<SinglePostPage />} />
+        <Route path="/login" element={<IsAnon><LoginPage /></IsAnon>} />
+        <Route path="/signup" element={<IsAnon><SignUpPage /></IsAnon>} />
+        <Route path= "/posts" element={<IsPrivate><PostsPage /></IsPrivate> } />
+        <Route path="/posts/:postid" element={<IsPrivate><SinglePostPage /></IsPrivate>} />
       </Routes>
     </div>
   );

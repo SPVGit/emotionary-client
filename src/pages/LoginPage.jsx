@@ -31,7 +31,7 @@ const LoginPage = (props) => {
         console.log('JWT token', response.data.authToken );
         storedToken(response.data.authToken);   
         authenticateUser(); 
-        navigate('/');                             // <== ADD      
+        navigate('/posts');                             // <== ADD      
       })
       .catch((error) => {
         const errorDescription = error.response.data.message;
