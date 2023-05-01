@@ -1,6 +1,7 @@
 import { useContext } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Navbar = () => {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
@@ -18,15 +19,15 @@ const Navbar = () => {
         {/*If logged in show Posts Button and Logout Button */}
         {isLoggedIn && (
           <>
-            <Link
+            <NavLink
               to="/posts"
               className={({ isActive }) => (isActive ? "selected" : "")}
             >
-              <button>Posts</button>{" "}
-            </Link>
+              Posts
+            </NavLink>
 
-            <button onClick={logOutUser}>Logout</button>
-            <span>{user && user.name}</span>
+            <NavLink onClick={logOutUser}>Logout</NavLink>
+            <span className="text-light">{user && user.name}</span>
           </>
         )}
 
