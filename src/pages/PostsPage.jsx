@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import AddPostPage from "../components/AddPost";
 
 const API_URL = "http://localhost:5005";
 
@@ -25,7 +24,7 @@ const PostsPage = () => {
 
   return (
     <div>
-      <AddPostPage getAllPosts ={getAllPosts}/>
+   empty postss
     </div>
   );
 };
