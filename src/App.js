@@ -8,6 +8,7 @@ import PostsPage from "./pages/PostsPage";
 import SinglePostPage from "./pages/SinglePostPage";
 import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate";
+import PostFormPage from "./pages/PostFormPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/signup" element={<IsAnon><SignUpPage /></IsAnon>} />
         <Route path= "/posts" element={<IsPrivate><PostsPage /></IsPrivate> } />
         <Route path="/posts/:postid" element={<IsPrivate><SinglePostPage /></IsPrivate>} />
+        <Route path="/addpost" element={<IsPrivate><PostFormPage /></IsPrivate>} />
       </Routes>
     </div>
   );

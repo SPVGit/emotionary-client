@@ -3,13 +3,12 @@ import axios from "axios";
 
 const API_URL = "http://localhost:5005";
 
-const AddPost = (props) => {
+const AddPost = () => {
   // const [title, setTitle] = useState("");
   // const [description, setDescription] = useState("");
-
   const [newPost, setNewPost] = useState({
-    emotion: "",
-    title: "",
+    emotion: "happy",
+    rating: "1",
     description: "",
   });
 
@@ -23,7 +22,7 @@ const AddPost = (props) => {
 
     const requestBody = {
       emotion: newPost.emotion,
-      title: newPost.title,
+      rating: newPost.rating,
       description: newPost.description,
     };
 
@@ -31,18 +30,17 @@ const AddPost = (props) => {
 
     const storedToken = localStorage.getItem("authToken");
     axios
-      .post(`${API_URL}/api/posts`, requestBody, {
+      .post(`${API_URL}/api/addpost`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
         // Reset the state
         console.log('response', response)
         setNewPost({
-          emotion: "",
-          title: "",
+          emotion: "happy",
+          rating: "1",
           description: "",
         });
-      props.getAllPosts();
       })
       .catch((error) => console.log(error));
   };
@@ -53,7 +51,7 @@ const AddPost = (props) => {
 
       <form onSubmit={handleSubmit}>
         <label>Emotion:</label>
-        <select name="emotion" value={newPost.emotion} onChange={handleChange}>
+        <select name="emotion" value={newPost.emotion} onChange={handleChange} required>
           <option value="happy">Happy</option>
           <option value="in-love">In Love</option>
           <option value="excited">Excited</option>
@@ -66,15 +64,16 @@ const AddPost = (props) => {
           <option value="depressed">Depressed</option>
         </select>
 
-        <label>Title:</label>
-        <input
-          type="text"
-          name="title"
-          value={newPost.title}
-          onChange={handleChange}
-        />
+        <label>Emotion Intensity:</label>
+        <select name="rating" value={newPost.rating} onChange={handleChange} required>
+          <option value="1">✮ </option>
+          <option value="2">✮✮</option>
+          <option value="3">✮✮✮</option>
+          <option value="4">✮✮✮✮</option>
+          <option value="5">🫠🫠🫠🫠🫠</option>
+        </select>
 
-        <label>Description:</label>
+        <label>What made you feel that way?</label>
         <textarea
           type="text"
           name="description"
