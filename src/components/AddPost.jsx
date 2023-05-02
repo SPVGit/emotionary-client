@@ -31,11 +31,12 @@ const AddPost = (props) => {
 
     const storedToken = localStorage.getItem("authToken");
     axios
-      .post(`${API_URL}/api/projects`, requestBody, {
+      .post(`${API_URL}/api/posts`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
         // Reset the state
+        console.log('response', response)
         setNewPost({
           emotion: "",
           title: "",

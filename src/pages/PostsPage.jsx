@@ -10,7 +10,7 @@ const PostsPage = () => {
   const getAllPosts = () => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .get(`${API_URL}/api/projects`, {
+      .get(`${API_URL}/api/posts`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => setPosts(response.data))
