@@ -4,7 +4,7 @@ import AddPost from '../components/AddPost'
 const PostFormPage = () => {
   return (
     <div>
-            <AddPost/>
+            <AddPost />
     </div>
   )
 }

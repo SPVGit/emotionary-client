@@ -1,12 +1,17 @@
 import { useState } from "react";
 import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
 
 const API_URL = "http://localhost:5005";
 
 const AddPost = () => {
+
+  const {user} = useContext(AuthContext);
   // const [title, setTitle] = useState("");
   // const [description, setDescription] = useState("");
   const [newPost, setNewPost] = useState({
+    userId: user._id,
     emotion: "happy",
     rating: "1",
     description: "",
@@ -21,6 +26,7 @@ const AddPost = () => {
     e.preventDefault();
 
     const requestBody = {
+      userId: newPost.userId,
       emotion: newPost.emotion,
       rating: newPost.rating,
       description: newPost.description,
@@ -37,6 +43,7 @@ const AddPost = () => {
         // Reset the state
         console.log('response', response)
         setNewPost({
+          userId: user._id,
           emotion: "happy",
           rating: "1",
           description: "",
@@ -50,6 +57,7 @@ const AddPost = () => {
       <h3>Add Emotion</h3>
 
       <form onSubmit={handleSubmit}>
+
         <label>Emotion:</label>
         <select name="emotion" value={newPost.emotion} onChange={handleChange} required>
           <option value="happy">Happy</option>

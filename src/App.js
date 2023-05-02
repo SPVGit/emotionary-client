@@ -10,7 +10,9 @@ import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate";
 import PostFormPage from "./pages/PostFormPage";
 
+
 function App() {
+
   return (
     <div className="App">
       <Navbar />
