@@ -22,11 +22,7 @@ const PostsPage = () => {
     getAllPosts();
   }, []);
 
-  return (
-    <div>
-   empty postss
-    </div>
-  );
+  return <div>empty postss</div>;
 };
 
 export default PostsPage;
