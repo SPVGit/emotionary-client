@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import ListGroup  from "react-bootstrap/ListGroup";
+import { Link } from "react-router-dom";
 
 const API_URL = "http://localhost:5005";
 
@@ -24,9 +26,20 @@ const PostsPage = () => {
 
   return (
     <div>
-   empty postss
+
+    {posts.map((post) => (
+      <Link to={`/posts/${post._id}`} key={post._id}>
+      <ListGroup>
+      <ListGroup.Item>{post.emotion}</ListGroup.Item>
+      <ListGroup.Item>{post.rating}</ListGroup.Item>
+      <ListGroup.Item>{post.description}</ListGroup.Item>
+    </ListGroup>
+    </Link>
+    ))}
+
     </div>
-  );
+  )
+
 };
 
 export default PostsPage;
