@@ -1,13 +1,12 @@
-import { useState } from "react";
-import axios from "axios";
-import { useContext } from "react";
-import { AuthContext } from "../context/auth.context";
+import { useState } from "react"
+import axios from "axios"
+import { useContext } from "react"
+import { AuthContext } from "../context/auth.context"
 
-const API_URL = "http://localhost:5005";
+const API_URL = "http://localhost:5006"
 
 const AddPost = () => {
-
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext)
   // const [title, setTitle] = useState("");
   // const [description, setDescription] = useState("");
   const [newPost, setNewPost] = useState({
@@ -15,51 +14,54 @@ const AddPost = () => {
     emotion: "happy",
     rating: "1",
     description: "",
-  });
+  })
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setNewPost((post) => ({ ...post, [name]: value }));
-  };
+    const { name, value } = e.target
+    setNewPost((post) => ({ ...post, [name]: value }))
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     const requestBody = {
       userId: newPost.userId,
       emotion: newPost.emotion,
       rating: newPost.rating,
       description: newPost.description,
-    };
+    }
 
     console.log("requestBody", requestBody)
 
-    const storedToken = localStorage.getItem("authToken");
+    const storedToken = localStorage.getItem("authToken")
     axios
       .post(`${API_URL}/api/addpost`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
         // Reset the state
-        console.log('response', response)
+        console.log("response", response)
         setNewPost({
           userId: user._id,
           emotion: "happy",
           rating: "1",
           description: "",
-        });
+        })
       })
-      .catch((error) => console.log(error));
-  };
+      .catch((error) => console.log(error))
+  }
 
   return (
     <div>
       <h3>Add Emotion</h3>
 
       <form onSubmit={handleSubmit}>
-
         <label>Emotion:</label>
-        <select name="emotion" value={newPost.emotion} onChange={handleChange} required>
+        <select
+          name="emotion"
+          value={newPost.emotion}
+          onChange={handleChange}
+          required>
           <option value="happy">Happy</option>
           <option value="in-love">In Love</option>
           <option value="excited">Excited</option>
@@ -73,7 +75,11 @@ const AddPost = () => {
         </select>
 
         <label>Emotion Intensity:</label>
-        <select name="rating" value={newPost.rating} onChange={handleChange} required>
+        <select
+          name="rating"
+          value={newPost.rating}
+          onChange={handleChange}
+          required>
           <option value="1">✮ </option>
           <option value="2">✮✮</option>
           <option value="3">✮✮✮</option>
@@ -92,7 +98,7 @@ const AddPost = () => {
         <button type="submit">Submit</button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default AddPost;
+export default AddPost

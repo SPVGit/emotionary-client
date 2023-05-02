@@ -1,12 +1,12 @@
-import { useState } from "react";
-import axios from "axios";
-import { useContext } from "react";
-import { AuthContext } from "../context/auth.context";
+import { useState } from "react"
+import axios from "axios"
+import { useContext } from "react"
+import { AuthContext } from "../context/auth.context"
 
-const API_URL = "http://localhost:5005";
+const API_URL = "http://localhost:5006"
 
 const AddActivity = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext)
   // const [title, setTitle] = useState("");
   // const [description, setDescription] = useState("");
   const [newActivity, setNewActivity] = useState({
@@ -16,15 +16,15 @@ const AddActivity = () => {
     successRating: "1",
     notes: "",
     // post: postId
-  });
+  })
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setNewActivity((activity) => ({ ...activity, [name]: value }));
-  };
+    const { name, value } = e.target
+    setNewActivity((activity) => ({ ...activity, [name]: value }))
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     const requestBody = {
       title: newActivity.title,
@@ -32,27 +32,27 @@ const AddActivity = () => {
       time: newActivity.time,
       successRating: newActivity.successRating,
       notes: newActivity.notes,
-    };
+    }
 
-    console.log("requestBody", requestBody);
+    console.log("requestBody", requestBody)
 
-    const storedToken = localStorage.getItem("authToken");
+    const storedToken = localStorage.getItem("authToken")
     axios
       .post(`${API_URL}/api/addactivity`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
         // Reset the state
-        console.log("response", response);
+        console.log("response", response)
         setNewActivity({
           userId: user._id,
           emotion: "happy",
           rating: "1",
           description: "",
-        });
+        })
       })
-      .catch((error) => console.log(error));
-  };
+      .catch((error) => console.log(error))
+  }
 
   return (
     <div>
@@ -64,8 +64,7 @@ const AddActivity = () => {
           name="emotion"
           value={newPost.emotion}
           onChange={handleChange}
-          required
-        >
+          required>
           <option value="happy">Happy</option>
           <option value="in-love">In Love</option>
           <option value="excited">Excited</option>
@@ -83,8 +82,7 @@ const AddActivity = () => {
           name="rating"
           value={newPost.rating}
           onChange={handleChange}
-          required
-        >
+          required>
           <option value="1">✮ </option>
           <option value="2">✮✮</option>
           <option value="3">✮✮✮</option>
@@ -103,7 +101,7 @@ const AddActivity = () => {
         <button type="submit">Submit</button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default AddPost;
+export default AddPost

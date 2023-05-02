@@ -1,14 +1,14 @@
-import "./App.css";
-import Navbar from "./components/Navbar";
-import { Route, Routes } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import HomePage from "./pages/HomePage";
-import SignUpPage from "./pages/SignUpPage";
-import PostsPage from "./pages/PostsPage";
-import SinglePostPage from "./pages/SinglePostPage";
-import IsAnon from "./components/IsAnon";
-import IsPrivate from "./components/IsPrivate";
-import PostFormPage from "./pages/PostFormPage";
+import "./App.css"
+import Navbar from "./components/Navbar"
+import { Route, Routes } from "react-router-dom"
+import LoginPage from "./pages/LoginPage"
+import HomePage from "./pages/HomePage"
+import SignUpPage from "./pages/SignUpPage"
+import PostsPage from "./pages/PostsPage"
+import SinglePostPage from "./pages/SinglePostPage"
+import IsAnon from "./components/isAnon"
+import IsPrivate from "./components/IsPrivate"
+import PostFormPage from "./pages/PostFormPage"
 
 function App() {
   return (
@@ -16,7 +16,10 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/"
+          element={<HomePage />}
+        />
         <Route
           path="/login"
           element={
@@ -59,7 +62,7 @@ function App() {
         />
       </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
