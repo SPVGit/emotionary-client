@@ -6,10 +6,9 @@ const API_URL = "http://localhost:5005";
 const AddPost = (props) => {
   // const [title, setTitle] = useState("");
   // const [description, setDescription] = useState("");
-
   const [newPost, setNewPost] = useState({
     emotion: "",
-    title: "",
+    rating: "",
     description: "",
   });
 
@@ -23,7 +22,7 @@ const AddPost = (props) => {
 
     const requestBody = {
       emotion: newPost.emotion,
-      title: newPost.title,
+      rating: newPost.rating,
       description: newPost.description,
     };
 
@@ -39,7 +38,7 @@ const AddPost = (props) => {
         console.log('response', response)
         setNewPost({
           emotion: "",
-          title: "",
+          rating: "",
           description: "",
         });
       props.getAllPosts();
@@ -66,15 +65,16 @@ const AddPost = (props) => {
           <option value="depressed">Depressed</option>
         </select>
 
-        <label>Title:</label>
-        <input
-          type="text"
-          name="title"
-          value={newPost.title}
-          onChange={handleChange}
-        />
+        <label>Emotion Intensity:</label>
+        <select name="rating" value={newPost.rating} onChange={handleChange}>
+          <option value="1">✮ </option>
+          <option value="2">✮✮</option>
+          <option value="3">✮✮✮</option>
+          <option value="4">✮✮✮✮</option>
+          <option value="5">🫠🫠🫠🫠🫠</option>
+        </select>
 
-        <label>Description:</label>
+        <label>What made you feel that way?</label>
         <textarea
           type="text"
           name="description"
