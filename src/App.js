@@ -9,6 +9,7 @@ import SinglePostPage from "./pages/SinglePostPage"
 import IsAnon from "./components/isAnon"
 import IsPrivate from "./components/IsPrivate"
 import PostFormPage from "./pages/PostFormPage"
+import Chatbox from "./components/Chatbox"
 
 function App() {
   return (
@@ -57,6 +58,15 @@ function App() {
           element={
             <IsPrivate>
               <PostFormPage />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/chat"
+          element={
+            <IsPrivate>
+              <Chatbox />
             </IsPrivate>
           }
         />
