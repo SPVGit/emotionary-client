@@ -1,10 +1,10 @@
 import React from 'react'
 import AddPost from '../components/AddPost'
 
-const PostFormPage = ({user}) => {
+const PostFormPage = () => {
   return (
     <div>
-            <AddPost user={user}/>
+            <AddPost />
     </div>
   )
 }

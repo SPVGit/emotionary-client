@@ -1,10 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
+import { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
 
 const API_URL = "http://localhost:5005";
 
-const AddPost = ({user}) => {
+const AddPost = () => {
 
+  const {user} = useContext(AuthContext);
   // const [title, setTitle] = useState("");
   // const [description, setDescription] = useState("");
   const [newPost, setNewPost] = useState({
@@ -54,8 +57,6 @@ const AddPost = ({user}) => {
       <h3>Add Emotion</h3>
 
       <form onSubmit={handleSubmit}>
-
-        <input value={newPost.userId} hidden/>
 
         <label>Emotion:</label>
         <select name="emotion" value={newPost.emotion} onChange={handleChange} required>
