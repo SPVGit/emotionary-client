@@ -6,17 +6,16 @@ import { AuthContext } from "../context/auth.context";
 const API_URL = "http://localhost:5005";
 
 const AddActivity = () => {
-
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   // const [title, setTitle] = useState("");
   // const [description, setDescription] = useState("");
   const [newActivity, setNewActivity] = useState({
     title: "Keep Physically Active",
     level: "easy",
     time: "",
-    SuccessRating: "1",
+    successRating: "1",
     notes: "",
-   // post: postId
+    // post: postId
   });
 
   const handleChange = (e) => {
@@ -28,23 +27,24 @@ const AddActivity = () => {
     e.preventDefault();
 
     const requestBody = {
-      userId: newPost.userId,
-      emotion: newPost.emotion,
-      rating: newPost.rating,
-      description: newPost.description,
+      title: newActivity.title,
+      level: newActivity.level,
+      time: newActivity.time,
+      successRating: newActivity.successRating,
+      notes: newActivity.notes,
     };
 
-    console.log("requestBody", requestBody)
+    console.log("requestBody", requestBody);
 
     const storedToken = localStorage.getItem("authToken");
     axios
-      .post(`${API_URL}/api/addpost`, requestBody, {
+      .post(`${API_URL}/api/addactivity`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
         // Reset the state
-        console.log('response', response)
-        setNewPost({
+        console.log("response", response);
+        setNewActivity({
           userId: user._id,
           emotion: "happy",
           rating: "1",
@@ -59,9 +59,13 @@ const AddActivity = () => {
       <h3>Add Emotion</h3>
 
       <form onSubmit={handleSubmit}>
-
         <label>Emotion:</label>
-        <select name="emotion" value={newPost.emotion} onChange={handleChange} required>
+        <select
+          name="emotion"
+          value={newPost.emotion}
+          onChange={handleChange}
+          required
+        >
           <option value="happy">Happy</option>
           <option value="in-love">In Love</option>
           <option value="excited">Excited</option>
@@ -75,7 +79,12 @@ const AddActivity = () => {
         </select>
 
         <label>Emotion Intensity:</label>
-        <select name="rating" value={newPost.rating} onChange={handleChange} required>
+        <select
+          name="rating"
+          value={newPost.rating}
+          onChange={handleChange}
+          required
+        >
           <option value="1">✮ </option>
           <option value="2">✮✮</option>
           <option value="3">✮✮✮</option>
