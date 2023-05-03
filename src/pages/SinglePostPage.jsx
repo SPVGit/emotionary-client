@@ -14,10 +14,9 @@ const SinglePostPage = (props) => {
   const getPost = () => {
     const storedToken = localStorage.getItem("authToken");
     axios
-      .get(`${API_URL}/api/posts/${postId}`,
+      .get(`${API_URL}/posts/${postId}`,
       { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
-        console.log('hola')
         const singlePost = response.data;
         console.log('response.data', response.data)
       	setPost(singlePost);
