@@ -1,18 +1,17 @@
-import { useContext } from "react";
-import { NavLink } from "react-router-dom";
-import { AuthContext } from "../context/auth.context";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useContext } from "react"
+import { NavLink } from "react-router-dom"
+import { AuthContext } from "../context/auth.context"
+import "bootstrap/dist/css/bootstrap.min.css"
 
 const Navbar = () => {
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext);
+  const { isLoggedIn, user, logOutUser } = useContext(AuthContext)
 
   return (
     <nav className="Navbar">
       <ul>
         <NavLink
           to="/"
-          className={({ isActive }) => (isActive ? "selected" : "")}
-        >
+          className={({ isActive }) => (isActive ? "selected" : "")}>
           Home
         </NavLink>
 
@@ -21,9 +20,13 @@ const Navbar = () => {
           <>
             <NavLink
               to="/posts"
-              className={({ isActive }) => (isActive ? "selected" : "")}
-            >
+              className={({ isActive }) => (isActive ? "selected" : "")}>
               Posts
+            </NavLink>
+            <NavLink
+              to="/chat"
+              className={({ isActive }) => (isActive ? "selected" : "")}>
+              Chat
             </NavLink>
 
             <NavLink onClick={logOutUser}>Logout</NavLink>
@@ -37,21 +40,19 @@ const Navbar = () => {
           <>
             <NavLink
               to="/signup"
-              className={({ isActive }) => (isActive ? "selected" : "")}
-            >
+              className={({ isActive }) => (isActive ? "selected" : "")}>
               Sign up
             </NavLink>
             <NavLink
               to="/login"
-              className={({ isActive }) => (isActive ? "selected" : "")}
-            >
+              className={({ isActive }) => (isActive ? "selected" : "")}>
               Login
             </NavLink>
           </>
         )}
       </ul>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
