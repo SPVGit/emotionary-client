@@ -50,7 +50,7 @@ function MyChatComponent() {
 
   return (
     <div
-      style={{ width: 500, height: 500 }}
+      style={{ width: 500, height: 800 }}
       ref={chatboxEl}
     />
   )
