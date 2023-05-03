@@ -6,7 +6,7 @@ function IsPrivate( { children } ) {
 
 
   
-  const { isLoggedIn, isLoading} = useContext(AuthContext);
+  const { isLoggedIn, isLoading } = useContext(AuthContext);
 
 
 
