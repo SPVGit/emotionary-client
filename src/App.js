@@ -9,6 +9,8 @@ import SinglePostPage from "./pages/SinglePostPage"
 import IsAnon from "./components/IsAnon"
 import IsPrivate from "./components/IsPrivate"
 import PostFormPage from "./pages/PostFormPage"
+import MyChatComponent from "./components/MyChat"
+import Client from "./components/Client"
 
 function App() {
   return (
@@ -57,6 +59,22 @@ function App() {
           element={
             <IsPrivate>
               <PostFormPage />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/chat"
+          element={
+            <IsPrivate>
+              <MyChatComponent />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/client"
+          element={
+            <IsPrivate>
+              <Client />
             </IsPrivate>
           }
         />
