@@ -35,7 +35,7 @@ const AddPost = () => {
 
     const storedToken = localStorage.getItem("authToken")
     axios
-      .post(`${API_URL}/api/addpost`, requestBody, {
+      .post(`${API_URL}/addpost`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
