@@ -5,6 +5,7 @@ import axios from "axios"
 import ListGroup from "react-bootstrap/ListGroup"
 import { Link } from "react-router-dom"
 
+
 const API_URL = "http://localhost:5006"
 
 const PostsPage = () => {
@@ -36,13 +37,11 @@ const PostsPage = () => {
           to={`/posts/${post._id}`}
           key={post._id}>
           <ListGroup>
-            <ListGroup.Item>{post.user}</ListGroup.Item>
             <ListGroup.Item>{post.emotion}</ListGroup.Item>
-            <ListGroup.Item>{post.rating}</ListGroup.Item>
-            <ListGroup.Item>{post.description}</ListGroup.Item>
           </ListGroup>
         </Link>
       ))}
+     <Link to={'/addpost'}>Add Post</Link>
     </div>
   )
 }

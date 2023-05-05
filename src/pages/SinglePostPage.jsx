@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import axios from "axios";
+import { Link } from "react-router-dom"
 
 
 const API_URL = "http://localhost:5006"
@@ -35,6 +36,9 @@ const SinglePostPage = (props) => {
       <p>{post.description}</p>
       <p>{post.rating}</p>
     </div>)}
+    <Link to={`/posts/edit/${postId}`} getPost={getPost}>
+      <button>Edit</button>
+    </Link>
   </div>
 }
 
