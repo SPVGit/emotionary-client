@@ -1,16 +1,17 @@
-import "./App.css"
-import Navbar from "./components/Navbar"
-import { Route, Routes } from "react-router-dom"
-import LoginPage from "./pages/LoginPage"
-import HomePage from "./pages/HomePage"
-import SignUpPage from "./pages/SignUpPage"
-import PostsPage from "./pages/PostsPage"
-import SinglePostPage from "./pages/SinglePostPage"
-import IsAnon from "./components/IsAnon"
-import IsPrivate from "./components/IsPrivate"
-import PostFormPage from "./pages/PostFormPage"
-import MyChatComponent from "./components/MyChat"
-import Client from "./components/Client"
+import "./App.css";
+import Navbar from "./components/Navbar";
+import { Route, Routes } from "react-router-dom";
+import LoginPage from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
+import SignUpPage from "./pages/SignUpPage";
+import PostsPage from "./pages/PostsPage";
+import SinglePostPage from "./pages/SinglePostPage";
+import IsAnon from "./components/IsAnon";
+import IsPrivate from "./components/IsPrivate";
+import PostFormPage from "./pages/PostFormPage";
+import MyChatComponent from "./components/MyChat";
+import Client from "./components/Client";
+import EditPostPage from "./pages/EditPostPage";
 
 function App() {
   return (
@@ -18,10 +19,7 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route
-          path="/"
-          element={<HomePage />}
-        />
+        <Route path="/" element={<HomePage />} />
         <Route
           path="/login"
           element={
@@ -63,6 +61,14 @@ function App() {
           }
         />
         <Route
+          path="/posts/edit/:postId"
+          element={
+            <IsPrivate>
+              <EditPostPage />
+            </IsPrivate>
+          }
+        />
+        <Route
           path="/chat"
           element={
             <IsPrivate>
@@ -80,7 +86,7 @@ function App() {
         />
       </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

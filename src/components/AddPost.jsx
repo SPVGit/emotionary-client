@@ -89,7 +89,7 @@ const AddPost = () => {
           <option value="2">✮✮</option>
           <option value="3">✮✮✮</option>
           <option value="4">✮✮✮✮</option>
-          <option value="5">🫠🫠🫠🫠🫠</option>
+          <option value="5">✮✮✮✮✮</option>
         </select>
 
         <label>What made you feel that way?</label>
@@ -99,6 +99,8 @@ const AddPost = () => {
           value={newPost.description}
           onChange={handleChange}
         />
+
+        
 
         <button type="submit">Submit</button>
       </form>
