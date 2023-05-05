@@ -52,7 +52,7 @@ const EditPostPage = () => {
     console.log("in submit function reqBody", requestBody);
 
     axios
-      .put(`${API_URL}/addpost`, requestBody, {
+      .put(`${API_URL}/posts/edit/${postId}`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
