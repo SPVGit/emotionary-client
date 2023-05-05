@@ -12,6 +12,7 @@ import PostFormPage from "./pages/PostFormPage";
 import MyChatComponent from "./components/MyChat";
 import Client from "./components/Client";
 import EditPostPage from "./pages/EditPostPage";
+import ActivityFormPage from "./pages/ActivityFormPage";
 
 function App() {
   return (
@@ -81,6 +82,14 @@ function App() {
           element={
             <IsPrivate>
               <Client />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/addactivity"
+          element={
+            <IsPrivate>
+              <ActivityFormPage />
             </IsPrivate>
           }
         />

@@ -50,6 +50,9 @@ const SinglePostPage = (props) => {
       <p>{post.description}</p>
       <p>{post.rating}</p>
     </div>)}
+    <Link to={`/addActivity`} >
+      <button>Add Activity</button>
+    </Link>
     <Link to={`/posts/edit/${postId}`} getPost={getPost}>
       <button>Edit</button>
     </Link>
