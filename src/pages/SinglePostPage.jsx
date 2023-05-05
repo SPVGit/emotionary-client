@@ -37,7 +37,8 @@ const SinglePostPage = (props) => {
       .delete(`${API_URL}/posts/${postId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .then(() => {
+      .then((response) => {
+        console.log("delete response", response.data.message)
         navigate("/posts");
       })
       .catch((err) => console.log(err));
