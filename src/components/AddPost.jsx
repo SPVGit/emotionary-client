@@ -2,6 +2,8 @@ import { useState } from "react"
 import axios from "axios"
 import { useContext } from "react"
 import { AuthContext } from "../context/auth.context"
+import { useNavigate } from "react-router-dom"
+
 
 const API_URL = "http://localhost:5006"
 
@@ -16,6 +18,8 @@ const AddPost = () => {
     description: "",
   })
 
+  const navigate = useNavigate()
+  
   const handleChange = (e) => {
     const { name, value } = e.target
     setNewPost((post) => ({ ...post, [name]: value }))
@@ -47,6 +51,7 @@ const AddPost = () => {
           rating: "1",
           description: "",
         })
+        navigate("/posts")
       })
       .catch((error) => console.log(error))
   }
