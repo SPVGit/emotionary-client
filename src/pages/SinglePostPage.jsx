@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Link } from "react-router-dom"
 
 const API_URL = "http://localhost:5006";
 
@@ -28,8 +29,9 @@ const SinglePostPage = (props) => {
 
   useEffect(() => {
     getPost();
-  }, []);
 
+  }, [] );
+  
   const deletePost = () => {
     axios
       .delete(`${API_URL}/posts/${postId}`, {
@@ -40,20 +42,18 @@ const SinglePostPage = (props) => {
       })
       .catch((err) => console.log(err));
   };
+  
+  return <div className= "SinglePostPage">
+    {post && (<div>
+      <h2>{post.emotion}</h2>
+      <p>{post.description}</p>
+      <p>{post.rating}</p>
+    </div>)}
+    <Link to={`/posts/edit/${postId}`} getPost={getPost}>
+      <button>Edit</button>
+    </Link>
+          <button onClick={deletePost}>Delete</button>
+  </div>
+}
 
-  return (
-    <div className="SinglePostPage">
-      {post && (
-        <div>
-          <h2>{post.emotion}</h2>
-          <p>{post.description}</p>
-          <p>{post.rating}</p>
-        </div>
-      )}
-
-      <button onClick={deletePost}>Delete</button>
-    </div>
-  );
-};
-
-export default SinglePostPage;
+export default SinglePostPage
