@@ -9,8 +9,6 @@ const API_URL = "http://localhost:5006"
 
 const AddPost = () => {
   const { user } = useContext(AuthContext)
-  // const [title, setTitle] = useState("");
-  // const [description, setDescription] = useState("");
   const [newPost, setNewPost] = useState({
     userId: user._id,
     emotion: "happy",
