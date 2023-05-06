@@ -1,13 +1,15 @@
 import { useState, useContext } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { AuthContext } from "../context/auth.context";
 
 const API_URL = "http://localhost:5006";
 
 const AddActivity = () => {
   const { user } = useContext(AuthContext);
+  const { postId } = useParams();
   const navigate = useNavigate()
+  console.log('addActivity postId', postId)
   const [newActivity, setNewActivity] = useState({
     title: "Keep Physically Active",
     level: "easy",
@@ -37,12 +39,12 @@ const AddActivity = () => {
 
     const storedToken = localStorage.getItem("authToken");
     axios
-      .post(`${API_URL}/addactivity`, requestBody, {
+      .post(`${API_URL}/addactivity/${postId}`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
         // Reset the state
-        console.log("response addActivity", response);
+        console.log("response addActivity", response.data);
         setNewActivity({
           title: "Keep Physically Active",
           level: "easy",
