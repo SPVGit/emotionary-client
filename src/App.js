@@ -13,6 +13,7 @@ import MyChatComponent from "./components/MyChat";
 import Client from "./components/Client";
 import EditPostPage from "./pages/EditPostPage";
 import ActivityFormPage from "./pages/ActivityFormPage";
+import CalendarFunc from "./components/Calender";
 
 function App() {
   return (
@@ -90,6 +91,14 @@ function App() {
           element={
             <IsPrivate>
               <ActivityFormPage />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/calendar"
+          element={
+            <IsPrivate>
+              <CalendarFunc />
             </IsPrivate>
           }
         />
