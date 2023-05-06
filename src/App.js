@@ -86,7 +86,7 @@ function App() {
           }
         />
         <Route
-          path="/addactivity"
+          path="/addactivity/:postId"
           element={
             <IsPrivate>
               <ActivityFormPage />
