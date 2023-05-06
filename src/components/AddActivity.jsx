@@ -1,7 +1,9 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom"
 import { AuthContext } from "../context/auth.context";
+import Happy from "./emotions/Happy";
+import Sad from "./emotions/Sad"
 
 const API_URL = "http://localhost:5006";
 
@@ -9,9 +11,11 @@ const AddActivity = () => {
   const { user } = useContext(AuthContext);
   const { postId } = useParams();
   const navigate = useNavigate()
+  const [emotion, setEmotion] = useState('')
+  const storedToken = localStorage.getItem("authToken");
   console.log('addActivity postId', postId)
   const [newActivity, setNewActivity] = useState({
-    title: "Keep Physically Active",
+    title: "",
     level: "easy",
     time: "",
     successRating: "1",
@@ -37,7 +41,7 @@ const AddActivity = () => {
 
     console.log("requestBody addActivity", requestBody);
 
-    const storedToken = localStorage.getItem("authToken");
+    
     axios
       .post(`${API_URL}/addactivity/${postId}`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -46,7 +50,7 @@ const AddActivity = () => {
         // Reset the state
         console.log("response addActivity", response.data);
         setNewActivity({
-          title: "Keep Physically Active",
+          title: "",
           level: "easy",
           time: "",
           successRating: "1",
@@ -57,30 +61,30 @@ const AddActivity = () => {
       .catch((error) => console.log(error));
   };
 
+  const getEmotion = () => {
+    axios
+    .get(`${API_URL}/posts/${postId}`, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    })
+    .then((response) => {
+      console.log("response Emotion AddActivity", response.data)
+      setEmotion(response.data.emotion)
+    })
+  }
+
+  useEffect(() => {
+    getEmotion();
+  }, [])
+
   return (
     <div>
       <h3>Add Activity</h3>
 
       <form onSubmit={handleSubmit}>
         <label>Activity:</label>
-        <select
-          name="title"
-          value={newActivity.title}
-          onChange={handleChange}
-          required
-        >
-          <option value="physically-active">Keep Physically Active</option>
-          <option value="avoid-alcohol">Avoid alcohol and recreational drugs</option>
-          <option value="quit-smoking">Quit smoking</option>
-          <option value="quit-drinking">Cut back or quit drinking caffeinated beverages</option>
-          <option value="meditation">Do meditation</option>
-          <option value="yoga">Do some Yoga</option>
-          <option value="sleeping">Make sleeping a priority</option>
-          <option value="healthy-food">Eat healthy food</option>
-          <option value="socialize">Socialize</option>
-          <option value="in-the-moment">Live in the moment as much as you can</option>
-        </select>
-
+      {emotion === "happy" && <Happy handleChange = {handleChange}/>}
+      {emotion === "sad" && <Sad handleChange = {handleChange}/>}
+      
         <label>Level:</label>
         <select
           name="level"
