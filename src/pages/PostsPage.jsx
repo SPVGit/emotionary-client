@@ -1,17 +1,17 @@
-import { useContext } from "react";
-import { AuthContext } from "../context/auth.context";
+import { useContext } from "react"
+import { AuthContext } from "../context/auth.context"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import ListGroup from "react-bootstrap/ListGroup"
 import { Link } from "react-router-dom"
-
+import BottomNavbar from "../components/bottomNavbar"
 
 const API_URL = "http://localhost:5006"
 
 const PostsPage = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext)
   const [posts, setPosts] = useState([])
-  console.log('user', user)
+  console.log("user", user)
 
   const getAllPosts = () => {
     const storedToken = localStorage.getItem("authToken")
@@ -31,17 +31,20 @@ const PostsPage = () => {
 
   return (
     <div>
-      {posts.map((post) => 
-      (post.user === user._id && 
-        <Link
-          to={`/posts/${post._id}`}
-          key={post._id}>
-          <ListGroup>
-            <ListGroup.Item>{post.emotion}</ListGroup.Item>
-          </ListGroup>
-        </Link>
-      ))}
-     <Link to={'/addpost'}>Add Post</Link>
+      {posts.map(
+        (post) =>
+          post.user === user._id && (
+            <Link
+              to={`/posts/${post._id}`}
+              key={post._id}>
+              <ListGroup>
+                <ListGroup.Item>{post.emotion}</ListGroup.Item>
+              </ListGroup>
+            </Link>
+          )
+      )}
+      <BottomNavbar />
+      <Link to={"/addpost"}>Add Post</Link>
     </div>
   )
 }

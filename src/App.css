@@ -36,3 +36,52 @@
     transform: rotate(360deg);
   }
 }
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(169.73deg, #e14fad 0%, #f9d423 115.15%);
+  color: white;
+}
+
+/* Home Text fade-in transition */
+.home-page {
+  height: 100vh; /* Set the height of the container to 100% of the viewport */
+  background: linear-gradient(169.73deg, #e14fad 0%, #f9d423 115.15%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+.fade-out {
+  animation: fadeOut 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/*  end transition */
