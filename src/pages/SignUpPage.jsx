@@ -2,6 +2,12 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 
+import Button from "react-bootstrap/Button"
+import Col from "react-bootstrap/Col"
+import Form from "react-bootstrap/Form"
+import InputGroup from "react-bootstrap/InputGroup"
+import Row from "react-bootstrap/Row"
+
 const API_URL = "http://localhost:5006"
 
 function SignupPage(props) {
@@ -9,6 +15,7 @@ function SignupPage(props) {
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
   const [errorMessage, setErrorMessage] = useState(undefined)
+  const [validated, setValidated] = useState(false)
 
   const navigate = useNavigate()
 
@@ -17,7 +24,13 @@ function SignupPage(props) {
   const handleName = (e) => setName(e.target.value)
 
   const handleSignupSubmit = (e) => {
-    e.preventDefault()
+    const form = e.currentTarget
+    if (form.checkValidity() === false) {
+      e.preventDefault()
+      e.stopPropagation()
+    }
+
+    setValidated(true)
     // Create an object representing the request body
     const requestBody = { email, password, name }
 
@@ -35,37 +48,83 @@ function SignupPage(props) {
       })
   }
 
+  const handleSubmit = (event) => {
+    const form = event.currentTarget
+    if (form.checkValidity() === false) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+
+    setValidated(true)
+  }
+
   return (
     <div className="SignupPage">
       <h1>Sign Up</h1>
 
-      <form onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={handleEmail}
-        />
-
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handlePassword}
-        />
-
-        <label>Name:</label>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={handleName}
-        />
-
-        <button type="submit">Sign Up</button>
-      </form>
+      <Form
+        style={{ padding: "40px" }}
+        noValidate
+        validated={validated}
+        onSubmit={handleSignupSubmit}>
+        <Row
+          className="mb-3"
+          width="80vw">
+          <Form.Group
+            as={Col}
+            md="4"
+            controlId="validationCustom01">
+            <Form.Label>Name</Form.Label>
+            <Form.Control
+              required
+              placeholder="Your name"
+              type="text"
+              name="name"
+              value={name}
+              onChange={handleName}
+            />
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group
+            as={Col}
+            md="4"
+            controlId="validationCustom02">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              required
+              placeholder="Your Email"
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleEmail}
+            />
+            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group
+            as={Col}
+            md="4"
+            controlId="validationCustomUsername">
+            <Form.Label>Password</Form.Label>
+            <InputGroup hasValidation>
+              <Form.Control
+                placeholder="Password"
+                aria-describedby="inputGroupPrepend"
+                required
+                type="password"
+                name="password"
+                value={password}
+                onChange={handlePassword}
+              />
+              <Form.Control.Feedback type="invalid">Please choose a username.</Form.Control.Feedback>
+            </InputGroup>
+          </Form.Group>
+        </Row>
+        <Button
+          variant="dark"
+          type="submit">
+          Sign Up
+        </Button>
+      </Form>
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
 
