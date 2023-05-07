@@ -9,7 +9,7 @@ import BottomNavbar from "../components/bottomNavbar"
 const API_URL = "http://localhost:5006"
 
 const PostsPage = () => {
-  const { user } = useContext(AuthContext)
+  const { user, isLoggedIn } = useContext(AuthContext)
   const [posts, setPosts] = useState([])
   console.log("user", user)
 
@@ -31,14 +31,19 @@ const PostsPage = () => {
 
   return (
     <div>
+      <h2>Hello {user.name}</h2>
       {posts.map(
         (post) =>
           post.user === user._id && (
             <Link
               to={`/posts/${post._id}`}
               key={post._id}>
-              <ListGroup>
-                <ListGroup.Item>{post.emotion}</ListGroup.Item>
+              <ListGroup style={{ padding: 8 }}>
+                <ListGroup.Item
+                  className={post.emotion}
+                  style={{ height: 80 }}>
+                  {post.emotion}
+                </ListGroup.Item>
               </ListGroup>
             </Link>
           )
