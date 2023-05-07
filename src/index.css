@@ -72,3 +72,7 @@ code {
 .over-flow {
   overflow: scroll;
 }
+
+input {
+  color:black
+}

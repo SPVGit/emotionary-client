@@ -9,13 +9,17 @@ const API_URL = "http://localhost:5006"
 
 const AddPost = () => {
   const { user } = useContext(AuthContext)
+  const myDay = new Date()
   const [newPost, setNewPost] = useState({
     userId: user._id,
+    date: `${myDay.getFullYear}-${myDay.getMonth+1}-${myDay.getDate}`,
     emotion: "happy",
     rating: "1",
     description: "",
   })
 
+  
+  console.log('Date now', myDay.getDate())
   const navigate = useNavigate()
   
   const handleChange = (e) => {
@@ -28,6 +32,7 @@ const AddPost = () => {
 
     const requestBody = {
       userId: newPost.userId,
+      date: newPost.date,
       emotion: newPost.emotion,
       rating: newPost.rating,
       description: newPost.description,
@@ -45,6 +50,7 @@ const AddPost = () => {
         console.log("response", response)
         setNewPost({
           userId: user._id,
+          date: "",
           emotion: "happy",
           rating: "1",
           description: "",
@@ -59,6 +65,8 @@ const AddPost = () => {
       <h3>Add Emotion</h3>
 
       <form onSubmit={handleSubmit}>
+       <label>Date</label>
+       <input type="date" name="date" value={newPost.date} onChange={handleChange} required/>
         <label>Emotion:</label>
         <select
           name="emotion"
