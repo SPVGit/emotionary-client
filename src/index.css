@@ -62,8 +62,10 @@ code {
 }
 .depressed {
   background-color: #000000;
+  color: white;
 }
 
-.icons path {
-  fill: white;
+.navlink:hover {
+  color: #2c2b2b;
+  font-weight: bold;
 }
