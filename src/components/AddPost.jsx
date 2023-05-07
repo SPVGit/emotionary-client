@@ -9,10 +9,13 @@ const API_URL = "http://localhost:5006"
 
 const AddPost = () => {
   const { user } = useContext(AuthContext)
+
   const myDay = new Date()
+
+
   const [newPost, setNewPost] = useState({
     userId: user._id,
-    date: `${myDay.getFullYear}-${myDay.getMonth+1}-${myDay.getDate}`,
+    date: '',
     emotion: "happy",
     rating: "1",
     description: "",
