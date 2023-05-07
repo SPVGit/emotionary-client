@@ -24,6 +24,7 @@ const EditPostPage = () => {
         setEditedPost({
           userId: user._id,
           emotion: post.emotion,
+          date: post.date,
           rating: post.rating,
           description: post.description,
         });
@@ -45,6 +46,7 @@ const EditPostPage = () => {
     const requestBody = {
       userId: user._id,
       emotion: editedPost.emotion,
+      date: editedPost.date,
       rating: editedPost.rating,
       description: editedPost.description,
     };
@@ -63,6 +65,8 @@ const EditPostPage = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
+      <label>Date</label>
+       <input type="date" name="date" value={editedPost.date} onChange={handleChange} required/>
         <select
           name="emotion"
           value={editedPost.emotion}
