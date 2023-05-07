@@ -82,11 +82,12 @@ function CalendarFunc() {
 				enableEventOverwriting={true}
 
 				onDatePick={(eventDate, clearSelectedCell) => {
-					let myDate = eventDate.toDate()
+					let myDate = eventDate.format('YYYY-MM-DD')
+				
 				
 				for (let post of posts){
 					
-					if (post.createdAt.substring(0,10) === (JSON.stringify(myDate)).substring(1,11)){
+					if (post.createdAt.substring(0,10) === myDate){
 						navigate(`/posts/${post._id}`)
 					}
 
