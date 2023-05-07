@@ -63,3 +63,7 @@ code {
 .depressed {
   background-color: #000000;
 }
+
+.icons path {
+  fill: white;
+}
