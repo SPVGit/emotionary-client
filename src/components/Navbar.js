@@ -12,23 +12,12 @@ const NavbarComponent = () => {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext)
   const [navBarOpen, setNavBarOpen] = useState(false)
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setNavBarOpen(false)
-    }, 3000)
-
-    return () => {
-      clearTimeout(timeout)
-    }
-  }, [navBarOpen])
-
   return (
     <Navbar
       variant="dark"
-      expand="lg"
-      navstate="false">
+      expand="lg">
       <Container>
-        <Navbar.Brand href="/">
+        <Navbar.Brand href={!isLoggedIn ? "/" : "/posts"}>
           <img
             src="/Frame-35.png"
             alt="Emotionary Logo"
@@ -36,27 +25,21 @@ const NavbarComponent = () => {
             height="80px"
           />
         </Navbar.Brand>
-
-        <Navbar.Brand />
-        <Navbar.Toggle
-          onClick={() => setNavBarOpen(!navBarOpen)}
-          aria-controls="basic-navbar-nav"
-        />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="'me-auto">
             {isLoggedIn && (
               <>
-                <Nav.Link
+                <NavLink
+                  onClick={() => setNavBarOpen(!navBarOpen)}
+                  className="navlink"
                   as={NavLink}
                   to="/posts">
                   My Diary
-                </Nav.Link>
-                <Nav.Link
-                  as={NavLink}
-                  to="/chat">
-                  Chat
-                </Nav.Link>
+                </NavLink>
+                <br />
                 <NavLink
+                  className="navlink"
                   as={NavLink}
                   to="#"
                   onClick={logOutUser}>
@@ -69,11 +52,13 @@ const NavbarComponent = () => {
             {!isLoggedIn && (
               <>
                 <Nav.Link
+                  className="navlink"
                   as={NavLink}
                   to="/signup">
                   Sign up
                 </Nav.Link>
                 <Nav.Link
+                  className="navlink"
                   as={NavLink}
                   to="/login">
                   Log in
