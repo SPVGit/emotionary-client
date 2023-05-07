@@ -8,9 +8,9 @@ import { NavLink } from "react-router-dom"
 export default function BottomNavbar() {
   return (
     <Navbar
-      variant="dark"
       expand="lg"
-      fixed="bottom">
+      fixed="bottom"
+      style={{ backgroundColor: "white" }}>
       <Container className="d-flex justify-content-center ">
         <Nav className="'me-auto flex-row ">
           <Nav.Link
