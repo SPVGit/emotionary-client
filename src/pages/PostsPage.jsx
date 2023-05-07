@@ -30,8 +30,17 @@ const PostsPage = () => {
   }, [])
 
   return (
-    <div>
-      <h2>Hello {user.name}</h2>
+    <>
+      <span className="d-flex p-4 justify-content-between">
+        <h2 className="h2">Hello {user.name}</h2>
+        <img
+          src="clipboard-data-fill.svg"
+          alt="clipboard-icon"
+          width="30px"
+          height="30px"
+        />
+      </span>
+
       {posts.map(
         (post) =>
           post.user === user._id && (
@@ -49,8 +58,7 @@ const PostsPage = () => {
           )
       )}
       <BottomNavbar />
-      <Link to={"/addpost"}>Add Post</Link>
-    </div>
+    </>
   )
 }
 
