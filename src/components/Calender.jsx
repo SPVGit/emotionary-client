@@ -18,31 +18,33 @@ function CalendarFunc() {
 
   const [posts, setPosts] = useState(null)
   console.log("posts", posts)
+
+
   const getAllPosts = () => {
     const storedToken = localStorage.getItem("authToken")
     axios
       .get(`${API_URL}/posts`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .then((response) => {
-        const postsArr = response.data.filter((post) => post.user === user._id)
-        setPosts(postsArr)})
-        .then(()=> {
-          console.log('monkey')
-          let postsArray = posts.map((post) => {
-            return {
-              eventName: `${post.emotion}`,
-              startDate: dayjs(`${post.date}`),
-              endDate: dayjs(`${post.date}`),
-              eventBgColor: "blue",
-              eventTextColor: "white",
-            }
-          })
-          setEvents(postsArray)
+      .then(async (response) => {
+
+        console.log('dammit work', response.data)
+
+        const postsArr = await response.data.filter((post) => post.user === user._id)
+
+        setPosts(postsArr)
+
+         let postsArray = await postsArr.map((post) => {
+          return {
+            eventName: `${post.emotion}`,
+            startDate: dayjs(`${post.date}`),
+            endDate: dayjs(`${post.date}`),
+            eventBgColor: "blue",
+            eventTextColor: "white",
+          }
         })
-
-
-  //    })
+        setEvents(postsArray)
+      })
       .catch((error) => console.log(error))
   }
 
@@ -64,22 +66,24 @@ function CalendarFunc() {
         weekendCellTextColor="white"
         weekDayCellBackgroundColor="rgba(75, 68, 83, 0.69)"
         weekDayCellTextColor="white"
-        selectionColor="black"
-        selectionTextColor="white"
-        maxRangeSelection={20}
-        minRangeSelection={10}
+       // selectionColor="black"
+       // selectionTextColor="white"
+       // maxRangeSelection={20}
+       // minRangeSelection={10}
         firstDayOfWeek="Monday"
-        maxYear={2050}
-        minYear={2000}
+        maxYear={2031}
+        minYear={2011}
         readonlyCalendar={false}
         showWeekSeparator={true}
         showTodayButton={true}
-        enableYearToYearSelection={false}
-        enableWeekendSelection={true}
+       // enableYearToYearSelection={false}
+      //  enableWeekendSelection={true}
         minCellWidth={50}
         showSeparatorInHeader={false}
         enableEventOverwriting={true}
-        onDatePick={(eventDate, clearSelectedCell) => {
+
+        onDatePick={(eventDate,  clearSelectedCell) => {
+          let readonlyCalendar = false
           let myDate = eventDate.format("YYYY-MM-DD")
 
           for (let post of posts) {
@@ -87,23 +91,26 @@ function CalendarFunc() {
               navigate(`/posts/${post._id}`)
             }
           }
+          setTimeout(() => {
+            clearSelectedCell()
+            }, 1);
+         
+        }}
 
-          //   console.log(`${eventDate.$y}-${eventDate.$M}-${eventDate.$D}`)
-          //   navigate(`/`)
-        }}
-        onEventSinglePickInterception={(date, eventName, clearSelectedCell) => {
+        /*onEventSinglePickInterception={(date, eventName, clearSelectedCell) => {
           console.table([eventName, date.toDate()])
-        }}
-        onRangePick={(eventStartDate, eventEndDate, clearSecondSelectedCell, clearSelection) => {
+        }}*/
+      /*  onRangePick={(eventStartDate, eventEndDate, clearSecondSelectedCell, clearSelection) => {
           setTimeout(() => {
             clearSelection()
           }, 3000)
-        }}
-        onEventRangePickInterception={(eventFirstDate, eventLastDate, eventsToBeDeleted, eventsToBeUpdated, clearSecondSelectedCell, clearSelection) => {
+        }}*/
+     /* onEventRangePickInterception={(eventFirstDate, eventLastDate, eventsToBeDeleted, eventsToBeUpdated, clearSecondSelectedCell, clearSelection) => {
           setTimeout(() => {
             clearSelection()
           }, 3000)
-        }}
+        }}*/
+        
       />
     </div>
   )
