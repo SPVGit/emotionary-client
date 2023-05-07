@@ -29,23 +29,13 @@ const NavbarComponent = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="'me-auto">
             {isLoggedIn && (
-              <>
-                <NavLink
-                  onClick={() => setNavBarOpen(!navBarOpen)}
-                  className="navlink"
-                  as={NavLink}
-                  to="/posts">
-                  My Diary
-                </NavLink>
-                <br />
-                <NavLink
-                  className="navlink"
-                  as={NavLink}
-                  to="#"
-                  onClick={logOutUser}>
-                  Log out
-                </NavLink>
-              </>
+              <NavLink
+                className="navlink"
+                as={NavLink}
+                to="#"
+                onClick={logOutUser}>
+                Log out
+              </NavLink>
             )}
           </Nav>
           <Nav>
