@@ -40,23 +40,32 @@ const PostsPage = () => {
           height="30px"
         />
       </span>
-
-      {posts.map(
-        (post) =>
-          post.user === user._id && (
-            <Link
-              to={`/posts/${post._id}`}
-              key={post._id}>
-              <ListGroup style={{ padding: 8 }}>
-                <ListGroup.Item
-                  className={post.emotion}
-                  style={{ height: 80 }}>
-                  {post.emotion}
-                </ListGroup.Item>
-              </ListGroup>
-            </Link>
-          )
-      )}
+      <div className="over-flow ">
+        {posts.map(
+          (post) =>
+            post.user === user._id && (
+              <Link
+                to={`/posts/${post._id}`}
+                key={post._id}>
+                <ListGroup style={{ padding: 8 }}>
+                  <ListGroup.Item
+                    className={post.emotion}
+                    style={{ height: 80 }}>
+                    {post.emotion}
+                  </ListGroup.Item>
+                </ListGroup>
+              </Link>
+            )
+        )}
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+      </div>
       <BottomNavbar />
     </>
   )

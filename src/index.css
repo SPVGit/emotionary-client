@@ -69,3 +69,6 @@ code {
   color: #2c2b2b;
   font-weight: bold;
 }
+.over-flow {
+  overflow: scroll;
+}
