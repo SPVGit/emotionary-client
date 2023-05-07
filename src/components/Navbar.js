@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useContext, useState, useEffect } from "react"
 import { NavLink } from "react-router-dom"
 import { AuthContext } from "../context/auth.context"
 
@@ -8,16 +8,40 @@ import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import NavDropdown from "react-bootstrap/NavDropdown"
 
-import "bootstrap/dist/css/bootstrap.min.css"
 const NavbarComponent = () => {
   const { isLoggedIn, user, logOutUser } = useContext(AuthContext)
+  const [navBarOpen, setNavBarOpen] = useState(false)
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setNavBarOpen(false)
+    }, 3000)
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [navBarOpen])
 
   return (
     <Navbar
       variant="dark"
-      expand="lg">
+      expand="lg"
+      navstate="false">
       <Container>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Brand href="/">
+          <img
+            src="/Frame-35.png"
+            alt="Emotionary Logo"
+            width="140px"
+            height="80px"
+          />
+        </Navbar.Brand>
+
+        <Navbar.Brand />
+        <Navbar.Toggle
+          onClick={() => setNavBarOpen(!navBarOpen)}
+          aria-controls="basic-navbar-nav"
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="'me-auto">
             {isLoggedIn && (
@@ -32,20 +56,16 @@ const NavbarComponent = () => {
                   to="/chat">
                   Chat
                 </Nav.Link>
+                <NavLink
+                  as={NavLink}
+                  to="#"
+                  onClick={logOutUser}>
+                  Log out
+                </NavLink>
               </>
             )}
           </Nav>
           <Nav>
-            {isLoggedIn && (
-              <>
-                <NavDropdown
-                  title={`Welcome back, ${user && user.name}`}
-                  id="basic-nav-dropdown">
-                  <NavDropdown.Item onClick={logOutUser}>Logout</NavDropdown.Item>
-                </NavDropdown>
-              </>
-            )}
-
             {!isLoggedIn && (
               <>
                 <Nav.Link

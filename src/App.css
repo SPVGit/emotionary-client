@@ -45,14 +45,14 @@ body {
 }
 
 body {
-  background: linear-gradient(169.73deg, #e14fad 0%, #f9d423 115.15%);
+  background: linear-gradient(169.73deg, #f8bae2 0%, #ffde41 115.15%);
   color: white;
 }
 
 /* Home Text fade-in transition */
 .home-page {
   height: 100vh; /* Set the height of the container to 100% of the viewport */
-  background: linear-gradient(169.73deg, #e14fad 0%, #f9d423 115.15%);
+  background: linear-gradient(169.73deg, #f8bae2 0%, #ffde41 115.15%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,3 +85,8 @@ body {
 }
 
 /*  end transition */
+/*  */
+/*  */
+/* Media query - landscape */
+
+/* end media query */
