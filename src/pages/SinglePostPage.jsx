@@ -61,6 +61,7 @@ const SinglePostPage = (props) => {
     <div className="SinglePostPage">
       {post && (
         <div>
+          <p>{post.date}</p>
           <h2>{post.emotion}</h2>
           <p>{post.description}</p>
           <p>{post.rating}</p>

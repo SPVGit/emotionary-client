@@ -48,10 +48,12 @@ const PostsPage = () => {
                 to={`/posts/${post._id}`}
                 key={post._id}>
                 <ListGroup style={{ padding: 8 }}>
+
                   <ListGroup.Item
                     className={post.emotion}
                     style={{ height: 80 }}>
-                    {post.emotion}
+                    <span>{post.date}</span>
+                    <h2>{post.emotion}</h2>
                   </ListGroup.Item>
                 </ListGroup>
               </Link>

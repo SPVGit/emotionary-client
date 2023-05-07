@@ -17,7 +17,7 @@ function CalendarFunc() {
   const [events, setEvents] = useState([])
 
   const [posts, setPosts] = useState(null)
-
+  console.log("posts", posts)
   const getAllPosts = () => {
     const storedToken = localStorage.getItem("authToken")
     axios
@@ -26,19 +26,23 @@ function CalendarFunc() {
       })
       .then((response) => {
         const postsArr = response.data.filter((post) => post.user === user._id)
-        setPosts(postsArr)
-
-        let postsArray = postsArr.map((post) => {
-          return {
-            eventName: `${post.emotion}`,
-            startDate: dayjs(`${post.createdAt.substring(0, 10)}`),
-            endDate: dayjs(`${post.createdAt.substring(0, 10)}`),
-            eventBgColor: "blue",
-            eventTextColor: "white",
-          }
+        setPosts(postsArr)})
+        .then(()=> {
+          console.log('monkey')
+          let postsArray = posts.map((post) => {
+            return {
+              eventName: `${post.emotion}`,
+              startDate: dayjs(`${post.date}`),
+              endDate: dayjs(`${post.date}`),
+              eventBgColor: "blue",
+              eventTextColor: "white",
+            }
+          })
+          setEvents(postsArray)
         })
-        setEvents(postsArray)
-      })
+
+
+  //    })
       .catch((error) => console.log(error))
   }
 
@@ -79,7 +83,7 @@ function CalendarFunc() {
           let myDate = eventDate.format("YYYY-MM-DD")
 
           for (let post of posts) {
-            if (post.createdAt.substring(0, 10) === myDate) {
+            if (post.date === myDate) {
               navigate(`/posts/${post._id}`)
             }
           }
