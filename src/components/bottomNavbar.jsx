@@ -41,7 +41,7 @@ export default function BottomNavbar() {
           <Nav.Link
             className="m-4 p-2"
             as={NavLink}
-            to="/chat">
+            to="/chat/:chatId">
             <img
               className="icons"
               src="/chat-right-text-fill.svg"

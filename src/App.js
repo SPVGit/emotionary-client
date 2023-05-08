@@ -1,20 +1,20 @@
-import "./App.css";
-import Navbar from "./components/Navbar";
-import { Route, Routes } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import HomePage from "./pages/HomePage";
-import SignUpPage from "./pages/SignUpPage";
-import PostsPage from "./pages/PostsPage";
-import SinglePostPage from "./pages/SinglePostPage";
-import IsAnon from "./components/IsAnon";
-import IsPrivate from "./components/IsPrivate";
-import PostFormPage from "./pages/PostFormPage";
-import MyChatComponent from "./components/MyChat";
-import Client from "./components/Client";
-import EditPostPage from "./pages/EditPostPage";
-import ActivityFormPage from "./pages/ActivityFormPage";
-import CalendarFunc from "./components/Calender";
-import PostsByDate from "./components/PostsByDate";
+import "./App.css"
+import Navbar from "./components/Navbar"
+import { Route, Routes } from "react-router-dom"
+import LoginPage from "./pages/LoginPage"
+import HomePage from "./pages/HomePage"
+import SignUpPage from "./pages/SignUpPage"
+import PostsPage from "./pages/PostsPage"
+import SinglePostPage from "./pages/SinglePostPage"
+import IsAnon from "./components/IsAnon"
+import IsPrivate from "./components/IsPrivate"
+import PostFormPage from "./pages/PostFormPage"
+import EditPostPage from "./pages/EditPostPage"
+import ActivityFormPage from "./pages/ActivityFormPage"
+import CalendarFunc from "./components/Calender"
+import PostsByDate from "./components/PostsByDate"
+import ChatPage from "./pages/ChatPage"
+import UserList from "./components/UsersList"
 
 function App() {
   return (
@@ -22,7 +22,10 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/"
+          element={<HomePage />}
+        />
 
         <Route
           path="/login"
@@ -73,21 +76,22 @@ function App() {
           }
         />
         <Route
-          path="/chat"
+          path="/chat/:chatId"
           element={
             <IsPrivate>
-              <MyChatComponent />
+              <ChatPage />
             </IsPrivate>
           }
         />
         <Route
-          path="/client"
+          path="/users"
           element={
             <IsPrivate>
-              <Client />
+              <UserList />
             </IsPrivate>
           }
         />
+
         <Route
           path="/addactivity/:postId"
           element={
@@ -114,7 +118,7 @@ function App() {
         />
       </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
