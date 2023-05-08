@@ -4,11 +4,19 @@ import Form from 'react-bootstrap/Form'
 const Sad = ({handleChange}) => {
 
   return (
-    <Form.Select name="title" type="text" aria-label="Default select example" size="lg" required>
+    <Form.Select
+    name="title"
+    aria-label="Default select example"
+    size="lg"
+    onChange={handleChange}
+  >
     <option>Open this select menu</option>
-    <option value="4">Four</option>
-    <option value="5">Five</option>
-    <option value="6">Six</option>
+    <option value="Meet a friend for a coffee">
+      Meet a friend for a coffee
+    </option>
+    <option value="Go out for a walk">Go out for a walk</option>
+    <option value="Do some meditation">Do some meditation</option>
+    <option value="Do some arts and crafts">Do some arts and crafts</option>
   </Form.Select>
   )
 }

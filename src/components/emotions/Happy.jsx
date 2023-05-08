@@ -1,13 +1,16 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 
-const Happy = () => {
+const Happy = ({handleChange}) => {
+
+
+
   return (
-    <Form.Select name="title" aria-label="Default select example" size="lg">
+    <Form.Select name="title" aria-label="Default select example" size="lg" onChange={handleChange}>
     <option>Open this select menu</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
+    <option value="Call a friend and share your happiness">Call a friend and share your happiness</option>
+    <option value="Do some charity! Spread your happiness!">Do some charity! Spread your happiness!</option>
+    <option value="Do stay in the moment and enjoy!">Do stay in the moment and enjoy!</option>
   </Form.Select>
   )
 }

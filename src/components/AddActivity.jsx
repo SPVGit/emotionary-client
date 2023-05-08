@@ -4,6 +4,14 @@ import { useNavigate, useParams } from "react-router-dom"
 import { AuthContext } from "../context/auth.context";
 import Happy from "./emotions/Happy";
 import Sad from "./emotions/Sad"
+import Angry from "./emotions/Angry";
+import Anxious from "./emotions/Anxious";
+import Calm from "./emotions/Calm";
+import Depressed from "./emotions/Depressed";
+import Embarrassed from "./emotions/Embarrassed";
+import Excited from "./emotions/Excited";
+import InLove from "./emotions/InLove";
+import Satisfied from "./emotions/Satisfied";
 
 const API_URL = "http://localhost:5006";
 
@@ -20,7 +28,7 @@ const AddActivity = () => {
     time: "",
     successRating: "1",
     notes: "",
-    // post: postId
+    //post: postId
   });
 
   const handleChange = (e) => {
@@ -41,7 +49,6 @@ const AddActivity = () => {
 
     console.log("requestBody addActivity", requestBody);
 
-    
     axios
       .post(`${API_URL}/addactivity/${postId}`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -76,14 +83,26 @@ const AddActivity = () => {
     getEmotion();
   }, [])
 
+  //A function we pass as props to child component, so that we can get the activity title afterwards
+  const pullActivityTitle = (data) => {
+    console.log('from child component', data)
+  }
   return (
     <div>
       <h3>Add Activity</h3>
 
       <form onSubmit={handleSubmit}>
         <label>Activity:</label>
-      {emotion === "happy" && <Happy handleChange = {handleChange}/>}
-      {emotion === "sad" && <Sad handleChange = {handleChange}/>}
+      {emotion === "happy" && <Happy handleChange = {handleChange} />}
+      {emotion === "sad" && <Sad handleChange = {handleChange} />}
+      {emotion === "angry" && <Angry handleChange = {handleChange} />}
+      {emotion === "anxious" && <Anxious handleChange = {handleChange} />}
+      {emotion === "calm" && <Calm handleChange = {handleChange} />}
+      {emotion === "depressed" && <Depressed handleChange = {handleChange} />}
+      {emotion === "embarrassed" && <Embarrassed handleChange = {handleChange} />}
+      {emotion === "excited" && <Excited handleChange = {handleChange} />}
+      {emotion === "in-love" && <InLove handleChange = {handleChange} />}
+      {emotion === "satisfied" && <Satisfied handleChange = {handleChange} />}
       
         <label>Level:</label>
         <select
@@ -104,7 +123,7 @@ const AddActivity = () => {
           onChange={handleChange}
           required
         >
-          <option value="1">1 </option>
+          <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
           <option value="4">4</option>
