@@ -14,6 +14,7 @@ import Client from "./components/Client";
 import EditPostPage from "./pages/EditPostPage";
 import ActivityFormPage from "./pages/ActivityFormPage";
 import CalendarFunc from "./components/Calender";
+import PostsByDate from "./components/PostsByDate";
 
 function App() {
   return (
@@ -100,6 +101,14 @@ function App() {
           element={
             <IsPrivate>
               <CalendarFunc />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/postsbydate/:postId"
+          element={
+            <IsPrivate>
+              <PostsByDate />
             </IsPrivate>
           }
         />
