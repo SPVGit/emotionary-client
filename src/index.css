@@ -71,6 +71,7 @@ code {
 }
 .over-flow {
   overflow: scroll;
+  height: 100%;
 }
 
 input {

@@ -101,7 +101,7 @@ function CalendarFunc() {
 
           for (let post of posts) {
             if (post.date === myDate) {
-              navigate(`/posts/${post._id}`)
+              navigate(`/postsbydate/${post._id}`)
             }
           }
           setTimeout(() => {
