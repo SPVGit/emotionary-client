@@ -20,6 +20,19 @@ function CalendarFunc() {
   console.log("posts", posts)
 
 
+  function colorOfEmotion (color){
+    if(color === 'happy')return '#ffff54'
+    else if (color === 'embarrassed')return '#ff8c8c'
+    else if (color === 'in-love')return '#ff54ff'
+    else if (color === 'excited')return '#ff7d00'
+    else if (color === 'satisfied')return '#00b400'
+    else if (color === 'calm')return '#0089e0'
+    else if (color === 'sad')return '#717171'
+    else if (color === 'anxious')return '#6851ff'
+    else if (color === 'angry')return '#ff0000'
+    else if (color === 'depressed')return '#000000'
+  }
+
   const getAllPosts = () => {
     const storedToken = localStorage.getItem("authToken")
     axios
@@ -39,7 +52,7 @@ function CalendarFunc() {
             eventName: `${post.emotion}`,
             startDate: dayjs(`${post.date}`),
             endDate: dayjs(`${post.date}`),
-            eventBgColor: "blue",
+            eventBgColor: colorOfEmotion(`${post.emotion}`),
             eventTextColor: "white",
           }
         })
@@ -62,7 +75,7 @@ function CalendarFunc() {
         weekSeparatorColor="white"
         headerWeekDayBgColor="#b39cd0"
         headerWeekendBgColor="rgba(75, 68, 83, 0.69)"
-        weekendCellBackgroundColor="rgba(75, 68, 83, 0.69)"
+        weekendCellBackgroundColor="rgba(190, 190, 190, 0.69)"
         weekendCellTextColor="white"
         weekDayCellBackgroundColor="rgba(75, 68, 83, 0.69)"
         weekDayCellTextColor="white"
