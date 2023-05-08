@@ -20,17 +20,17 @@ function CalendarFunc() {
   console.log("posts", posts)
 
 
-  function colorOfEmotion (color){
-    if(color === 'happy')return '#ffff54'
-    else if (color === 'embarrassed')return '#ff8c8c'
-    else if (color === 'in-love')return '#ff54ff'
-    else if (color === 'excited')return '#ff7d00'
-    else if (color === 'satisfied')return '#00b400'
-    else if (color === 'calm')return '#0089e0'
-    else if (color === 'sad')return '#717171'
-    else if (color === 'anxious')return '#6851ff'
-    else if (color === 'angry')return '#ff0000'
-    else if (color === 'depressed')return '#000000'
+  function colorOfEmotion (emotion){
+    if(emotion === 'happy')return '#ffff54'
+    else if (emotion === 'embarrassed')return '#ff8c8c'
+    else if (emotion === 'in-love')return '#ff54ff'
+    else if (emotion === 'excited')return '#ff7d00'
+    else if (emotion === 'satisfied')return '#00b400'
+    else if (emotion === 'calm')return '#0089e0'
+    else if (emotion === 'sad')return '#717171'
+    else if (emotion === 'anxious')return '#6851ff'
+    else if (emotion === 'angry')return '#ff0000'
+    else if (emotion === 'depressed')return '#000000'
   }
 
   const getAllPosts = () => {
