@@ -76,3 +76,6 @@ code {
 input {
   color:black
 }
+.month-name-cell{
+  background: white;
+}

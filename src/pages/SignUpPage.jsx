@@ -11,6 +11,7 @@ import Row from "react-bootstrap/Row"
 const API_URL = "http://localhost:5006"
 
 function SignupPage(props) {
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
@@ -31,32 +32,21 @@ function SignupPage(props) {
     }
 
     setValidated(true)
-    // Create an object representing the request body
+
     const requestBody = { email, password, name }
 
-    // Make an axios request to the API
-    // If the POST request is a successful redirect to the login page
-    // If the request resolves with an error, set the error message in the state
     axios
       .post(`${API_URL}/auth/signup`, requestBody)
       .then((response) => {
-        navigate("/login")
+        console.log(response.data)
       })
       .catch((error) => {
         const errorDescription = error.response.data.message
         setErrorMessage(errorDescription)
       })
+      navigate("/login")
   }
 
-  const handleSubmit = (event) => {
-    const form = event.currentTarget
-    if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
-    }
-
-    setValidated(true)
-  }
 
   return (
     <div className="SignupPage">
