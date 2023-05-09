@@ -47,11 +47,16 @@ const SinglePostPage = (props) => {
     .catch((err) => console.log(err));
   };
 
-  const deleteActivity = () => {
+  const deleteActivity = (activityId) => {
     axios
-      .delete(`${API_URL}/posts/${postId}`, {
+      .delete(`${API_URL}/posts/${postId}/${activityId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
+      .then((response) => {
+        console.log('monkey')
+        console.log('delete activity', response.data.message)
+      })
+      .catch((err) => console.log(err))
   }
 
   return (
@@ -69,7 +74,10 @@ const SinglePostPage = (props) => {
               <ListGroup.Item>{activity.time}</ListGroup.Item>
               <ListGroup.Item>{activity.successRating}</ListGroup.Item>
               <ListGroup.Item>{activity.notes}</ListGroup.Item>
-              <button onClick={deleteActivity}>Delete</button>
+              <button onClick={() => deleteActivity(activity._id)}>Delete</button>
+              <Link to={`/posts/${postId}/${activity._id}`}>
+                <button>Go to activity</button>
+              </Link> 
             </ListGroup>
           ))}
         </div>
