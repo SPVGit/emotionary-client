@@ -24,6 +24,19 @@ const PostsPage = () => {
       .catch((error) => console.log(error))
   } */
   const storedToken = localStorage.getItem("authToken");
+
+  const latestToOldest = (data) => {
+const sortedByDate = [...data].sort(function (a, b) {
+  const [aYear, aMonth, aDay] = a.date.split("-");
+  const [bYear, bMonth, bDay] = b.date.split("-");
+  const dateA = new Date(aYear, aMonth - 1, aDay);
+  const dateB = new Date(bYear, bMonth - 1, bDay);
+    return dateB.getTime() - dateA.getTime();
+  
+});
+setPosts(sortedByDate);
+  }
+
   const sortByDate = () => {
     axios
       .get(`${API_URL}/posts`, {
@@ -50,28 +63,27 @@ const PostsPage = () => {
   };
 
   const filterByEmotion = (e) => {
-    console.log('e.target.value', e.target.value)
+    console.log("e.target.value", e.target.value);
     setEmotion(e.target.value);
-    console.log('emotion',emotion)
+    console.log("emotion", emotion);
     axios
       .get(`${API_URL}/posts`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        if (emotion === "all") {
-          setPosts(response.data)
-        } 
-        else {
-        const filteredByEmotionArr = response.data.filter((post) => post.emotion === emotion)
-       // console.log('post.emotion', filteredByEmotionArr[0].emotion)
-        console.log(emotion)
-        setPosts(filteredByEmotionArr)
-        console.log("filteredByEmotionArr", filteredByEmotionArr)
-      }
-      }
-      
-    );
-
+        if (e.target.value === "all") {
+          latestToOldest(response.data)
+        } else {
+          console.log("emotion", emotion);
+   /*       const filteredByEmotionArr = response.data.filter(
+            (post) => post.emotion === e.target.value
+          ); */
+          
+          latestToOldest(response.data.filter(
+            (post) => post.emotion === e.target.value
+          ))
+        }
+      });
   };
 
   // We set this effect will run only once, after the initial render
@@ -90,9 +102,9 @@ const PostsPage = () => {
         value={emotion}
         onChange={filterByEmotion}
         style={{ backgroundColor: "grey" }}
-        required
       >
-          Filter by emotion
+        Filter by emotion
+        <option>Select one</option>
         <option value="all">All</option>
         <option value="happy">Happy</option>
         <option value="in-love">In Love</option>
