@@ -34,28 +34,25 @@ const SinglePostPage = (props) => {
     getPost();
   }, []);
 
-  /*  const getAllActivities = () => {
-    const storedToken = localStorage.getItem("authToken")
-    axios
-      .get(`${API_URL}/posts/${postId}`, {
-        headers: { Authorization: `Bearer ${storedToken}`},
-      })
-      .then((response) => {
-
-      })
-  } */
-
+  
   const deletePost = () => {
+    axios
+    .delete(`${API_URL}/posts/${postId}`, {
+      headers: { Authorization: `Bearer ${storedToken}` },
+    })
+    .then((response) => {
+      console.log("delete response", response.data.message);
+      navigate("/posts");
+    })
+    .catch((err) => console.log(err));
+  };
+
+  const deleteActivity = () => {
     axios
       .delete(`${API_URL}/posts/${postId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .then((response) => {
-        console.log("delete response", response.data.message);
-        navigate("/posts");
-      })
-      .catch((err) => console.log(err));
-  };
+  }
 
   return (
     <div className="SinglePostPage">
@@ -72,6 +69,7 @@ const SinglePostPage = (props) => {
               <ListGroup.Item>{activity.time}</ListGroup.Item>
               <ListGroup.Item>{activity.successRating}</ListGroup.Item>
               <ListGroup.Item>{activity.notes}</ListGroup.Item>
+              <button onClick={deleteActivity}>Delete</button>
             </ListGroup>
           ))}
         </div>
