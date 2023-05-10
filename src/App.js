@@ -9,8 +9,6 @@ import SinglePostPage from "./pages/SinglePostPage";
 import IsAnon from "./components/IsAnon";
 import IsPrivate from "./components/IsPrivate";
 import PostFormPage from "./pages/PostFormPage";
-import MyChatComponent from "./components/MyChat";
-import Client from "./components/Client";
 import EditPostPage from "./pages/EditPostPage";
 import ActivityFormPage from "./pages/ActivityFormPage";
 import CalendarFunc from "./components/Calender";
@@ -73,22 +71,8 @@ function App() {
             </IsPrivate>
           }
         />
-        <Route
-          path="/chat"
-          element={
-            <IsPrivate>
-              <MyChatComponent />
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/client"
-          element={
-            <IsPrivate>
-              <Client />
-            </IsPrivate>
-          }
-        />
+    
+  
         <Route
           path="/addactivity/:postId"
           element={
