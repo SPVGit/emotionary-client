@@ -47,17 +47,19 @@ const SinglePostPage = (props) => {
     .catch((err) => console.log(err));
   };
 
-  const deleteActivity = (activityId) => {
-    axios
+  const deleteActivity =  (activityId) => {
+     console.log('kitty')
+ axios
       .delete(`${API_URL}/posts/${postId}/${activityId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .then((response) => {
+
         console.log('monkey')
-        console.log('delete activity', response.data.message)
-      })
-      .catch((err) => console.log(err))
+   navigate("/posts");
+
+ //  .catch((err) => console.log(err))
   }
+
 
   return (
     <div className="SinglePostPage">
