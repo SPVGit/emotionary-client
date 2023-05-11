@@ -47,6 +47,9 @@ body {
 h1 {
   color: #2c2b2b;
   text-align: center;
+  font-size: 2rem;
+  margin-top: 24px;
+  text-justify: left;
 }
 
 /*  end transition */
