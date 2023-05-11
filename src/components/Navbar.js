@@ -10,7 +10,7 @@ import NavDropdown from "react-bootstrap/NavDropdown"
 
 
 const NavbarComponent = () => {
-  const { isLoggedIn, user, logOutUser } = useContext(AuthContext)
+  const { isLoggedIn, user, therapist, logOutUser } = useContext(AuthContext)
   const [navBarOpen, setNavBarOpen] = useState(false)
 
   return (
@@ -18,14 +18,34 @@ const NavbarComponent = () => {
       variant="dark"
       expand="lg">
       <Container>
-        <Navbar.Brand href={!isLoggedIn ? "/" : "/posts"}>
+        {user && <Navbar.Brand href={isLoggedIn && "/posts"}>
           <img
             src="/Frame-35.png"
             alt="Emotionary Logo"
             width="140px"
             height="80px"
           />
-        </Navbar.Brand>
+        </Navbar.Brand>}
+
+        {therapist && <Navbar.Brand href={isLoggedIn && "/users"}>
+          <img
+            src="/Frame-35.png"
+            alt="Emotionary Logo"
+            width="140px"
+            height="80px"
+          />
+        </Navbar.Brand>}
+
+        {!user && !therapist &&
+          <Navbar.Brand href={"/"}>
+            <img
+              src="/Frame-35.png"
+              alt="Emotionary Logo"
+              width="140px"
+              height="80px"
+            />
+          </Navbar.Brand>}
+
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="'me-auto">

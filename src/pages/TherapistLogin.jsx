@@ -1,4 +1,4 @@
-import React from "react"
+ import React from "react"
 import { useState, useContext } from "react"
 import axios from "axios"
 import { Link, useNavigate } from "react-router-dom"
@@ -20,7 +20,7 @@ export default function TherapistLogin() {
   const [errorMessage, setErrorMessage] = useState(undefined)
   const [validated, setValidated] = useState(false)
   const navigate = useNavigate()
-  const { storedToken, authenticateUser } = useContext(AuthContext)
+  const { storedTherapistToken, authenticateTherapist} = useContext(AuthContext)
 
   const handleEmail = (e) => setEmail(e.target.value)
   const handlePassword = (e) => setPassword(e.target.value)
@@ -30,14 +30,13 @@ export default function TherapistLogin() {
     const requestBody = { email, password }
 
     axios
-      .post(`${API_URL}/therapistlogin`, requestBody)
+      .post(`${API_URL}/auth/therapistlogin`, requestBody)
       .then((response) => {
-        // Request to the server's endpoint `/auth/login` returns a response
-        // with the JWT string ->  response.data.authToken
-        console.log("JWT token", response.data.authToken)
-        storedToken(response.data.authToken)
-        authenticateUser()
-        // navigate("/users") // <== ADD
+
+        console.log("JWT token", response.data.authTherapistToken)
+        storedTherapistToken(response.data.authTherapistToken)
+        authenticateTherapist()
+        navigate("/users") // <== ADD
       })
       .catch((error) => {
         const errorDescription = error.response.data.message
@@ -102,3 +101,4 @@ export default function TherapistLogin() {
     </Container>
   )
 }
+ 
