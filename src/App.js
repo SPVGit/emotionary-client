@@ -14,6 +14,7 @@ import ActivityFormPage from "./pages/ActivityFormPage";
 import CalendarFunc from "./components/Calender";
 import PostsByDate from "./components/PostsByDate";
 import ActivityPage from "./pages/ActivityPage";
+import EditActivityPage from "./pages/EditActivityPage";
 
 function App() {
   return (
@@ -102,6 +103,14 @@ function App() {
           element={
             <IsPrivate>
               <ActivityPage />
+            </IsPrivate>
+          }
+        />
+                <Route
+          path="/posts/:postId/edit/:activityId"
+          element={
+            <IsPrivate>
+              <EditActivityPage />
             </IsPrivate>
           }
         />
