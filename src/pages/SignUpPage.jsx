@@ -50,7 +50,7 @@ function SignupPage(props) {
   return (
     <Container>
       <div className="SignupPage fade-in ">
-        <h1>Join our platform, express yourself</h1>
+        <h1>Join our platform, express yourself.</h1>
 
         <Form
           style={{ padding: "40px", justifyContent: "center", display: "flex", flexDirection: "column" }}

@@ -109,7 +109,11 @@ function App() {
         />
         <Route
           path="/therapistlogin"
-          element={<TherapistLogin />}
+          element={
+            <IsAnon>
+              <TherapistLogin />
+            </IsAnon>
+          }
         />
       </Routes>
     </div>
