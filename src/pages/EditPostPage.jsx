@@ -1,18 +1,17 @@
-import { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { AuthContext } from "../context/auth.context";
+import { useState, useEffect, useContext } from "react"
+import { useParams, useNavigate } from "react-router-dom"
+import axios from "axios"
+import { AuthContext } from "../context/auth.context"
 
-const API_URL = "http://localhost:5005";
-
+const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 const EditPostPage = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext)
 
-  const [editedPost, setEditedPost] = useState({});
-  const { postId } = useParams();
-  const navigate = useNavigate();
+  const [editedPost, setEditedPost] = useState({})
+  const { postId } = useParams()
+  const navigate = useNavigate()
 
-  const storedToken = localStorage.getItem("authToken");
+  const storedToken = localStorage.getItem("authToken")
 
   useEffect(() => {
     axios
@@ -20,28 +19,28 @@ const EditPostPage = () => {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        const post = response.data;
+        const post = response.data
         setEditedPost({
           userId: user._id,
           emotion: post.emotion,
           date: post.date,
           rating: post.rating,
           description: post.description,
-        });
+        })
       })
-      .catch((error) => console.log(error));
-  }, [postId]);
+      .catch((error) => console.log(error))
+  }, [postId])
 
-  console.log("initial post", editedPost);
+  console.log("initial post", editedPost)
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setEditedPost((post) => ({ ...post, [name]: value }));
-    console.log('handleChange editedPost', editedPost)
-  };
+    const { name, value } = e.target
+    setEditedPost((post) => ({ ...post, [name]: value }))
+    console.log("handleChange editedPost", editedPost)
+  }
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     const requestBody = {
       userId: user._id,
@@ -49,29 +48,34 @@ const EditPostPage = () => {
       date: editedPost.date,
       rating: editedPost.rating,
       description: editedPost.description,
-    };
+    }
 
-    console.log("in submit function reqBody", requestBody);
+    console.log("in submit function reqBody", requestBody)
 
     axios
       .put(`${API_URL}/posts/edit/${postId}`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        navigate(`/posts/${postId}`);
-      });
-  };
+        navigate(`/posts/${postId}`)
+      })
+  }
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-      <label>Date</label>
-       <input type="date" name="date" value={editedPost.date} onChange={handleChange} required/>
+        <label>Date</label>
+        <input
+          type="date"
+          name="date"
+          value={editedPost.date}
+          onChange={handleChange}
+          required
+        />
         <select
           name="emotion"
           value={editedPost.emotion}
-          onChange={handleChange}
-        >
+          onChange={handleChange}>
           <option value="happy">Happy</option>
           <option value="in-love">In Love</option>
           <option value="excited">Excited</option>
@@ -84,7 +88,10 @@ const EditPostPage = () => {
           <option value="depressed">Depressed</option>
         </select>
 
-        <select name="rating" value={editedPost.rating} onChange={handleChange}>
+        <select
+          name="rating"
+          value={editedPost.rating}
+          onChange={handleChange}>
           <option value="1">✮ </option>
           <option value="2">✮✮</option>
           <option value="3">✮✮✮</option>
@@ -100,7 +107,7 @@ const EditPostPage = () => {
         <button type="submit">Save</button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default EditPostPage;
+export default EditPostPage

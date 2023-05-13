@@ -9,8 +9,7 @@ import InputGroup from "react-bootstrap/InputGroup"
 import Row from "react-bootstrap/Row"
 import { Container } from "react-bootstrap"
 
-const API_URL = "http://localhost:5005"
-
+const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 function SignupPage(props) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
