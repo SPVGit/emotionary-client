@@ -7,7 +7,7 @@ import { useContext } from "react"
 import { AuthContext } from "../context/auth.context"
 import { useNavigate } from "react-router-dom"
 
-const API_URL = "http://localhost:5005"
+const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 
 function CalendarFunc() {
   const navigate = useNavigate()
@@ -19,18 +19,17 @@ function CalendarFunc() {
   const [posts, setPosts] = useState(null)
   console.log("posts", posts)
 
-
-  function colorOfEmotion (emotion){
-    if(emotion === 'happy')return '#ffff54'
-    else if (emotion === 'embarrassed')return '#ff8c8c'
-    else if (emotion === 'in-love')return '#ff54ff'
-    else if (emotion === 'excited')return '#ff7d00'
-    else if (emotion === 'satisfied')return '#00b400'
-    else if (emotion === 'calm')return '#0089e0'
-    else if (emotion === 'sad')return '#717171'
-    else if (emotion === 'anxious')return '#6851ff'
-    else if (emotion === 'angry')return '#ff0000'
-    else if (emotion === 'depressed')return '#000000'
+  function colorOfEmotion(emotion) {
+    if (emotion === "happy") return "#ffff54"
+    else if (emotion === "embarrassed") return "#ff8c8c"
+    else if (emotion === "in-love") return "#ff54ff"
+    else if (emotion === "excited") return "#ff7d00"
+    else if (emotion === "satisfied") return "#00b400"
+    else if (emotion === "calm") return "#0089e0"
+    else if (emotion === "sad") return "#717171"
+    else if (emotion === "anxious") return "#6851ff"
+    else if (emotion === "angry") return "#ff0000"
+    else if (emotion === "depressed") return "#000000"
   }
 
   const getAllPosts = () => {
@@ -40,14 +39,13 @@ function CalendarFunc() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(async (response) => {
-
-        console.log('dammit work', response.data)
+        console.log("dammit work", response.data)
 
         const postsArr = await response.data.filter((post) => post.user === user._id)
 
         setPosts(postsArr)
 
-         let postsArray = await postsArr.map((post) => {
+        let postsArray = await postsArr.map((post) => {
           return {
             eventName: `${post.emotion}`,
             startDate: dayjs(`${post.date}`),
@@ -79,23 +77,22 @@ function CalendarFunc() {
         weekendCellTextColor="white"
         weekDayCellBackgroundColor="rgba(75, 68, 83, 0.69)"
         weekDayCellTextColor="white"
-       // selectionColor="black"
-       // selectionTextColor="white"
-       // maxRangeSelection={20}
-       // minRangeSelection={10}
+        // selectionColor="black"
+        // selectionTextColor="white"
+        // maxRangeSelection={20}
+        // minRangeSelection={10}
         firstDayOfWeek="Monday"
         maxYear={2031}
         minYear={2011}
         readonlyCalendar={false}
         showWeekSeparator={true}
         showTodayButton={true}
-       // enableYearToYearSelection={false}
-      //  enableWeekendSelection={true}
+        // enableYearToYearSelection={false}
+        //  enableWeekendSelection={true}
         minCellWidth={50}
         showSeparatorInHeader={false}
         enableEventOverwriting={true}
-
-        onDatePick={(eventDate,  clearSelectedCell) => {
+        onDatePick={(eventDate, clearSelectedCell) => {
           let readonlyCalendar = false
           let myDate = eventDate.format("YYYY-MM-DD")
 
@@ -106,24 +103,22 @@ function CalendarFunc() {
           }
           setTimeout(() => {
             clearSelectedCell()
-            }, 1);
-         
+          }, 1)
         }}
 
         /*onEventSinglePickInterception={(date, eventName, clearSelectedCell) => {
           console.table([eventName, date.toDate()])
         }}*/
-      /*  onRangePick={(eventStartDate, eventEndDate, clearSecondSelectedCell, clearSelection) => {
+        /*  onRangePick={(eventStartDate, eventEndDate, clearSecondSelectedCell, clearSelection) => {
           setTimeout(() => {
             clearSelection()
           }, 3000)
         }}*/
-     /* onEventRangePickInterception={(eventFirstDate, eventLastDate, eventsToBeDeleted, eventsToBeUpdated, clearSecondSelectedCell, clearSelection) => {
+        /* onEventRangePickInterception={(eventFirstDate, eventLastDate, eventsToBeDeleted, eventsToBeUpdated, clearSecondSelectedCell, clearSelection) => {
           setTimeout(() => {
             clearSelection()
           }, 3000)
         }}*/
-        
       />
     </div>
   )

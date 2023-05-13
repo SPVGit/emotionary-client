@@ -4,27 +4,25 @@ import { useContext } from "react"
 import { AuthContext } from "../context/auth.context"
 import { useNavigate } from "react-router-dom"
 
-
-const API_URL = "http://localhost:5005"
+const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
+console.log(process.env.REACT_APP_API_URL)
 
 const AddPost = () => {
   const { user } = useContext(AuthContext)
 
   const myDay = new Date()
 
-
   const [newPost, setNewPost] = useState({
     userId: user._id,
-    date: '',
+    date: "",
     emotion: "happy",
     rating: "1",
     description: "",
   })
 
-  
-  console.log('Date now', myDay.getDate())
+  console.log("Date now", myDay.getDate())
   const navigate = useNavigate()
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target
     setNewPost((post) => ({ ...post, [name]: value }))
@@ -68,8 +66,14 @@ const AddPost = () => {
       <h3>Add Emotion</h3>
 
       <form onSubmit={handleSubmit}>
-       <label>Date</label>
-       <input type="date" name="date" value={newPost.date} onChange={handleChange} required/>
+        <label>Date</label>
+        <input
+          type="date"
+          name="date"
+          value={newPost.date}
+          onChange={handleChange}
+          required
+        />
         <label>Emotion:</label>
         <select
           name="emotion"
@@ -108,8 +112,6 @@ const AddPost = () => {
           value={newPost.description}
           onChange={handleChange}
         />
-
-        
 
         <button type="submit">Submit</button>
       </form>

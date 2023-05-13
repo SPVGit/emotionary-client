@@ -1,44 +1,40 @@
-import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { Link } from "react-router-dom";
-import { ListGroup } from "react-bootstrap";
+import { useState, useEffect } from "react"
+import { useParams, useNavigate } from "react-router-dom"
+import axios from "axios"
+import { Link } from "react-router-dom"
+import { ListGroup } from "react-bootstrap"
 
-const API_URL = "http://localhost:5005";
+const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 
 const ActivityPage = () => {
-    const [activity, setActivity] = useState(null)
-    const {postId, activityId} = useParams();
+  const [activity, setActivity] = useState(null)
+  const { postId, activityId } = useParams()
 
-    const storedToken = localStorage.getItem("authToken");
+  const storedToken = localStorage.getItem("authToken")
 
-    console.log('postId ', postId)
-    console.log('activityId', activityId)
+  console.log("postId ", postId)
+  console.log("activityId", activityId)
 
-    const getActivity = () => {
-        axios
-            .get(`${API_URL}/posts/${postId}/${activityId}`, {
-                headers: { Authorization: `Bearer ${storedToken}` }
-            })
-            .then((response) => {
-                console.log('response.data', response.data)
-                setActivity(response.data)
+  const getActivity = () => {
+    axios
+      .get(`${API_URL}/posts/${postId}/${activityId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
+      })
+      .then((response) => {
+        console.log("response.data", response.data)
+        setActivity(response.data)
+      })
+  }
 
-            })
-    }
-
-    useEffect(()=> {
-        getActivity();
-        console.log('activity', activity)
-    }, [])
-
+  useEffect(() => {
+    getActivity()
+    console.log("activity", activity)
+  }, [])
 
   return (
     <div>
-        {activity && 
-        <p>{activity.title}</p>
-        }
-        <p>Activity</p>
+      {activity && <p>{activity.title}</p>}
+      <p>Activity</p>
     </div>
   )
 }
