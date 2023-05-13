@@ -16,6 +16,8 @@ import ActivityPage from "./pages/ActivityPage"
 import TherapistLogin from "./pages/TherapistLogin"
 import UsersList from "./pages/UsersList"
 import IsTherapistPrivate from "./components/IsTherapistPrivate"
+import EditActivityPage from "./pages/EditActivityPage";
+
 
 function App() {
   return (
@@ -109,6 +111,14 @@ function App() {
             </IsPrivate>
           }
         />
+
+                <Route
+          path="/posts/:postId/edit/:activityId"
+          element={
+            <IsPrivate>
+              <EditActivityPage />
+            </IsPrivate>
+
         <Route
           path="/therapistlogin"
           element={
@@ -123,6 +133,7 @@ function App() {
             <IsTherapistPrivate>
               <UsersList />
             </IsTherapistPrivate>
+
           }
         />
       </Routes>
