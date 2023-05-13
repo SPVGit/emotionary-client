@@ -13,7 +13,7 @@ import Excited from "./emotions/Excited";
 import InLove from "./emotions/InLove";
 import Satisfied from "./emotions/Satisfied";
 
-const API_URL = "http://localhost:5006";
+const API_URL = "http://localhost:5005";
 
 const AddActivity = () => {
   const { user } = useContext(AuthContext);

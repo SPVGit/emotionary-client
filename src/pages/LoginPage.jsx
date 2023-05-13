@@ -10,7 +10,7 @@ import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
 import Row from "react-bootstrap/Row"
 
-const API_URL = "http://localhost:5006"
+const API_URL = "http://localhost:5005"
 
 const LoginPage = (props) => {
   const [email, setEmail] = useState("")
