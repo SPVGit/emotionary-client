@@ -1,4 +1,4 @@
- import React from "react"
+import React from "react"
 import { useState, useContext } from "react"
 import axios from "axios"
 import { Link, useNavigate } from "react-router-dom"
@@ -12,7 +12,7 @@ import InputGroup from "react-bootstrap/InputGroup"
 import Row from "react-bootstrap/Row"
 import { Container } from "react-bootstrap"
 
-const API_URL = "http://localhost:5005"
+const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 
 export default function TherapistLogin() {
   const [email, setEmail] = useState("")
@@ -20,7 +20,7 @@ export default function TherapistLogin() {
   const [errorMessage, setErrorMessage] = useState(undefined)
   const [validated, setValidated] = useState(false)
   const navigate = useNavigate()
-  const { storedTherapistToken, authenticateTherapist} = useContext(AuthContext)
+  const { storedTherapistToken, authenticateTherapist } = useContext(AuthContext)
 
   const handleEmail = (e) => setEmail(e.target.value)
   const handlePassword = (e) => setPassword(e.target.value)
@@ -30,9 +30,8 @@ export default function TherapistLogin() {
     const requestBody = { email, password }
 
     axios
-      .post(`${API_URL}/auth/therapistlogin`, requestBody)
+      .post(`http://localhost:${process.env.REACT_APP_API_URL}/auth/therapistlogin`, requestBody)
       .then((response) => {
-
         console.log("JWT token", response.data.authTherapistToken)
         storedTherapistToken(response.data.authTherapistToken)
         authenticateTherapist()
@@ -101,4 +100,3 @@ export default function TherapistLogin() {
     </Container>
   )
 }
- 
