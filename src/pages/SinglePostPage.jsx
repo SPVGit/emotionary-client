@@ -80,7 +80,7 @@ const SinglePostPage = (props) => {
           <p>{post.description}</p>
           <p>{post.rating}</p>
           {post.activities.map((activity) => (
-            activity && (
+
             <ListGroup key={activity._id}>
               <ListGroup.Item>{activity.title}</ListGroup.Item>
               <ListGroup.Item>{activity.level}</ListGroup.Item>
@@ -94,7 +94,7 @@ const SinglePostPage = (props) => {
               <Link to={`/posts/${postId}/edit/${activity._id}`}>
                 <button>Edit activity</button>
               </Link> 
-            </ListGroup>)
+            </ListGroup>
           ))}
         </div>
       )}
