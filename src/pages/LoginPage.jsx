@@ -10,8 +10,7 @@ import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
 import Row from "react-bootstrap/Row"
 
-const API_URL = "http://localhost:5005"
-
+const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 const LoginPage = (props) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -31,9 +30,8 @@ const LoginPage = (props) => {
     axios
       .post(`${API_URL}/auth/login`, requestBody)
       .then((response) => {
-
         console.log("JWT token", response.data.authToken)
-        
+
         storedToken(response.data.authToken)
         authenticateUser()
         navigate("/posts") // <== ADD
