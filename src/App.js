@@ -14,6 +14,8 @@ import CalendarFunc from "./components/Calender"
 import PostsByDate from "./components/PostsByDate"
 import ActivityPage from "./pages/ActivityPage"
 import TherapistLogin from "./pages/TherapistLogin"
+import UsersList from "./pages/UsersList"
+import IsTherapistPrivate from "./components/IsTherapistPrivate"
 
 function App() {
   return (
@@ -113,6 +115,14 @@ function App() {
             <IsAnon>
               <TherapistLogin />
             </IsAnon>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <IsTherapistPrivate>
+              <UsersList />
+            </IsTherapistPrivate>
           }
         />
       </Routes>
