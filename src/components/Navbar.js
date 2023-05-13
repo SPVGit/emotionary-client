@@ -18,33 +18,33 @@ const NavbarComponent = () => {
       variant="dark"
       expand="lg">
       <Container>
-        {user && <Navbar.Brand href={isLoggedIn && "/posts"}>
+        {user && <Nav.Link to='/posts' className="navlink" as={NavLink}>
           <img
             src="/Frame-35.png"
             alt="Emotionary Logo"
             width="140px"
             height="80px"
           />
-        </Navbar.Brand>}
+        </Nav.Link>}
 
-        {therapist && <Navbar.Brand href={isLoggedIn && "/users"}>
+        {therapist && <Nav.Link to='/users' className="navlink" as={NavLink}>
           <img
             src="/Frame-35.png"
             alt="Emotionary Logo"
             width="140px"
             height="80px"
           />
-        </Navbar.Brand>}
+        </Nav.Link>}
 
         {!user && !therapist &&
-          <Navbar.Brand href={"/"}>
+          <Nav.Link to={"/"} className="navlink" as={NavLink}>
             <img
               src="/Frame-35.png"
               alt="Emotionary Logo"
               width="140px"
               height="80px"
             />
-          </Navbar.Brand>}
+          </Nav.Link>}
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
