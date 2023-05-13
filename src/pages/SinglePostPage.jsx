@@ -2,7 +2,8 @@ import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { Link } from "react-router-dom"
-import { ListGroup } from "react-bootstrap"
+import { ListGroup, Button, Card, Container, Row } from "react-bootstrap"
+
 const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 const SinglePostPage = (props) => {
   const [post, setPost] = useState(null)
@@ -67,41 +68,76 @@ const SinglePostPage = (props) => {
   }
 
   return (
-    <div className="SinglePostPage">
-      {post && (
-        <div>
-          <p>{post.date}</p>
-          <h2>{post.emotion}</h2>
-          <p>{post.description}</p>
-          <p>{post.rating}</p>
-          {post.activities.map((activity) => (
-            <ListGroup key={activity._id}>
-              <ListGroup.Item>{activity.title}</ListGroup.Item>
-              <ListGroup.Item>{activity.level}</ListGroup.Item>
-              <ListGroup.Item>{activity.time}</ListGroup.Item>
-              <ListGroup.Item>{activity.successRating}</ListGroup.Item>
-              <ListGroup.Item>{activity.notes}</ListGroup.Item>
-              <button onClick={() => deleteActivity(activity._id)}>Delete</button>
-              <Link to={`/posts/${postId}/${activity._id}`}>
-                <button>Go to activity</button>
-              </Link>
-              <Link to={`/posts/${postId}/edit/${activity._id}`}>
-                <button>Edit activity</button>
-              </Link>
-            </ListGroup>
-          ))}
-        </div>
-      )}
-      <Link to={`/addActivity/${postId}`}>
-        <button>Add Activity</button>
-      </Link>
+    <Container>
+      <Card className="SinglePostPage text-center p-3">
+        {post && (
+          <>
+            <Card.Header>{post.date}</Card.Header>
+            <Card.Title>{post.emotion.toUpperCase()}</Card.Title>
+            <Card.Text>{post.description}</Card.Text>
+            <Card.Text>{post.rating}</Card.Text>
+            {post.activities.map((activity) => (
+              <Container className="d-flex justify-content-center m-2">
+                <Card
+                  style={{ width: "20rem" }}
+                  key={activity._id}>
+                  <ListGroup.Item>{activity.title}</ListGroup.Item>
+                  <ListGroup.Item>{activity.level}</ListGroup.Item>
+                  <ListGroup.Item>{activity.time}</ListGroup.Item>
+                  <ListGroup.Item>{activity.successRating}</ListGroup.Item>
+                  <ListGroup.Item>{activity.notes}</ListGroup.Item>
+                  <Container className="d-flex flex-row">
+                    <p
+                      style={{ color: "red" }}
+                      className=" m-1"
+                      onClick={() => deleteActivity(activity._id)}>
+                      Delete
+                    </p>
+                    <Link
+                      className="m-1"
+                      to={`/posts/${postId}/edit/${activity._id}`}>
+                      Edit
+                    </Link>
+                  </Container>
+                </Card>
+              </Container>
+            ))}
+          </>
+        )}
+        <Container>
+          <Link to={`/addActivity/${postId}`}>
+            <Button className="dark m-1">Add Activity</Button>
+          </Link>
 
-      <Link to={`/posts/edit/${postId}`}>
-        <button>Edit Post</button>
-      </Link>
-      <button onClick={deletePost}>Delete</button>
-    </div>
+          <Link to={`/posts/edit/${postId}`}>
+            <Button className="dark m-1">Edit Post</Button>
+          </Link>
+
+          <Link>
+            <Button
+              style={{ backgroundColor: "red", borderColor: "red" }}
+              onClick={deletePost}
+              className="m-1">
+              Delete
+            </Button>
+          </Link>
+        </Container>
+      </Card>
+    </Container>
   )
 }
 
 export default SinglePostPage
+
+// <Card style={{ width: '18rem' }}>
+//       <Card.Body>
+//         <Card.Title>Card Title</Card.Title>
+//         <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
+//         <Card.Text>
+//           Some quick example text to build on the card title and make up the
+//           bulk of the card's content.
+//         </Card.Text>
+//         <Card.Link href="#">Card Link</Card.Link>
+//         <Card.Link href="#">Another Link</Card.Link>
+//       </Card.Body>
+//     </Card>
