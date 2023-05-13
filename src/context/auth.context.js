@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 // change this in .env front end
-const API_URL = "http://localhost:5006"
+const API_URL = "http://localhost:5005"
 
 
 const AuthContext = React.createContext()

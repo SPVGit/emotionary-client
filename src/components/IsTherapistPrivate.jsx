@@ -2,25 +2,24 @@ import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
 import { Navigate } from "react-router-dom";
 
-function IsAnon( { children } ) {
+function IsTherapistPrivate( { children } ) {
+
+
   
-  const { isLoggedIn, isLoading, user, therapist } = useContext(AuthContext);
+  const { isLoggedIn, isLoading , therapist} = useContext(AuthContext);
+
+
 
   // If the authentication is still loading 
   if (isLoading) return <div className='outer-spinner-div'><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
 
-  if (isLoggedIn && user) {
-    // If the user is logged in, navigate to the posts page     
-    return <Navigate to="/posts" />;
-
-  } 
-  else if(isLoggedIn && therapist){
-    return <Navigate to="/users" />;
-  }
-  else {
-    // If the user is not logged in, allow to see the page 
+if (!isLoggedIn) {
+  // If the user is not logged in 
+    return <Navigate to="/signup" />;
+  } else if(therapist){
+  // If the user is logged in, allow to see the page 
     return children;
   }
 }
 
-export default IsAnon;
+export default IsTherapistPrivate;
