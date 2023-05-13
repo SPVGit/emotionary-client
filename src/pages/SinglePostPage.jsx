@@ -8,6 +8,7 @@ const API_URL = "http://localhost:5005";
 
 const SinglePostPage = (props) => {
   const [post, setPost] = useState(null);
+  const [activities, setActivities] = useState([])
   const { postId } = useParams();
 
   console.log("postId", postId);
@@ -23,6 +24,7 @@ const SinglePostPage = (props) => {
       })
       .then((response) => {
         const singlePost = response.data;
+      console.log('single post activity', singlePost.activities)
         console.log("response.data", response.data);
 
         setPost(singlePost);
@@ -49,13 +51,21 @@ const SinglePostPage = (props) => {
 
   const deleteActivity =  (activityId) => {
      console.log('kitty')
+     //delete from the front end
+     setActivities(activities => {
+      const newActivities = activities.filter(activity => {
+        return activity._id !== activityId
+      })
+      return newActivities
+     })
+
  axios
       .delete(`${API_URL}/posts/${postId}/${activityId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
 
         console.log('monkey')
-   navigate("/posts");
+ navigate("/posts");
 
  //  .catch((err) => console.log(err))
   }
@@ -70,6 +80,7 @@ const SinglePostPage = (props) => {
           <p>{post.description}</p>
           <p>{post.rating}</p>
           {post.activities.map((activity) => (
+            activity && (
             <ListGroup key={activity._id}>
               <ListGroup.Item>{activity.title}</ListGroup.Item>
               <ListGroup.Item>{activity.level}</ListGroup.Item>
@@ -80,7 +91,10 @@ const SinglePostPage = (props) => {
               <Link to={`/posts/${postId}/${activity._id}`}>
                 <button>Go to activity</button>
               </Link> 
-            </ListGroup>
+              <Link to={`/posts/${postId}/edit/${activity._id}`}>
+                <button>Edit activity</button>
+              </Link> 
+            </ListGroup>)
           ))}
         </div>
       )}
@@ -89,7 +103,7 @@ const SinglePostPage = (props) => {
       </Link>
 
       <Link to={`/posts/edit/${postId}`}>
-        <button>Edit</button>
+        <button>Edit Post</button>
       </Link>
       <button onClick={deletePost}>Delete</button>
     </div>
