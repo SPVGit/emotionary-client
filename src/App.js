@@ -117,7 +117,7 @@ function App() {
           element={
             <IsPrivate>
               <EditActivityPage />
-            </IsPrivate>
+            </IsPrivate>} />
 
         <Route
           path="/therapistlogin"
