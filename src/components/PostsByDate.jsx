@@ -6,7 +6,7 @@ import axios from "axios"
 import ListGroup from "react-bootstrap/ListGroup"
 import { useParams, useNavigate, Link } from "react-router-dom";
 
-const API_URL = "http://localhost:5006"
+const API_URL = "http://localhost:5005"
 
 function PostsByDate() {
 

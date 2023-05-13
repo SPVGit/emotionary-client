@@ -6,7 +6,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { Link } from "react-router-dom";
 import BottomNavbar from "../components/bottomNavbar";
 
-const API_URL = "http://localhost:5006";
+const API_URL = "http://localhost:5005";
 
 const PostsPage = () => {
   const { user, isLoggedIn } = useContext(AuthContext);
