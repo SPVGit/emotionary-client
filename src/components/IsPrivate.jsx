@@ -15,7 +15,7 @@ function IsPrivate( { children } ) {
 
 if (!isLoggedIn) {
   // If the user is not logged in 
-    return <Navigate to="/login" />;
+    return <Navigate to="/signup" />;
   } else if(user) {
   // If the user is logged in, allow to see the page 
     return children;
