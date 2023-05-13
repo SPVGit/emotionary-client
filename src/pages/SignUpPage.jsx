@@ -124,8 +124,8 @@ function SignupPage(props) {
           </Button>
           <p>or</p>
           <Button
-            className="light"
-            type="submit">
+            type="submit"
+            className="light">
             <Link to={"/therapistlogin"}>Log in as Therapist</Link>
           </Button>
         </Container>
