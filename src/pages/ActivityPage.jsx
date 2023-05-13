@@ -4,7 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { ListGroup } from "react-bootstrap";
 
-const API_URL = "http://localhost:5006";
+const API_URL = "http://localhost:5005";
 
 const ActivityPage = () => {
     const [activity, setActivity] = useState(null)

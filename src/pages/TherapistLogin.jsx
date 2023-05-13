@@ -1,3 +1,4 @@
+ import React from "react"
 import { useState, useContext } from "react"
 import axios from "axios"
 import { Link, useNavigate } from "react-router-dom"
@@ -9,17 +10,17 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
 import Row from "react-bootstrap/Row"
+import { Container } from "react-bootstrap"
 
 const API_URL = "http://localhost:5005"
 
-const LoginPage = (props) => {
+export default function TherapistLogin() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState(undefined)
   const [validated, setValidated] = useState(false)
-
   const navigate = useNavigate()
-  const { storedToken, authenticateUser } = useContext(AuthContext)
+  const { storedTherapistToken, authenticateTherapist} = useContext(AuthContext)
 
   const handleEmail = (e) => setEmail(e.target.value)
   const handlePassword = (e) => setPassword(e.target.value)
@@ -29,14 +30,13 @@ const LoginPage = (props) => {
     const requestBody = { email, password }
 
     axios
-      .post(`${API_URL}/auth/login`, requestBody)
+      .post(`${API_URL}/auth/therapistlogin`, requestBody)
       .then((response) => {
 
-        console.log("JWT token", response.data.authToken)
-        
-        storedToken(response.data.authToken)
-        authenticateUser()
-        navigate("/posts") // <== ADD
+        console.log("JWT token", response.data.authTherapistToken)
+        storedTherapistToken(response.data.authTherapistToken)
+        authenticateTherapist()
+        navigate("/users") // <== ADD
       })
       .catch((error) => {
         const errorDescription = error.response.data.message
@@ -45,11 +45,11 @@ const LoginPage = (props) => {
   }
 
   return (
-    <div className="LoginPage">
-      <h1>Login</h1>
+    <Container className="TherapistLoginPage">
+      <h1>Login and follow your patients</h1>
 
       <Form
-        style={{ padding: "40px" }}
+        style={{ padding: "40px", justifyContent: "center", display: "flex", flexDirection: "column" }}
         noValidate
         validated={validated}
         onSubmit={handleLoginSubmit}>
@@ -98,11 +98,7 @@ const LoginPage = (props) => {
       </Form>
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
-    </div>
+    </Container>
   )
 }
-
-export default LoginPage
+ 

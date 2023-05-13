@@ -6,17 +6,17 @@ function IsPrivate( { children } ) {
 
 
   
-  const { isLoggedIn, isLoading } = useContext(AuthContext);
+  const { isLoggedIn, isLoading ,user} = useContext(AuthContext);
 
 
 
   // If the authentication is still loading 
-  if (isLoading) return <p>Loading ...</p>;
+  if (isLoading) return <div className='outer-spinner-div'><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
 
-  if (!isLoggedIn) {
+if (!isLoggedIn) {
   // If the user is not logged in 
     return <Navigate to="/login" />;
-  } else {
+  } else if(user) {
   // If the user is logged in, allow to see the page 
     return children;
   }

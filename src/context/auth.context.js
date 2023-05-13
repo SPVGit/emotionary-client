@@ -1,30 +1,36 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 // change this in .env front end
-const API_URL = "http://localhost:5006"
+const API_URL = "http://localhost:5005"
+
 
 const AuthContext = React.createContext()
 
 function AuthProviderWrapper(props) {
+
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState(null)
+  const [therapist, setTherapist] = useState(null)
 
   const storedToken = (token) => {
-    //  <==  ADD
+   
     localStorage.setItem("authToken", token)
   }
 
+  const storedTherapistToken = (token) =>{
+
+    localStorage.setItem("authTherapistToken", token)
+  }
+
   const authenticateUser = () => {
-    //  <==  ADD
-    // Get the stored token from the localStorage
+  
     const storedToken = localStorage.getItem("authToken")
 
-    // If the token exists in the localStorage
-    if (storedToken) {
-      // We must send the JWT token in the request's "Authorization" Headers
+    if (storedToken ) {
+   
       axios
-        .get(`${API_URL}/auth/verify`, { headers: { Authorization: `Bearer ${storedToken}` } })
+        .get(`${API_URL}/auth/userverify`, { headers: { Authorization: `Bearer ${storedToken}` } })
         .then((response) => {
           // If the server verifies that the JWT token is valid
           const user = response.data
@@ -40,31 +46,84 @@ function AuthProviderWrapper(props) {
           setIsLoading(false)
           setUser(null)
         })
-    } else {
+        
+    } 
+  
+    else {
       // If the token is not available (or is removed)
       setIsLoggedIn(false)
       setIsLoading(false)
       setUser(null)
+     
     }
   }
 
-  const removeToken = () => {
-    // <== ADD
-    // Upon logout, remove the token from the localStorage
+  const authenticateTherapist = () => {
+
+    const storedTherapistToken = localStorage.getItem("authTherapistToken")
+  if (storedTherapistToken) {
+
+      axios
+        .get(`${API_URL}/auth/therapistverify`, { headers: { Authorization: `Bearer ${storedTherapistToken}` } })
+        .then((response) => {
+     
+          const therapist = response.data
+    
+          setIsLoggedIn(true)
+          setIsLoading(false)
+          setTherapist(therapist)
+        })
+        .catch((error) => {
+
+          setIsLoggedIn(false)
+          setIsLoading(false)
+          setTherapist(null)
+        })
+
+
+  }
+  else {
+ 
+    setIsLoggedIn(false)
+    setIsLoading(false)
+    setTherapist(null)
+  }
+  }
+  const removeUserToken = () => {
+
     localStorage.removeItem("authToken")
   }
 
-  const logOutUser = () => {
-    // <== ADD
-    // To log out the user, remove the token
-    removeToken()
-    // and update the state variables
-    authenticateUser()
+  const removeTherapistToken = () =>{
+    localStorage.removeItem("authTherapistToken")
   }
 
+  const logOutUser = () => {
+
+    if(user){
+      removeUserToken()
+      authenticateUser()
+    }
+    else if (therapist){
+      removeTherapistToken()
+    authenticateTherapist()
+    }
+    
+  }
+
+
   useEffect(() => {
-    authenticateUser() //  <==  ADD
+    authenticateUser()
+   
   }, [])
+
+  
+  useEffect(() => {
+   
+    authenticateTherapist()
+  }, [])
+
+  
 
   return (
     <AuthContext.Provider
@@ -72,9 +131,13 @@ function AuthProviderWrapper(props) {
         isLoggedIn,
         isLoading,
         user,
+        therapist,
+        storedTherapistToken,
         storedToken,
         authenticateUser,
+        authenticateTherapist,
         logOutUser,
+     
       }}>
       {props.children}
     </AuthContext.Provider>
