@@ -17,7 +17,7 @@ import TherapistLogin from "./pages/TherapistLogin";
 import UsersList from "./pages/UsersList";
 import IsTherapistPrivate from "./components/IsTherapistPrivate";
 import EditActivityPage from "./pages/EditActivityPage";
-import Profile from "./pages/Profile";
+
 
 function App() {
   return (

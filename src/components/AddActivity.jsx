@@ -1,7 +1,6 @@
 import { useState, useContext, useEffect } from "react"
 import axios from "axios"
 import { useNavigate, useParams } from "react-router-dom"
-import { AuthContext } from "../context/auth.context"
 import Happy from "./emotions/Happy"
 import Sad from "./emotions/Sad"
 import Angry from "./emotions/Angry"
@@ -16,7 +15,7 @@ import Satisfied from "./emotions/Satisfied"
 const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 
 const AddActivity = () => {
-  const { user } = useContext(AuthContext)
+
   const { postId } = useParams()
   const navigate = useNavigate()
   const [emotion, setEmotion] = useState("")
@@ -84,9 +83,7 @@ const AddActivity = () => {
   }, [])
 
   //A function we pass as props to child component, so that we can get the activity title afterwards
-  const pullActivityTitle = (data) => {
-    console.log("from child component", data)
-  }
+ 
   return (
     <div>
       <h3>Add Activity</h3>
