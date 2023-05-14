@@ -56,80 +56,77 @@ function SignupPage(props) {
   }
 
   return (
-    <Container className="SignupPage fade-in ">
-      <h1>Join our platform, express yourself.</h1>
+    <Container style={{ marginBottom: "50px" }}>
+      <div className="SignupPage fade-in ">
+        <h1>
+          Join Emotionary, <br /> express yourself.
+        </h1>
 
-      <Form
-        style={{ padding: "10px 40px 40px", justifyContent: "center", display: "flex", flexDirection: "column" }}
-        noValidate
-        validated={validated}
-        onSubmit={handleSignupSubmit}>
-        <Row
-          className="mb-3"
-          width="80vw">
-          <Form.Group
-            as={Col}
-            md="4"
-            controlId="validationCustom01">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              required
-              placeholder="Your name"
-              type="text"
-              name="name"
-              value={name}
-              onChange={handleName}
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group
-            as={Col}
-            md="4"
-            controlId="validationCustom02">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              required
-              placeholder="Your Email"
-              type="email"
-              name="email"
-              value={email}
-              onChange={handleEmail}
-            />
-            <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group
-            as={Col}
-            md="4"
-            controlId="validationCustomUsername">
-            <Form.Label>Password</Form.Label>
-            <InputGroup hasValidation>
+        <Form
+          style={{ padding: "40px", justifyContent: "center", display: "flex", flexDirection: "column" }}
+          noValidate
+          validated={validated}
+          onSubmit={handleSignupSubmit}>
+          <Row
+            className="mb-3"
+            width="80vw">
+            <Form.Group
+              as={Col}
+              md="4"
+              controlId="validationCustom01">
+              <Form.Label>Name</Form.Label>
               <Form.Control
-                placeholder="Password"
-                aria-describedby="inputGroupPrepend"
                 required
-                type="password"
-                name="password"
-                value={password}
-                onChange={handlePassword}
+                placeholder="Your name"
+                type="text"
+                name="name"
+                value={name}
+                onChange={handleName}
               />
-              <Form.Text
-                id="passwordHelpBlock"
-                muted>
-                Your password must be 8-20 characters long, contain letters and numbers,
-              </Form.Text>
-              <Form.Control.Feedback type="invalid">Please choose a username.</Form.Control.Feedback>
-            </InputGroup>
-          </Form.Group>
-        </Row>
-        <Button
-          variant="dark"
-          type="submit">
-          Sign Up
-        </Button>
-      </Form>
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group
+              as={Col}
+              md="4"
+              controlId="validationCustom02">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                required
+                placeholder="Your Email"
+                type="email"
+                name="email"
+                value={email}
+                onChange={handleEmail}
+              />
+              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+            </Form.Group>
+            <Form.Group
+              as={Col}
+              md="4"
+              controlId="validationCustomUsername">
+              <Form.Label>Password</Form.Label>
+              <InputGroup hasValidation>
+                <Form.Control
+                  placeholder="Password"
+                  aria-describedby="inputGroupPrepend"
+                  required
+                  type="password"
+                  name="password"
+                  value={password}
+                  onChange={handlePassword}
+                />
+                <Form.Control.Feedback type="invalid">Please choose a username.</Form.Control.Feedback>
+              </InputGroup>
+            </Form.Group>
+          </Row>
+          <Button
+            variant="dark"
+            type="submit">
+            Sign Up
+          </Button>
+        </Form>
 
-      <Container style={{ padding: "0px 40px 40px 40px", justifyContent: "center", display: "flex", flexDirection: "column", textAlign: "center", gap: "8px" }}>
-        <Row>
+        <Container style={{ padding: "40px", justifyContent: "center", display: "flex", flexDirection: "column", textAlign: "center", gap: "8px" }}>
           <p>Already have account?</p>
           <Button
             variant="dark"
@@ -144,10 +141,10 @@ function SignupPage(props) {
             onClick={handleTherapistLogin}>
             Log in as Therapist
           </Button>
-        </Row>
-      </Container>
+        </Container>
 
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+      </div>
     </Container>
   )
 }

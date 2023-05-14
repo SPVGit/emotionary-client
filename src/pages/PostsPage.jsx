@@ -95,8 +95,12 @@ const PostsPage = () => {
     <Container>
       <Button
         onClick={sortByDate}
-        variant="dark">
-        <i class="bi bi-sort-up"></i>
+        variant="white">
+        <img
+          src="sort-up.svg"
+          alt="sort-image"
+          style={{ width: "16px", height: "16px" }}
+        />
       </Button>
       <Form.Select
         name="emotion"

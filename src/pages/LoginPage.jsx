@@ -9,10 +9,11 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
 import Row from "react-bootstrap/Row"
+import { Container } from "react-bootstrap"
 
 const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 
-console.log('Api_URL', API_URL)
+console.log("Api_URL", API_URL)
 
 const LoginPage = (props) => {
   const [email, setEmail] = useState("")
@@ -25,6 +26,10 @@ const LoginPage = (props) => {
 
   const handleEmail = (e) => setEmail(e.target.value)
   const handlePassword = (e) => setPassword(e.target.value)
+
+  const handleSignup = () => {
+    navigate("/signup")
+  }
 
   const handleLoginSubmit = (e) => {
     e.preventDefault()
@@ -46,7 +51,7 @@ const LoginPage = (props) => {
   }
 
   return (
-    <div className="LoginPage">
+    <Container className="LoginPage text-center">
       <h1>Login</h1>
 
       <Form
@@ -92,17 +97,25 @@ const LoginPage = (props) => {
           </Form.Group>
         </Row>
         <Button
+          style={{ width: "100%", margin: "16px 0px" }}
           variant="dark"
           type="submit">
           Log in
         </Button>
+
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
+
+        <p>Don't have an account yet?</p>
+
+        <Button
+          style={{ width: "100%" }}
+          variant="dark"
+          onClick={handleSignup}>
+          {" "}
+          Sign Up
+        </Button>
       </Form>
-
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
-
-      <p>Don't have an account yet?</p>
-      <Link to={"/signup"}> Sign Up</Link>
-    </div>
+    </Container>
   )
 }
 
