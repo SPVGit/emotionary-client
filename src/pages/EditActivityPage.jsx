@@ -1,11 +1,11 @@
-import { useState, useContext, useEffect } from "react"
+import { useState, useEffect } from "react"
 import axios from "axios"
 import { useNavigate, useParams } from "react-router-dom"
-import { AuthContext } from "../context/auth.context"
+
 const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 
 const EditActivityPage = () => {
-  const { user } = useContext(AuthContext)
+
   const { postId, activityId } = useParams()
   const navigate = useNavigate()
   const storedToken = localStorage.getItem("authToken")

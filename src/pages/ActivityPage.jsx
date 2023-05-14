@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams} from "react-router-dom"
 import axios from "axios"
-import { Link } from "react-router-dom"
-import { ListGroup } from "react-bootstrap"
+
 
 const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 
