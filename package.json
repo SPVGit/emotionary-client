@@ -14,9 +14,7 @@
     "react-dom": "^18.2.0",
     "react-full-year-scheduler": "^1.0.12",
     "react-router-dom": "^6.11.0",
-    "react-scripts": "5.0.1",
-    "react-transition-group": "^4.4.5",
-    "reactstrap": "^9.1.9"
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
