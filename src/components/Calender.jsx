@@ -1,11 +1,11 @@
 import dayjs from "dayjs"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { ReactFullYearScheduler } from "react-full-year-scheduler"
 import "react-full-year-scheduler/dist/style.css"
 import axios from "axios"
-import { useContext } from "react"
 import { AuthContext } from "../context/auth.context"
 import { useNavigate } from "react-router-dom"
+import Container from "react-bootstrap/esm/Container"
 
 const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 
@@ -64,7 +64,9 @@ function CalendarFunc() {
   }, [])
 
   return (
-    <div>
+    <Container
+      className="mt-3 rounded 
+    ">
       <ReactFullYearScheduler
         events={events}
         locale="en"
@@ -82,8 +84,8 @@ function CalendarFunc() {
         // maxRangeSelection={20}
         // minRangeSelection={10}
         firstDayOfWeek="Monday"
-        maxYear={2031}
-        minYear={2011}
+        maxYear={2032}
+        minYear={2022}
         readonlyCalendar={false}
         showWeekSeparator={true}
         showTodayButton={true}
@@ -93,7 +95,6 @@ function CalendarFunc() {
         showSeparatorInHeader={false}
         enableEventOverwriting={true}
         onDatePick={(eventDate, clearSelectedCell) => {
-         
           let myDate = eventDate.format("YYYY-MM-DD")
 
           for (let post of posts) {
@@ -120,7 +121,7 @@ function CalendarFunc() {
           }, 3000)
         }}*/
       />
-    </div>
+    </Container>
   )
 }
 
