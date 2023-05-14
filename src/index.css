@@ -1,14 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");
 
-html,
 body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
 }
 
-body {
-  background: linear-gradient(169.73deg, #f8bae2 0%, #ffde41 115.15%);
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .home-page {
@@ -48,8 +56,8 @@ body {
 
 h1 {
   color: #2c2b2b;
-  text-align: start;
-  font-size: 2rem;
+  text-align: center;
+  font-size: 32px;
   font-weight: bold;
   padding: 16px;
   text-justify: left;
@@ -263,6 +271,7 @@ input {
 }
 
 /* end spinner */
-
-.bi-sort-up {
+#passwordHelpBlock {
+  font-family: "Comfortaa", cursive;
+  font-size: 10px;
 }

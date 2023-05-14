@@ -8,43 +8,57 @@ import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 import NavDropdown from "react-bootstrap/NavDropdown"
 
-
 const NavbarComponent = () => {
   const { isLoggedIn, user, therapist, logOutUser } = useContext(AuthContext)
   const [navBarOpen, setNavBarOpen] = useState(false)
 
   return (
     <Navbar
+      style={{ marginBottom: "20px" }}
       variant="dark"
       expand="lg">
       <Container>
-        {user && <Nav.Link to='/posts' className="navlink" as={NavLink}>
-          <img
-            src="/Frame-35.png"
-            alt="Emotionary Logo"
-            width="140px"
-            height="80px"
-          />
-        </Nav.Link>}
-
-        {therapist && <Nav.Link to='/users' className="navlink" as={NavLink}>
-          <img
-            src="/Frame-35.png"
-            alt="Emotionary Logo"
-            width="140px"
-            height="80px"
-          />
-        </Nav.Link>}
-
-        {!user && !therapist &&
-          <Nav.Link to={"/"} className="navlink" as={NavLink}>
+        {user && (
+          <Nav.Link
+            to="/posts"
+            className="navlink"
+            as={NavLink}>
             <img
               src="/Frame-35.png"
               alt="Emotionary Logo"
               width="140px"
               height="80px"
             />
-          </Nav.Link>}
+          </Nav.Link>
+        )}
+
+        {therapist && (
+          <Nav.Link
+            to="/users"
+            className="navlink"
+            as={NavLink}>
+            <img
+              src="/Frame-35.png"
+              alt="Emotionary Logo"
+              width="140px"
+              height="80px"
+            />
+          </Nav.Link>
+        )}
+
+        {!user && !therapist && (
+          <Nav.Link
+            to={"/"}
+            className="navlink"
+            as={NavLink}>
+            <img
+              src="/Frame-35.png"
+              alt="Emotionary Logo"
+              width="140px"
+              height="80px"
+            />
+          </Nav.Link>
+        )}
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
