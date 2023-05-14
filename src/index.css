@@ -12,8 +12,6 @@ body {
 }
 
 .home-page {
-  height: 100vh; /* Set the height of the container to 100% of the viewport */
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,10 +48,10 @@ body {
 
 h1 {
   color: #2c2b2b;
-  text-align: center;
-  font-size: 4rem;
+  text-align: start;
+  font-size: 2rem;
   font-weight: bold;
-  margin-top: 10vh;
+  padding: 16px;
   text-justify: left;
   font-family: "Comfortaa", cursive;
 }
@@ -265,3 +263,6 @@ input {
 }
 
 /* end spinner */
+
+.bi-sort-up {
+}

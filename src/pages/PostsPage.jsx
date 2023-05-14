@@ -1,17 +1,20 @@
-import { useContext } from "react";
-import { AuthContext } from "../context/auth.context";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import ListGroup from "react-bootstrap/ListGroup";
-import { Link } from "react-router-dom";
-import BottomNavbar from "../components/bottomNavbar";
+import { AuthContext } from "../context/auth.context"
+import { useState, useEffect, useContext } from "react"
+import axios from "axios"
+import ListGroup from "react-bootstrap/ListGroup"
+import { Link } from "react-router-dom"
+import BottomNavbar from "../components/bottomNavbar"
+import Card from "react-bootstrap/Card"
+import Form from "react-bootstrap/Form"
+import Button from "react-bootstrap/Button"
+import Container from "react-bootstrap/Container"
 
-const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`;
+const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 const PostsPage = () => {
-  const { user, isLoggedIn } = useContext(AuthContext);
-  const [posts, setPosts] = useState([]);
-  const [oldest, setOldest] = useState(false);
-  const [emotion, setEmotion] = useState("");
+  const { user, isLoggedIn } = useContext(AuthContext)
+  const [posts, setPosts] = useState([])
+  const [oldest, setOldest] = useState(false)
+  const [emotion, setEmotion] = useState("")
 
   /*  const getAllPosts = () => {
     const storedToken = localStorage.getItem("authToken")
@@ -22,18 +25,18 @@ const PostsPage = () => {
       .then((response) => setPosts(response.data))
       .catch((error) => console.log(error))
   } */
-  const storedToken = localStorage.getItem("authToken");
+  const storedToken = localStorage.getItem("authToken")
 
   const latestToOldest = (data) => {
     const sortedByDate = [...data].sort(function (a, b) {
-      const [aYear, aMonth, aDay] = a.date.split("-");
-      const [bYear, bMonth, bDay] = b.date.split("-");
-      const dateA = new Date(aYear, aMonth - 1, aDay);
-      const dateB = new Date(bYear, bMonth - 1, bDay);
-      return dateB.getTime() - dateA.getTime();
-    });
-    setPosts(sortedByDate);
-  };
+      const [aYear, aMonth, aDay] = a.date.split("-")
+      const [bYear, bMonth, bDay] = b.date.split("-")
+      const dateA = new Date(aYear, aMonth - 1, aDay)
+      const dateB = new Date(bYear, bMonth - 1, bDay)
+      return dateB.getTime() - dateA.getTime()
+    })
+    setPosts(sortedByDate)
+  }
 
   const sortByDate = () => {
     axios
@@ -42,65 +45,63 @@ const PostsPage = () => {
       })
       .then((response) => {
         const sortedByDate = [...response.data].sort(function (a, b) {
-          const [aYear, aMonth, aDay] = a.date.split("-");
-          const [bYear, bMonth, bDay] = b.date.split("-");
-          const dateA = new Date(aYear, aMonth - 1, aDay);
-          const dateB = new Date(bYear, bMonth - 1, bDay);
+          const [aYear, aMonth, aDay] = a.date.split("-")
+          const [bYear, bMonth, bDay] = b.date.split("-")
+          const dateA = new Date(aYear, aMonth - 1, aDay)
+          const dateB = new Date(bYear, bMonth - 1, bDay)
 
           if (oldest === false) {
-            setOldest(true);
-            return dateB.getTime() - dateA.getTime();
+            setOldest(true)
+            return dateB.getTime() - dateA.getTime()
           } else {
-            setOldest(false);
-            return dateA.getTime() - dateB.getTime();
+            setOldest(false)
+            return dateA.getTime() - dateB.getTime()
           }
-        });
-        setPosts(sortedByDate);
+        })
+        setPosts(sortedByDate)
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => console.log(err))
+  }
 
   const filterByEmotion = (e) => {
-    console.log("e.target.value", e.target.value);
-    setEmotion(e.target.value);
-    console.log("emotion", emotion);
+    console.log("e.target.value", e.target.value)
+    setEmotion(e.target.value)
+    console.log("emotion", emotion)
     axios
       .get(`${API_URL}/posts`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
         if (e.target.value === "all") {
-          latestToOldest(response.data);
+          latestToOldest(response.data)
         } else {
-          console.log("emotion", emotion);
+          console.log("emotion", emotion)
           /*       const filteredByEmotionArr = response.data.filter(
             (post) => post.emotion === e.target.value
           ); */
 
-          latestToOldest(
-            response.data.filter((post) => post.emotion === e.target.value)
-          );
+          latestToOldest(response.data.filter((post) => post.emotion === e.target.value))
         }
-      });
-  };
+      })
+  }
 
   // We set this effect will run only once, after the initial render
   // by setting the empty dependency array - []
   useEffect(() => {
-    sortByDate();
-  }, []);
+    sortByDate()
+  }, [])
 
   return (
-    <>
-      <button onClick={sortByDate} style={{ backgroundColor: "grey" }}>
-        Sort by date
-      </button>
-      <select
+    <Container>
+      <Button
+        onClick={sortByDate}
+        variant="dark">
+        <i class="bi bi-sort-up"></i>
+      </Button>
+      <Form.Select
         name="emotion"
         value={emotion}
-        onChange={filterByEmotion}
-        style={{ backgroundColor: "grey" }}
-      >
+        onChange={filterByEmotion}>
         Filter by emotion
         <option>Select one</option>
         <option value="all">All</option>
@@ -114,7 +115,7 @@ const PostsPage = () => {
         <option value="hurt">Hurt</option>
         <option value="embarrassed">Embarrassed</option>
         <option value="depressed">Depressed</option>
-      </select>
+      </Form.Select>
       <span className="d-flex p-4 justify-content-between">
         <h2 className="h2">Hello {user.name}</h2>
         <span className="d-flex flex-row mr-3">
@@ -140,16 +141,22 @@ const PostsPage = () => {
         {posts.map(
           (post) =>
             post.user === user._id && (
-              <Link to={`/posts/${post._id}`} key={post._id}>
-                <ListGroup style={{ padding: 8 }}>
-                  <ListGroup.Item
-                    className={post.emotion}
-                    style={{ height: 80 }}
-                  >
-                    <span>{post.date}</span>
-                    <h2>{post.emotion}</h2>
-                  </ListGroup.Item>
-                </ListGroup>
+              <Link
+                style={{ textDecoration: "none", color: "black" }}
+                to={`/posts/${post._id}`}
+                key={post._id}>
+                <Card
+                  className={post.emotion}
+                  style={{ padding: 8, margin: 8 }}>
+                  <ListGroup>
+                    <Card.Header>
+                      <span> {post.date}</span>
+                    </Card.Header>
+                    <Card.Title>
+                      <h2>{post.emotion.toUpperCase()}</h2>
+                    </Card.Title>
+                  </ListGroup>
+                </Card>
               </Link>
             )
         )}
@@ -163,8 +170,8 @@ const PostsPage = () => {
         <br />
       </div>
       <BottomNavbar />
-    </>
-  );
-};
+    </Container>
+  )
+}
 
-export default PostsPage;
+export default PostsPage
