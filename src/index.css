@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa&display=swap");
+
 html,
 body {
   margin: 0;
@@ -9,15 +11,15 @@ body {
   background: linear-gradient(169.73deg, #f8bae2 0%, #ffde41 115.15%);
 }
 
-/* Home Text fade-in transition */
 .home-page {
   height: 100vh; /* Set the height of the container to 100% of the viewport */
-  background: linear-gradient(169.73deg, #f8bae2 0%, #ffde41 115.15%);
+
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
 }
+/* Home Text fade-in transition */
 
 .fade-in-out {
   opacity: 0;
@@ -44,15 +46,17 @@ body {
   }
 }
 
+/*  end transition */
+
 h1 {
   color: #2c2b2b;
   text-align: center;
-  font-size: 2rem;
-  margin-top: 24px;
+  font-size: 4rem;
+  font-weight: bold;
+  margin-top: 10vh;
   text-justify: left;
+  font-family: "Comfortaa", cursive;
 }
-
-/*  end transition */
 
 body {
   margin: 0;
@@ -88,6 +92,8 @@ code {
   border-bottom: rgba(255, 255, 255, 0.639) solid 2px;
   padding-bottom: 5px;
 }
+
+/* Emotions colors */
 
 .embarrassed {
   background-color: #ff8c8c;
@@ -125,10 +131,10 @@ code {
   color: #2c2b2b;
   font-weight: bold;
 } */
-.over-flow {
+/* .over-flow {
   overflow: scroll;
   height: 100%;
-}
+} */
 
 input {
   color: black;
@@ -137,7 +143,7 @@ input {
   background: white;
 }
 
-.dark {
+/* .dark {
   background-color: #2c2b2b;
   border-color: #2c2b2b;
   color: white;
@@ -147,7 +153,7 @@ input {
   background-color: white;
   border-color: white;
   color: #000000;
-}
+} */
 
 /* spinner */
 .outer-spinner-div {
