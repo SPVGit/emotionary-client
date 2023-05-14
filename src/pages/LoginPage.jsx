@@ -1,6 +1,6 @@
 import { useState, useContext } from "react"
 import axios from "axios"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 import { AuthContext } from "../context/auth.context"
 
@@ -9,7 +9,7 @@ import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
 import Row from "react-bootstrap/Row"
-import { Container } from "react-bootstrap"
+import Container from "react-bootstrap/Container"
 
 const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 
@@ -59,13 +59,10 @@ const LoginPage = (props) => {
         noValidate
         validated={validated}
         onSubmit={handleLoginSubmit}>
-        <Row
+        <div
           className="mb-3"
           width="80vw">
-          <Form.Group
-            as={Col}
-            md="4"
-            controlId="validationCustom02">
+          <Form.Group>
             <Form.Label>Email</Form.Label>
             <Form.Control
               required
@@ -77,10 +74,7 @@ const LoginPage = (props) => {
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
-          <Form.Group
-            as={Col}
-            md="4"
-            controlId="validationCustomUsername">
+          <Form.Group>
             <Form.Label>Password</Form.Label>
             <InputGroup hasValidation>
               <Form.Control
@@ -95,7 +89,7 @@ const LoginPage = (props) => {
               <Form.Control.Feedback type="invalid">Please choose a username.</Form.Control.Feedback>
             </InputGroup>
           </Form.Group>
-        </Row>
+        </div>
         <Button
           style={{ width: "100%", margin: "16px 0px" }}
           variant="dark"
