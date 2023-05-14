@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link, useNavigate, NavLink } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 
 import Button from "react-bootstrap/Button"
@@ -10,6 +10,7 @@ import Row from "react-bootstrap/Row"
 import { Container } from "react-bootstrap"
 
 const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
+
 function SignupPage(props) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -22,6 +23,14 @@ function SignupPage(props) {
   const handleEmail = (e) => setEmail(e.target.value)
   const handlePassword = (e) => setPassword(e.target.value)
   const handleName = (e) => setName(e.target.value)
+
+  const handleTherapistLogin = () => {
+    navigate("/therapistlogin")
+  }
+
+  const handleUserLogin = () => {
+    navigate("/login")
+  }
 
   const handleSignupSubmit = (e) => {
     const form = e.currentTarget
@@ -109,7 +118,7 @@ function SignupPage(props) {
             </Form.Group>
           </Row>
           <Button
-            className="dark"
+            variant="dark"
             type="submit">
             Sign Up
           </Button>
@@ -118,15 +127,17 @@ function SignupPage(props) {
         <Container style={{ padding: "40px", justifyContent: "center", display: "flex", flexDirection: "column", textAlign: "center", gap: "8px" }}>
           <p>Already have account?</p>
           <Button
-            className="dark"
-            type="submit">
-            <Link to={"/login"}> Login</Link>
+            variant="dark"
+            type="submit"
+            onClick={handleUserLogin}>
+            Login
           </Button>
           <p>or</p>
           <Button
+            variant="dark"
             type="submit"
-            className="light">
-            <Link to={"/therapistlogin"}>Log in as Therapist</Link>
+            onClick={handleTherapistLogin}>
+            Log in as Therapist
           </Button>
         </Container>
 
