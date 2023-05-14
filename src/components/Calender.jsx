@@ -93,7 +93,7 @@ function CalendarFunc() {
         showSeparatorInHeader={false}
         enableEventOverwriting={true}
         onDatePick={(eventDate, clearSelectedCell) => {
-          let readonlyCalendar = false
+         
           let myDate = eventDate.format("YYYY-MM-DD")
 
           for (let post of posts) {

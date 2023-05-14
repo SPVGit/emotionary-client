@@ -3,12 +3,12 @@ import { AuthContext } from "../context/auth.context"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import ListGroup from "react-bootstrap/ListGroup"
-import { useParams, useNavigate, Link } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 
 const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 
 function PostsByDate() {
-  const { user, isLoggedIn } = useContext(AuthContext)
+  const { user} = useContext(AuthContext)
   const [post, setPost] = useState([])
   const [allPosts, setAllPosts] = useState([])
   const { postId } = useParams()
