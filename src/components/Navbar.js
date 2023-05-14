@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react"
+import { useContext } from "react"
 import { NavLink } from "react-router-dom"
 import { AuthContext } from "../context/auth.context"
 
@@ -6,11 +6,11 @@ import { AuthContext } from "../context/auth.context"
 import Container from "react-bootstrap/Container"
 import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
-import NavDropdown from "react-bootstrap/NavDropdown"
+
 
 const NavbarComponent = () => {
   const { isLoggedIn, user, therapist, logOutUser } = useContext(AuthContext)
-  const [navBarOpen, setNavBarOpen] = useState(false)
+
 
   return (
     <Navbar
