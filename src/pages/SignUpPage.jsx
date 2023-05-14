@@ -63,7 +63,7 @@ function SignupPage(props) {
         </h1>
 
         <Form
-          style={{ padding: "40px", justifyContent: "center", display: "flex", flexDirection: "column" }}
+          style={{ padding: "10px 40px", justifyContent: "center", display: "flex", flexDirection: "column" }}
           noValidate
           validated={validated}
           onSubmit={handleSignupSubmit}>
@@ -72,7 +72,8 @@ function SignupPage(props) {
             width="80vw">
             <Form.Group
               as={Col}
-              md="4"
+              xs="12"
+              md="6"
               controlId="validationCustom01">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -87,7 +88,8 @@ function SignupPage(props) {
             </Form.Group>
             <Form.Group
               as={Col}
-              md="4"
+              xs="12"
+              md="6"
               controlId="validationCustom02">
               <Form.Label>Email</Form.Label>
               <Form.Control
@@ -100,10 +102,7 @@ function SignupPage(props) {
               />
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
-            <Form.Group
-              as={Col}
-              md="4"
-              controlId="validationCustomUsername">
+            <Form.Group controlId="validationCustomUsername">
               <Form.Label>Password</Form.Label>
               <InputGroup hasValidation>
                 <Form.Control
@@ -120,15 +119,17 @@ function SignupPage(props) {
             </Form.Group>
           </Row>
           <Button
+            className="shadow"
             variant="dark"
             type="submit">
             Sign Up
           </Button>
         </Form>
 
-        <Container style={{ padding: "40px", justifyContent: "center", display: "flex", flexDirection: "column", textAlign: "center", gap: "8px" }}>
+        <Container style={{ padding: "10px 40px", justifyContent: "center", display: "flex", flexDirection: "column", textAlign: "center", gap: "8px" }}>
           <p>Already have account?</p>
           <Button
+            className="shadow"
             variant="dark"
             type="submit"
             onClick={handleUserLogin}>
@@ -136,6 +137,7 @@ function SignupPage(props) {
           </Button>
           <p>or</p>
           <Button
+            className="shadow"
             variant="light"
             type="submit"
             onClick={handleTherapistLogin}>

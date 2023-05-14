@@ -59,13 +59,10 @@ const LoginPage = (props) => {
         noValidate
         validated={validated}
         onSubmit={handleLoginSubmit}>
-        <Row
+        <div
           className="mb-3"
           width="80vw">
-          <Form.Group
-            as={Col}
-            md="4"
-            controlId="validationCustom02">
+          <Form.Group>
             <Form.Label>Email</Form.Label>
             <Form.Control
               required
@@ -77,10 +74,7 @@ const LoginPage = (props) => {
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
-          <Form.Group
-            as={Col}
-            md="4"
-            controlId="validationCustomUsername">
+          <Form.Group>
             <Form.Label>Password</Form.Label>
             <InputGroup hasValidation>
               <Form.Control
@@ -95,7 +89,7 @@ const LoginPage = (props) => {
               <Form.Control.Feedback type="invalid">Please choose a username.</Form.Control.Feedback>
             </InputGroup>
           </Form.Group>
-        </Row>
+        </div>
         <Button
           style={{ width: "100%", margin: "16px 0px" }}
           variant="dark"

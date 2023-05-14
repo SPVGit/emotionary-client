@@ -52,12 +52,11 @@ export default function TherapistLogin() {
         noValidate
         validated={validated}
         onSubmit={handleLoginSubmit}>
-        <Row
-          className="mb-3"
-          width="80vw">
+        <Row className="mb-3">
           <Form.Group
             as={Col}
-            md="4"
+            xs="12"
+            md="6"
             controlId="validationCustom02">
             <Form.Label>Email</Form.Label>
             <Form.Control
@@ -72,7 +71,8 @@ export default function TherapistLogin() {
           </Form.Group>
           <Form.Group
             as={Col}
-            md="4"
+            xs="12"
+            md="6"
             controlId="validationCustomUsername">
             <Form.Label>Password</Form.Label>
             <InputGroup hasValidation>
@@ -90,13 +90,13 @@ export default function TherapistLogin() {
           </Form.Group>
         </Row>
         <Button
-          variant="dark"
+          className="shadow"
+          variant="light"
           type="submit">
           Log in
         </Button>
+        {errorMessage && <p className=" m-4text-center error-message">{errorMessage}</p>}
       </Form>
-
-      {errorMessage && <p className="error-message">{errorMessage}</p>}
     </Container>
   )
 }
