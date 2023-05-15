@@ -68,7 +68,7 @@ const AddPost = () => {
   return (
     <Container className="mb-3">
       <Form
-        style={{ padding: "40px", justifyContent: "center", display: "flex", flexDirection: "column" }}
+        style={{ padding: "40px", justifyContent: "center", display: "flex", flexDirection: "column", textAlign: "center" }}
         onSubmit={handleSubmit}>
         <h3>Add Emotion</h3>
         <Row className="mb-3 mt-3">
@@ -141,6 +141,7 @@ const AddPost = () => {
               name="description"
               value={newPost.description}
               onChange={handleChange}
+              style={{ height: "40vh" }}
             />
           </Form.Group>
         </Row>
