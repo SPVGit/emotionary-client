@@ -14,11 +14,9 @@ const HomePage = () => {
     }, 2000)
 
     return (
-      <div className="home-page">
-        <Container>
-          <h1 className="fade-in-out text-center text-white">How are you feeling today?</h1>
-        </Container>
-      </div>
+      <Container className="home-page">
+        <p className="fade-in-out text-center text-white">How are you feeling today?</p>
+      </Container>
     )
   } else if (isLoggedIn && user) {
     navigate("/posts")

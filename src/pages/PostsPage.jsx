@@ -8,6 +8,8 @@ import Card from "react-bootstrap/Card"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
+import Col from "react-bootstrap/Col"
+import Row from "react-bootstrap/Row"
 
 const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 const PostsPage = () => {
@@ -92,88 +94,90 @@ const PostsPage = () => {
   }, [])
 
   return (
-    <Container>
-      <Button
-        onClick={sortByDate}
-        variant="white">
-        <img
-          src="sort-up.svg"
-          alt="sort-image"
-          style={{ width: "16px", height: "16px" }}
-        />
-      </Button>
-      <Form.Select
-        name="emotion"
-        value={emotion}
-        onChange={filterByEmotion}>
-        Filter by emotion
-        <option>Select one</option>
-        <option value="all">All</option>
-        <option value="happy">Happy</option>
-        <option value="in-love">In Love</option>
-        <option value="excited">Excited</option>
-        <option value="satisfied">Satisfied</option>
-        <option value="calm">Calm</option>
-        <option value="sad">Sad</option>
-        <option value="anxious">Anxious</option>
-        <option value="hurt">Hurt</option>
-        <option value="embarrassed">Embarrassed</option>
-        <option value="depressed">Depressed</option>
-      </Form.Select>
-      <span className="d-flex p-4 justify-content-between">
-        <h2 className="h2">Hello {user.name}</h2>
-        <span className="d-flex flex-row mr-3">
-          <Link to={`/profile/${user._id}`}>
-            <img
-              src="person-fill.svg"
-              alt="person-icon"
-              width="35px"
-              height="35px"
-            />
-          </Link>
-          <Link to="/stats">
-            <img
-              src="clipboard-data-fill.svg"
-              alt="clipboard-icon"
-              width="30px"
-              height="30px"
-            />
-          </Link>
-        </span>
-      </span>
-      <div className="over-flow ">
-        {posts.map(
-          (post) =>
-            post.user === user._id && (
-              <Link
-                style={{ textDecoration: "none", color: "black" }}
-                to={`/posts/${post._id}`}
-                key={post._id}>
-                <Card
-                  className={post.emotion}
-                  style={{ padding: 8, margin: 8 }}>
-                  <ListGroup>
-                    <Card.Header>
-                      <span> {post.date}</span>
-                    </Card.Header>
-                    <Card.Title>
-                      <h2>{post.emotion.toUpperCase()}</h2>
-                    </Card.Title>
-                  </ListGroup>
-                </Card>
+    <Container className="text-center">
+      <Row>
+        <Col className="h2">Hello {user.name}</Col>
+
+        <Col>
+          <Form.Select
+            name="emotion"
+            value={emotion}
+            onChange={filterByEmotion}>
+            Filter by emotion
+            <option>Select one</option>
+            <option value="all">All</option>
+            <option value="happy">Happy</option>
+            <option value="in-love">In Love</option>
+            <option value="excited">Excited</option>
+            <option value="satisfied">Satisfied</option>
+            <option value="calm">Calm</option>
+            <option value="sad">Sad</option>
+            <option value="anxious">Anxious</option>
+            <option value="hurt">Hurt</option>
+            <option value="embarrassed">Embarrassed</option>
+            <option value="depressed">Depressed</option>
+          </Form.Select>
+        </Col>
+        <Col>
+          <Row className="flex-row">
+            <Container>
+              <Button
+                onClick={sortByDate}
+                variant="white">
+                <img
+                  src="sort-up.svg"
+                  alt="sort-image"
+                  style={{ width: "16px", height: "16px" }}
+                />
+              </Button>
+              <Link to={`/profile/${user._id}`}>
+                <img
+                  src="person-fill.svg"
+                  alt="person-icon"
+                  width="35px"
+                  height="35px"
+                />
               </Link>
-            )
-        )}
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-      </div>
-      <BottomNavbar />
+              <Link to="/stats">
+                <img
+                  src="clipboard-data-fill.svg"
+                  alt="clipboard-icon"
+                  width="30px"
+                  height="30px"
+                />
+              </Link>
+            </Container>
+          </Row>
+        </Col>
+      </Row>
+      <Container>
+        <Row className="d-flex flex-row">
+          {posts.map(
+            (post) =>
+              post.user === user._id && (
+                <Col key={post._id}>
+                  <Link
+                    style={{ textDecoration: "none", color: "black" }}
+                    to={`/posts/${post._id}`}>
+                    <Card
+                      className={post.emotion}
+                      style={{ padding: 16, margin: 8 }}>
+                      <ListGroup>
+                        <Card.Header>
+                          <span> {post.date}</span>
+                        </Card.Header>
+                        <Card.Title>
+                          <h2>{post.emotion.toUpperCase()}</h2>
+                        </Card.Title>
+                      </ListGroup>
+                    </Card>
+                  </Link>
+                </Col>
+              )
+          )}
+        </Row>
+        <BottomNavbar />
+      </Container>
     </Container>
   )
 }
