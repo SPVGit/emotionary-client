@@ -42,6 +42,7 @@ const LoginPage = (props) => {
 
         storedToken(response.data.authToken)
         authenticateUser()
+
         navigate("/posts") // <== ADD
       })
       .catch((error) => {

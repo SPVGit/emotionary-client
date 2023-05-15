@@ -88,12 +88,12 @@ export default function TherapistLogin() {
               <Form.Control.Feedback type="invalid">Please choose a username.</Form.Control.Feedback>
             </InputGroup>
           </Form.Group>
+          <Button
+            variant="light"
+            type="submit">
+            Log in
+          </Button>
         </Row>
-        <Button
-          variant="dark"
-          type="submit">
-          Log in
-        </Button>
       </Form>
 
       {errorMessage && <p className="error-message">{errorMessage}</p>}

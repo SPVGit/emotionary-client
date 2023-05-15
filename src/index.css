@@ -9,13 +9,20 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
-
+/* Background Color Transition */
 body {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
+  animation: gradient 20s ease infinite;
   height: 100vh;
 }
+/* Softer Colors  */
+/* body {
+  background: linear-gradient(-45deg, #fca1b0, #f890cc, #8cc2ff, #92f6d2);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
+} */
 
 @keyframes gradient {
   0% {
@@ -29,11 +36,17 @@ body {
   }
 }
 
+.home-page p {
+  font-size: 7em;
+  font-family: "Comfortaa", cursive;
+}
+
+/* Background Stop */
+
 .home-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
 }
 /* Home Text fade-in transition */
 
@@ -44,7 +57,7 @@ body {
 
 .fade-in {
   opacity: 0;
-  animation: fade-in 0.5s ease-in forwards;
+  animation: fade-in 2s ease-in forwards;
 }
 
 @keyframes fade-in {
@@ -62,12 +75,22 @@ body {
   }
 }
 
-/*  end transition */
+/*  end home text transition */
 
 h1 {
   color: rgb(244, 238, 238);
   text-align: center;
   font-size: 32px;
+  font-weight: 900;
+  padding: 16px;
+  text-justify: left;
+  font-family: "Comfortaa", cursive;
+}
+
+h2 {
+  color: rgb(244, 238, 238);
+  text-align: center;
+  font-size: 24px;
   font-weight: 900;
   padding: 16px;
   text-justify: left;
@@ -107,7 +130,7 @@ h1 {
   background-color: #ffff54;
 }
 .in-love {
-  background-color: #ff54ff;
+  background-color: #ff54ffad;
 }
 .excited {
   background-color: #ff7d00;
@@ -270,7 +293,16 @@ input {
 }
 
 /* end spinner */
+
 #passwordHelpBlock {
   font-family: "Comfortaa", cursive;
   font-size: 10px;
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.55);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(3.5px);
+  -webkit-backdrop-filter: blur(3.5px);
+  border-radius: 10px;
 }

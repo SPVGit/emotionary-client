@@ -15,7 +15,6 @@ const SinglePostPage = (props) => {
   const storedToken = localStorage.getItem("authToken")
 
   const getPost = () => {
-
     axios
       .get(`${API_URL}/posts/${postId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -67,8 +66,8 @@ const SinglePostPage = (props) => {
   }
 
   return (
-    <Container>
-      <Card className="SinglePostPage text-center p-3">
+    <Container className="bg-white">
+      <Card className="SinglePostPage text-center p-3 glass-dark col-3">
         {post && (
           <div key={post._id}>
             <Card.Header>{post.date}</Card.Header>
@@ -76,10 +75,10 @@ const SinglePostPage = (props) => {
             <Card.Text>{post.description}</Card.Text>
             <Card.Text>{post.rating}</Card.Text>
             {post.activities.map((activity) => (
-              <Container key={activity._id} className="d-flex justify-content-center m-2">
-                <Card
-                  style={{ width: "20rem" }}
-                  >
+              <Container
+                key={activity._id}
+                className="d-flex justify-content-center m-2">
+                <Card style={{ width: "20rem" }}>
                   <ListGroup.Item>{activity.title}</ListGroup.Item>
                   <ListGroup.Item>{activity.level}</ListGroup.Item>
                   <ListGroup.Item>{activity.time}</ListGroup.Item>
