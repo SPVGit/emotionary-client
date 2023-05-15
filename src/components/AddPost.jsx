@@ -66,7 +66,7 @@ const AddPost = () => {
   }
 
   return (
-    <Container cassName="mb-3">
+    <Container className="mb-3">
       <Form
         style={{ padding: "40px", justifyContent: "center", display: "flex", flexDirection: "column" }}
         onSubmit={handleSubmit}>

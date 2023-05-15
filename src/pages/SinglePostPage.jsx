@@ -10,7 +10,6 @@ const SinglePostPage = (props) => {
   const [activities, setActivities] = useState([])
   const { postId } = useParams()
 
-  console.log("postId", postId)
   const navigate = useNavigate()
 
   const storedToken = localStorage.getItem("authToken")
@@ -71,16 +70,16 @@ const SinglePostPage = (props) => {
     <Container>
       <Card className="SinglePostPage text-center p-3">
         {post && (
-          <>
+          <div key={post._id}>
             <Card.Header>{post.date}</Card.Header>
             <Card.Title>{post.emotion.toUpperCase()}</Card.Title>
             <Card.Text>{post.description}</Card.Text>
             <Card.Text>{post.rating}</Card.Text>
             {post.activities.map((activity) => (
-              <Container className="d-flex justify-content-center m-2">
+              <Container key={activity._id} className="d-flex justify-content-center m-2">
                 <Card
                   style={{ width: "20rem" }}
-                  key={activity._id}>
+                  >
                   <ListGroup.Item>{activity.title}</ListGroup.Item>
                   <ListGroup.Item>{activity.level}</ListGroup.Item>
                   <ListGroup.Item>{activity.time}</ListGroup.Item>
@@ -102,7 +101,7 @@ const SinglePostPage = (props) => {
                 </Card>
               </Container>
             ))}
-          </>
+          </div>
         )}
         <Container>
           <Link to={`/addActivity/${postId}`}>
