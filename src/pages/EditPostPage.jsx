@@ -5,7 +5,7 @@ import { AuthContext } from "../context/auth.context"
 
 import Container from "react-bootstrap/Container"
 import Form from "react-bootstrap/Form"
-import Col from "react-bootstrap/col"
+import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import Button from "react-bootstrap/Button"
 
