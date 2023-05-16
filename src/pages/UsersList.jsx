@@ -3,7 +3,7 @@ import { AuthContext } from "../context/auth.context"
 import { useState, useEffect } from "react"
 import axios from "axios"
 
-const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
+const API_URL = process.env.REACT_APP_API_URL
 function UsersList() {
   const { therapist } = useContext(AuthContext)
   const [users, setUsers] = useState([])
