@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
 
 import Button from "react-bootstrap/Button"
@@ -11,7 +11,7 @@ import { Container } from "react-bootstrap"
 
 const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 
-function SignupPage(props) {
+function SignupPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
