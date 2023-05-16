@@ -5,10 +5,8 @@ import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../context/auth.context"
 
 import Button from "react-bootstrap/Button"
-import Col from "react-bootstrap/Col"
 import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
-import Row from "react-bootstrap/Row"
 import Container from "react-bootstrap/Container"
 
 const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`

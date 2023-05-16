@@ -1,7 +1,7 @@
 import React from "react"
 import { useState, useContext } from "react"
 import axios from "axios"
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 import { AuthContext } from "../context/auth.context"
 
@@ -30,7 +30,7 @@ export default function TherapistLogin() {
     const requestBody = { email, password }
 
     axios
-      .post(`http://localhost:${process.env.REACT_APP_API_URL}/auth/therapistlogin`, requestBody)
+      .post(`${API_URL}/auth/therapistlogin`, requestBody)
       .then((response) => {
         console.log("JWT token", response.data.authTherapistToken)
         storedTherapistToken(response.data.authTherapistToken)

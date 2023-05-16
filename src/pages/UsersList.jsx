@@ -5,7 +5,7 @@ import axios from "axios"
 
 const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
 function UsersList() {
-  const { therapist, isLoggedIn } = useContext(AuthContext)
+  const { therapist } = useContext(AuthContext)
   const [users, setUsers] = useState([])
 
   const storedToken = localStorage.getItem("authTherapistToken")
