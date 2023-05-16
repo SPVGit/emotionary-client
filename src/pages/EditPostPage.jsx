@@ -9,7 +9,7 @@ import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 import Button from "react-bootstrap/Button"
 
-const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
+const API_URL = process.env.REACT_APP_API_URL
 const EditPostPage = () => {
   const { user } = useContext(AuthContext)
 
