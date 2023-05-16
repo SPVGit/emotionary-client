@@ -5,7 +5,7 @@ import axios from "axios"
 import ListGroup from "react-bootstrap/ListGroup"
 import { useParams, Link } from "react-router-dom"
 
-const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
+const API_URL = process.env.REACT_APP_API_URL
 
 function PostsByDate() {
   const { user} = useContext(AuthContext)
