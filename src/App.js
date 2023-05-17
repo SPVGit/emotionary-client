@@ -1,23 +1,22 @@
-import Navbar from "./components/Navbar";
-import { Route, Routes } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
-import HomePage from "./pages/HomePage";
-import SignUpPage from "./pages/SignUpPage";
-import PostsPage from "./pages/PostsPage";
-import SinglePostPage from "./pages/SinglePostPage";
-import IsAnon from "./components/IsAnon";
-import IsPrivate from "./components/IsPrivate";
-import PostFormPage from "./pages/PostFormPage";
-import EditPostPage from "./pages/EditPostPage";
-import ActivityFormPage from "./pages/ActivityFormPage";
-import CalendarFunc from "./components/Calender";
-import PostsByDate from "./components/PostsByDate";
-import ActivityPage from "./pages/ActivityPage";
-import TherapistLogin from "./pages/TherapistLogin";
-import UsersList from "./pages/UsersList";
-import IsTherapistPrivate from "./components/IsTherapistPrivate";
-import EditActivityPage from "./pages/EditActivityPage";
-
+import Navbar from "./components/Navbar"
+import { Route, Routes } from "react-router-dom"
+import LoginPage from "./pages/LoginPage"
+import HomePage from "./pages/HomePage"
+import SignUpPage from "./pages/SignUpPage"
+import PostsPage from "./pages/PostsPage"
+import SinglePostPage from "./pages/SinglePostPage"
+import IsAnon from "./components/IsAnon"
+import IsPrivate from "./components/IsPrivate"
+import PostFormPage from "./pages/PostFormPage"
+import EditPostPage from "./pages/EditPostPage"
+import ActivityFormPage from "./pages/ActivityFormPage"
+import CalendarFunc from "./components/Calender"
+import PostsByDate from "./components/PostsByDate"
+import ActivityPage from "./pages/ActivityPage"
+import TherapistLogin from "./pages/TherapistLogin"
+import UsersList from "./pages/UsersList"
+import IsTherapistPrivate from "./components/IsTherapistPrivate"
+import EditActivityPage from "./pages/EditActivityPage"
 
 function App() {
   return (
@@ -25,7 +24,10 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/"
+          element={<HomePage />}
+        />
 
         <Route
           path="/login"
@@ -134,7 +136,7 @@ function App() {
             </IsTherapistPrivate>
           }
         />
-{/*        <Route
+        {/*        <Route
           path="/profile/:userId"
           element={
             <IsPrivate>
@@ -152,7 +154,7 @@ function App() {
         /> */}
       </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

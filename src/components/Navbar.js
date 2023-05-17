@@ -22,7 +22,7 @@ const NavbarComponent = () => {
             className="navlink"
             as={NavLink}>
             <img
-              src="/Frame-35.png"
+              src="/frame-35.png"
               alt="Emotionary Logo"
               width="140px"
               height="80px"
@@ -58,38 +58,35 @@ const NavbarComponent = () => {
           </Nav.Link>
         )}
 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="'me-auto">
-            {isLoggedIn && (
-              <NavLink
+        <Nav className="'me-auto">
+          {isLoggedIn && (
+            <NavLink
+              className="navlink"
+              as={NavLink}
+              to="#"
+              onClick={logOutUser}>
+              Log out
+            </NavLink>
+          )}
+        </Nav>
+        <Nav>
+          {!isLoggedIn && (
+            <>
+              <Nav.Link
                 className="navlink"
                 as={NavLink}
-                to="#"
-                onClick={logOutUser}>
-                Log out
-              </NavLink>
-            )}
-          </Nav>
-          <Nav>
-            {!isLoggedIn && (
-              <>
-                <Nav.Link
-                  className="navlink"
-                  as={NavLink}
-                  to="/signup">
-                  Sign up
-                </Nav.Link>
-                <Nav.Link
-                  className="navlink"
-                  as={NavLink}
-                  to="/login">
-                  Log in
-                </Nav.Link>
-              </>
-            )}
-          </Nav>
-        </Navbar.Collapse>
+                to="/signup">
+                Sign up
+              </Nav.Link>
+              <Nav.Link
+                className="navlink"
+                as={NavLink}
+                to="/login">
+                Log in
+              </Nav.Link>
+            </>
+          )}
+        </Nav>
       </Container>
     </Navbar>
 
