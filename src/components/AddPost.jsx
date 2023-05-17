@@ -9,7 +9,9 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Button from "react-bootstrap/Button"
 
-const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
+
+const API_URL = process.env.REACT_APP_API_URL
+
 console.log(process.env.REACT_APP_API_URL)
 
 const AddPost = () => {

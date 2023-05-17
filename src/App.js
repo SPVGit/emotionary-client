@@ -1,3 +1,4 @@
+
 import Navbar from "./components/Navbar"
 import { Route, Routes } from "react-router-dom"
 import LoginPage from "./pages/LoginPage"
@@ -18,16 +19,16 @@ import UsersList from "./pages/UsersList"
 import IsTherapistPrivate from "./components/IsTherapistPrivate"
 import EditActivityPage from "./pages/EditActivityPage"
 
+
 function App() {
   return (
     <div className="App">
       <Navbar />
 
       <Routes>
-        <Route
-          path="/"
-          element={<HomePage />}
-        />
+
+        <Route path="/" element={<HomePage />} />
+
 
         <Route
           path="/login"
@@ -136,7 +137,9 @@ function App() {
             </IsTherapistPrivate>
           }
         />
+
         {/*        <Route
+
           path="/profile/:userId"
           element={
             <IsPrivate>

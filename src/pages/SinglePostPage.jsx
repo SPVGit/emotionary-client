@@ -4,7 +4,9 @@ import axios from "axios"
 import { Link } from "react-router-dom"
 import { ListGroup, Button, Card, Container} from "react-bootstrap"
 
-const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
+
+const API_URL = process.env.REACT_APP_API_URL
+
 const SinglePostPage = (props) => {
   const [post, setPost] = useState(null)
   const [activities, setActivities] = useState([])

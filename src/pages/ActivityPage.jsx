@@ -3,7 +3,9 @@ import { useParams} from "react-router-dom"
 import axios from "axios"
 
 
-const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
+
+const API_URL = process.env.REACT_APP_API_URL
+
 
 const ActivityPage = () => {
   const [activity, setActivity] = useState(null)

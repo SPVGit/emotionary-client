@@ -7,7 +7,9 @@ import { AuthContext } from "../context/auth.context"
 import { useNavigate } from "react-router-dom"
 import Container from "react-bootstrap/esm/Container"
 
-const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
+
+const API_URL = process.env.REACT_APP_API_URL
+
 
 function CalendarFunc() {
   const navigate = useNavigate()

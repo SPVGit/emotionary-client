@@ -22,7 +22,9 @@ const NavbarComponent = () => {
             className="navlink"
             as={NavLink}>
             <img
-              src="/frame-35.png"
+
+              src="/Frame-35.png"
+
               alt="Emotionary Logo"
               width="140px"
               height="80px"
@@ -90,51 +92,6 @@ const NavbarComponent = () => {
       </Container>
     </Navbar>
 
-    // <nav className="Navbar">
-    //   <ul>
-    //     <NavLink
-    //       to="/"
-    //       className={({ isActive }) => (isActive ? "selected" : "")}>
-    //       Home
-    //     </NavLink>
-
-    //     {/*If logged in show Posts Button and Logout Button */}
-    //     {isLoggedIn && (
-    //       <>
-    //         <NavLink
-    //           to="/posts"
-    //           className={({ isActive }) => (isActive ? "selected" : "")}>
-    //           Posts
-    //         </NavLink>
-    //         <NavLink
-    //           to="/chat"
-    //           className={({ isActive }) => (isActive ? "selected" : "")}>
-    //           Chat
-    //         </NavLink>
-
-    //         <NavLink onClick={logOutUser}>Logout</NavLink>
-    //         <span className="text-light">Welcome back, {user && user.name}</span>
-    //       </>
-    //     )}
-
-    //     {/*If not logged in show login and signup button  */}
-
-    //     {!isLoggedIn && (
-    //       <>
-    //         <NavLink
-    //           to="/signup"
-    //           className={({ isActive }) => (isActive ? "selected" : "")}>
-    //           Sign up
-    //         </NavLink>
-    //         <NavLink
-    //           to="/login"
-    //           className={({ isActive }) => (isActive ? "selected" : "")}>
-    //           Login
-    //         </NavLink>
-    //       </>
-    //     )}
-    //   </ul>
-    // </nav>
   )
 }
 

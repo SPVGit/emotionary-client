@@ -9,7 +9,9 @@ import Form from "react-bootstrap/Form"
 import InputGroup from "react-bootstrap/InputGroup"
 import Container from "react-bootstrap/Container"
 
-const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
+
+const API_URL = process.env.REACT_APP_API_URL
+
 
 console.log("Api_URL", API_URL)
 
