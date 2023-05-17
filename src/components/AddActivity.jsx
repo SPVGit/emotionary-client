@@ -12,7 +12,9 @@ import Excited from "./emotions/Excited"
 import InLove from "./emotions/InLove"
 import Satisfied from "./emotions/Satisfied"
 
+
 const API_URL = process.env.REACT_APP_API_URL
+
 
 const AddActivity = () => {
 

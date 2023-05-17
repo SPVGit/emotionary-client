@@ -22,7 +22,9 @@ const NavbarComponent = () => {
             className="navlink"
             as={NavLink}>
             <img
+
               src="/Frame-35.png"
+
               alt="Emotionary Logo"
               width="140px"
               height="80px"
@@ -58,86 +60,38 @@ const NavbarComponent = () => {
           </Nav.Link>
         )}
 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="'me-auto">
-            {isLoggedIn && (
-              <NavLink
+        <Nav className="'me-auto">
+          {isLoggedIn && (
+            <NavLink
+              className="navlink"
+              as={NavLink}
+              to="#"
+              onClick={logOutUser}>
+              Log out
+            </NavLink>
+          )}
+        </Nav>
+        <Nav>
+          {!isLoggedIn && (
+            <>
+              <Nav.Link
                 className="navlink"
                 as={NavLink}
-                to="#"
-                onClick={logOutUser}>
-                Log out
-              </NavLink>
-            )}
-          </Nav>
-          <Nav>
-            {!isLoggedIn && (
-              <>
-                <Nav.Link
-                  className="navlink"
-                  as={NavLink}
-                  to="/signup">
-                  Sign up
-                </Nav.Link>
-                <Nav.Link
-                  className="navlink"
-                  as={NavLink}
-                  to="/login">
-                  Log in
-                </Nav.Link>
-              </>
-            )}
-          </Nav>
-        </Navbar.Collapse>
+                to="/signup">
+                Sign up
+              </Nav.Link>
+              <Nav.Link
+                className="navlink"
+                as={NavLink}
+                to="/login">
+                Log in
+              </Nav.Link>
+            </>
+          )}
+        </Nav>
       </Container>
     </Navbar>
 
-    // <nav className="Navbar">
-    //   <ul>
-    //     <NavLink
-    //       to="/"
-    //       className={({ isActive }) => (isActive ? "selected" : "")}>
-    //       Home
-    //     </NavLink>
-
-    //     {/*If logged in show Posts Button and Logout Button */}
-    //     {isLoggedIn && (
-    //       <>
-    //         <NavLink
-    //           to="/posts"
-    //           className={({ isActive }) => (isActive ? "selected" : "")}>
-    //           Posts
-    //         </NavLink>
-    //         <NavLink
-    //           to="/chat"
-    //           className={({ isActive }) => (isActive ? "selected" : "")}>
-    //           Chat
-    //         </NavLink>
-
-    //         <NavLink onClick={logOutUser}>Logout</NavLink>
-    //         <span className="text-light">Welcome back, {user && user.name}</span>
-    //       </>
-    //     )}
-
-    //     {/*If not logged in show login and signup button  */}
-
-    //     {!isLoggedIn && (
-    //       <>
-    //         <NavLink
-    //           to="/signup"
-    //           className={({ isActive }) => (isActive ? "selected" : "")}>
-    //           Sign up
-    //         </NavLink>
-    //         <NavLink
-    //           to="/login"
-    //           className={({ isActive }) => (isActive ? "selected" : "")}>
-    //           Login
-    //         </NavLink>
-    //       </>
-    //     )}
-    //   </ul>
-    // </nav>
   )
 }
 

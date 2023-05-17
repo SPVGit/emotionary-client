@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 
 const AuthContext = React.createContext()
+
 const API_URL = process.env.REACT_APP_API_URL
+
 
 function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -23,7 +25,9 @@ function AuthProviderWrapper(props) {
 
     if (storedToken) {
       axios
+
         .get(`${API_URL}/auth/userverify`, { headers: { Authorization: `Bearer ${storedToken}` } })
+
         .then((response) => {
           // If the server verifies that the JWT token is valid
           const user = response.data
@@ -51,7 +55,9 @@ function AuthProviderWrapper(props) {
     const storedTherapistToken = localStorage.getItem("authTherapistToken")
     if (storedTherapistToken) {
       axios
+
         .get(`${API_URL}/auth/therapistverify`, { headers: { Authorization: `Bearer ${storedTherapistToken}` } })
+
         .then((response) => {
           const therapist = response.data
 

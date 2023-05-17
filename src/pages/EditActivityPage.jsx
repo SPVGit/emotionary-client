@@ -2,6 +2,13 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { useNavigate, useParams } from "react-router-dom"
 
+import Container from "react-bootstrap/Container"
+import Form from "react-bootstrap/Form"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
+import Button from "react-bootstrap/Button"
+
+
 const API_URL = process.env.REACT_APP_API_URL
 
 const EditActivityPage = () => {
@@ -63,51 +70,65 @@ const EditActivityPage = () => {
   }
 
   return (
-    <div>
-      <h3>Edit Activity</h3>
 
-      <form onSubmit={handleSubmit}>
-        <label>Activity:</label>
+    <Container className="p-2s">
+      <Form
+        style={{ padding: "40px", justifyContent: "center", display: "flex", flexDirection: "column", textAlign: "center" }}
+        onSubmit={handleSubmit}
+        className="mb-3 mt-4">
+        <h3>Edit Activity</h3>
 
-        <label>Level:</label>
-        <select
-          style={{ color: "grey" }}
-          name="level"
-          value={updatedActivity.level}
-          onChange={handleChange}
-          required>
-          <option value="easy"> easy </option>
-          <option value="moderate">moderate</option>
-          <option value="difficult">difficult</option>
-        </select>
+        <Form.Group controlId="validationCustom01">
+          <Form.Label>Activity:</Form.Label>
+          <Form.Group>
+            <Form.Label>Level:</Form.Label>
+            <Form.Select
+              name="level"
+              value={updatedActivity.level}
+              onChange={handleChange}
+              required>
+              <option value="easy"> easy </option>
+              <option value="moderate">moderate</option>
+              <option value="difficult">difficult</option>
+            </Form.Select>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className="mt-2">How successfully you applied the activity?</Form.Label>
+            <Form.Select
+              name="successRating"
+              value={updatedActivity.successRating}
+              onChange={handleChange}
+              required>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </Form.Select>
+          </Form.Group>
+          <Form.Group>
+            <Form.Label className="mt-2">Your impressions?</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              type="text"
+              name="notes"
+              value={updatedActivity.notes}
+              onChange={handleChange}
+            />
+          </Form.Group>
+        </Form.Group>
+        <Button
+          className="mt-4"
+          type="submit">
+          Update
+        </Button>
+      </Form>
+    </Container>
 
-        <label>How successfully you applied the activity?</label>
-        <select
-          style={{ color: "grey" }}
-          name="successRating"
-          value={updatedActivity.successRating}
-          onChange={handleChange}
-          required>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-
-        <label>Your impressions?</label>
-        <textarea
-          style={{ color: "grey" }}
-          type="text"
-          name="notes"
-          value={updatedActivity.notes}
-          onChange={handleChange}
-        />
-
-        <button type="submit">Update</button>
-      </form>
-    </div>
   )
 }
 
 export default EditActivityPage
+
+
