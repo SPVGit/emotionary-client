@@ -12,7 +12,7 @@ import InputGroup from "react-bootstrap/InputGroup"
 import Row from "react-bootstrap/Row"
 import { Container } from "react-bootstrap"
 
-const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
+const API_URL = process.env.REACT_APP_API_URL
 
 export default function TherapistLogin() {
   const [email, setEmail] = useState("")

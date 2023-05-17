@@ -11,9 +11,10 @@ import Container from "react-bootstrap/Container"
 import Col from "react-bootstrap/Col"
 import Row from "react-bootstrap/Row"
 
-const API_URL = `http://localhost:${process.env.REACT_APP_API_URL}`
+const API_URL = process.env.REACT_APP_API_URL
+
 const PostsPage = () => {
-  const { user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   const [posts, setPosts] = useState([])
   const [oldest, setOldest] = useState(false)
   const [emotion, setEmotion] = useState("")
