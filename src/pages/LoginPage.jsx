@@ -10,7 +10,7 @@ import InputGroup from "react-bootstrap/InputGroup"
 import Container from "react-bootstrap/Container"
 
 const API_URL = process.env.REACT_APP_API_URL
-const API_URL2 = process.env.API_URL
+const API_URL2 = process.env.REACT_APP_REACT_APP_API_URL
 
 console.log("Api_URL", API_URL)
 console.log("API_URL2", API_URL2)
