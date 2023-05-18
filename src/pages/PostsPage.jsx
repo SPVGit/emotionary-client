@@ -96,8 +96,8 @@ const PostsPage = () => {
 
   return (
     <Container className="text-center ">
-      <Row className="align-items-center">
-        <Col className="name text-white">Hello {user.name}</Col>
+      <Row className="align-items-center  p-4">
+        <Col className="name d-flex m -2 text-white justify-content-start">Hello {user.name}</Col>
 
         <Col>
           <Form.Select
@@ -120,27 +120,36 @@ const PostsPage = () => {
           </Form.Select>
         </Col>
         <Col>
-          <Container className="align-items-center d-flex justify-content-around">
-            <Button
+          <Container className="align-items-center d-flex justify-content-end ">
+            <Link
+              className="p-2"
               onClick={sortByDate}
               variant="white">
               <img
-                className="rounded p-1"
+                className="rounded"
                 src="sort-up.svg"
                 alt="sort-image"
                 style={{ width: "30px", height: "30px", backgroundColor: "white" }}
               />
-            </Button>
-            <Link to={`/profile/${user._id}`}>
+            </Link>
+            <Link
+              to={`/profile/${user._id}`}
+              className="p-1">
               <img
+                className="rounded"
+                style={{ backgroundColor: "white" }}
                 src="person-fill.svg"
                 alt="person-icon"
-                width="35px"
-                height="35px"
+                width="30px"
+                height="30px"
               />
             </Link>
-            <Link to="/stats">
+            <Link
+              to="/stats"
+              className="p-2">
               <img
+                className="rounded"
+                style={{ backgroundColor: "white" }}
                 src="clipboard-data-fill.svg"
                 alt="clipboard-icon"
                 width="30px"
@@ -179,8 +188,10 @@ const PostsPage = () => {
               )
           )}
         </Row>
-        <BottomNavbar />
       </Container>
+      <Col className="d-flex justify-content-center">
+        <BottomNavbar />
+      </Col>
     </Container>
   )
 }

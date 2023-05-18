@@ -67,10 +67,12 @@ const SinglePostPage = (props) => {
   }
 
   return (
-    <Container className="bg-white">
-      <Card className="SinglePostPage text-center p-3 glass-dark col-3">
+    <Container>
+      <Card className="SinglePostPage text-center p-3 glass col-3">
         {post && (
-          <div key={post._id}>
+          <div
+            className={`${post.emotion} rounded`}
+            key={post._id}>
             <Card.Header>{post.date}</Card.Header>
             <Card.Title>{post.emotion.toUpperCase()}</Card.Title>
             <Card.Text>{post.description}</Card.Text>
@@ -104,22 +106,9 @@ const SinglePostPage = (props) => {
           </div>
         )}
         <Container>
-          <Link to={`/addActivity/${postId}`}>
-            <Button className="dark m-1">Add Activity</Button>
-          </Link>
-
-          <Link to={`/posts/edit/${postId}`}>
-            <Button className="dark m-1">Edit Post</Button>
-          </Link>
-
-          <Link>
-            <Button
-              style={{ backgroundColor: "red", borderColor: "red" }}
-              onClick={deletePost}
-              className="m-1">
-              Delete
-            </Button>
-          </Link>
+          <Link to={`/addActivity/${postId}`}>Add Activity</Link>
+          <Link to={`/posts/edit/${postId}`}>Edit Post</Link>
+          <Link onClick={deletePost}>Delete</Link>
         </Container>
       </Card>
     </Container>
