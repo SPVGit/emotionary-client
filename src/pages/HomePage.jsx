@@ -11,11 +11,11 @@ const HomePage = () => {
   if (!isLoggedIn) {
     setTimeout(() => {
       navigate("/signup")
-    }, 2000)
+    }, 4000)
 
     return (
       <Container className="home-page">
-        <p className="fade-in-out text-center text-white">How are you feeling today?</p>
+        <p className="fade-in-out text-center text-white mt-5">How are you feeling today?</p>
       </Container>
     )
   } else if (isLoggedIn && user) {
