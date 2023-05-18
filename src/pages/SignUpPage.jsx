@@ -56,8 +56,8 @@ function SignupPage() {
   }
 
   return (
-    <Container style={{ marginBottom: "50px" }}>
-      <div className="SignupPage fade-in ">
+    <Container className="d-flex justify-content-center">
+      <div className="SignupPage fade-in text-center mw-7  ">
         <h1>
           Join Emotionary, <br /> express yourself.
         </h1>

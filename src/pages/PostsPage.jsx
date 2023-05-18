@@ -95,9 +95,9 @@ const PostsPage = () => {
   }, [])
 
   return (
-    <Container className="text-center">
-      <Row>
-        <Col className="h2">Hello {user.name}</Col>
+    <Container className="text-center ">
+      <Row className="align-items-center">
+        <Col className="name text-white">Hello {user.name}</Col>
 
         <Col>
           <Form.Select
@@ -120,43 +120,45 @@ const PostsPage = () => {
           </Form.Select>
         </Col>
         <Col>
-          <Row className="flex-row">
-            <Container>
-              <Button
-                onClick={sortByDate}
-                variant="white">
-                <img
-                  src="sort-up.svg"
-                  alt="sort-image"
-                  style={{ width: "16px", height: "16px" }}
-                />
-              </Button>
-              <Link to={`/profile/${user._id}`}>
-                <img
-                  src="person-fill.svg"
-                  alt="person-icon"
-                  width="35px"
-                  height="35px"
-                />
-              </Link>
-              <Link to="/stats">
-                <img
-                  src="clipboard-data-fill.svg"
-                  alt="clipboard-icon"
-                  width="30px"
-                  height="30px"
-                />
-              </Link>
-            </Container>
-          </Row>
+          <Container className="align-items-center d-flex justify-content-around">
+            <Button
+              onClick={sortByDate}
+              variant="white">
+              <img
+                className="rounded p-1"
+                src="sort-up.svg"
+                alt="sort-image"
+                style={{ width: "30px", height: "30px", backgroundColor: "white" }}
+              />
+            </Button>
+            <Link to={`/profile/${user._id}`}>
+              <img
+                src="person-fill.svg"
+                alt="person-icon"
+                width="35px"
+                height="35px"
+              />
+            </Link>
+            <Link to="/stats">
+              <img
+                src="clipboard-data-fill.svg"
+                alt="clipboard-icon"
+                width="30px"
+                height="30px"
+              />
+            </Link>
+          </Container>
         </Col>
       </Row>
+
       <Container>
         <Row className="d-flex flex-row">
           {posts.map(
             (post) =>
               post.user === user._id && (
-                <Col key={post._id}>
+                <Col
+                  style={{ minWidth: "320px" }}
+                  key={post._id}>
                   <Link
                     style={{ textDecoration: "none", color: "black" }}
                     to={`/posts/${post._id}`}>

@@ -13,7 +13,7 @@ code {
 body {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
-  animation: gradient 20s ease infinite;
+  animation: gradient 16s ease infinite;
   height: 100vh;
 }
 /* Softer Colors  */
@@ -52,12 +52,12 @@ body {
 
 .fade-in-out {
   opacity: 0;
-  animation: fade-in 1s ease-in forwards, fade-out 2s 1s ease-out forwards;
+  animation: fade-in 6s ease-in forwards, fade-out 2s 2s ease-out forwards;
 }
 
 .fade-in {
   opacity: 0;
-  animation: fade-in 2s ease-in forwards;
+  animation: fade-in 3s ease-in forwards;
 }
 
 @keyframes fade-in {
@@ -88,7 +88,17 @@ h1 {
 }
 
 h2 {
-  color: rgb(244, 238, 238);
+  color: black;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 900;
+  padding: 16px;
+  text-justify: left;
+  font-family: "Comfortaa", cursive;
+}
+
+.name {
+  color: white;
   text-align: center;
   font-size: 24px;
   font-weight: 900;
@@ -128,6 +138,7 @@ h2 {
 }
 .happy {
   background-color: #ffff54;
+  color: black;
 }
 .in-love {
   background-color: #ff54ffad;
@@ -314,7 +325,7 @@ input {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  background-color: rgb(209, 209, 209);
+  background-color: grey;
 }
 
 .chatContainer .messages {
