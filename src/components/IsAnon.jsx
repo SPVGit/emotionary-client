@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { Navigate } from "react-router-dom";
+import { Navigate} from "react-router-dom";
 
 function IsAnon( { children } ) {
+
+ 
   
   const { isLoggedIn, isLoading, user, therapist } = useContext(AuthContext);
 
@@ -10,7 +12,7 @@ function IsAnon( { children } ) {
   if (isLoading) return <div className='outer-spinner-div'><div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></div>
 
   if (isLoggedIn && user) {
-    // If the user is logged in, navigate to the posts page     
+  
     return <Navigate to="/posts" />;
 
   } 
@@ -18,7 +20,7 @@ function IsAnon( { children } ) {
     return <Navigate to="/users" />;
   }
   else {
-    // If the user is not logged in, allow to see the page 
+   
     return children;
   }
 }
