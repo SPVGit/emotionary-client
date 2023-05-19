@@ -114,7 +114,7 @@ const PostsPage = () => {
             <option value="calm">Calm</option>
             <option value="sad">Sad</option>
             <option value="anxious">Anxious</option>
-            <option value="hurt">Hurt</option>
+            <option value="angry">Angry</option>
             <option value="embarrassed">Embarrassed</option>
             <option value="depressed">Depressed</option>
           </Form.Select>
