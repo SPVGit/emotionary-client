@@ -56,8 +56,10 @@ export default function BottomNavbar() {
 
   return (
     <Navbar fixed="bottom">
-      <Container className="d-flex align-items-center m-5">
-        <Nav className="me-auto">
+      <Container className="d-flex justify-content-center mb-2">
+        <Nav
+          style={{ width: "50vw", padding: "8px" }}
+          className="bg-white rounded justify-content-between d-flex">
           <Nav.Link
             as={NavLink}
             to="/calendar">
@@ -83,14 +85,16 @@ export default function BottomNavbar() {
 
           {theTherapist.map((chatTherapist) => {
             return (
-              <div
-                onClick={() => handleChatClick(chatTherapist._id)}
-                className="icons "
-                alt="icon-chat"
-                width="32px"
-                height="32px">
-                chat
-              </div>
+              <Nav.Link>
+                <img
+                  onClick={() => handleChatClick(chatTherapist._id)}
+                  src="/chat-right-text-fill.svg"
+                  className="icons "
+                  alt="icon-chat"
+                  width="32px"
+                  height="32px"
+                />
+              </Nav.Link>
             )
           })}
         </Nav>

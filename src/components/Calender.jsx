@@ -65,9 +65,10 @@ function CalendarFunc() {
 
   return (
     <Container
-      className="mt-3 rounded 
+      className="mt-3 p-2 rounded 
     ">
       <ReactFullYearScheduler
+        className="p-3"
         events={events}
         locale="en"
         dateTooltipTheme="material"

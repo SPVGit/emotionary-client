@@ -3,6 +3,11 @@ import { AuthContext } from "../context/auth.context"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import Container from "react-bootstrap/Container"
+import Row from "react-bootstrap/Row"
+import Col from "react-bootstrap/Col"
+import Button from "react-bootstrap/Button"
+import Card from "react-bootstrap/Card"
 
 const API_URL = process.env.REACT_APP_API_URL
 
@@ -51,21 +56,60 @@ function UsersList() {
     //  }
   }
   return (
-    <div>
-      {users.map((chatUser) => {
-        return (
-          <p key={chatUser._id}>
-            {chatUser.name}
-            <button
-              onClick={() => {
-                handleChatClick(chatUser._id)
-              }}>
-              Chat
-            </button>
-          </p>
-        )
-      })}
-    </div>
+    <Container>
+      <Row
+        className="d-flex justify-content-center"
+        style={{ padding: "10px 10px" }}>
+        {users.map((chatUser) => {
+          return (
+            <Col
+              key={chatUser._id}
+              className="d-flex justify-content-center text-center">
+              <Card style={{ margin: "10px", padding: 10, width: "40vw" }}>
+                <Card.Header>
+                  <Card.Title>
+                    <h5>{chatUser.name.toUpperCase()}</h5>
+                  </Card.Title>
+                </Card.Header>
+                <Button
+                  variant="dark"
+                  onClick={() => {
+                    handleChatClick(chatUser._id)
+                  }}>
+                  Chat
+                </Button>
+              </Card>
+            </Col>
+          )
+        })}
+      </Row>
+    </Container>
   )
 }
 export default UsersList
+
+// <Container>
+// <Row className="d-flex flex-row">
+//   {posts.map(
+//     (post) =>
+//       post.user === user._id && (
+//         <Col
+//           style={{ minWidth: "320px" }}
+//           key={post._id}>
+//           <Link
+//             style={{ textDecoration: "none", color: "black" }}
+//             to={`/posts/${post._id}`}>
+//             <Card
+//               className={post.emotion}
+//               style={{ padding: 16, margin: 8 }}>
+//               <ListGroup>
+//                 <Card.Header>
+//                   <span> {post.date}</span>
+//                 </Card.Header>
+//                 <Card.Title>
+//                   <h2>{post.emotion.toUpperCase()}</h2>
+//                 </Card.Title>
+//               </ListGroup>
+//             </Card>
+//           </Link>
+//         </Col>

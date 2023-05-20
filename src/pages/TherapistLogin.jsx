@@ -22,14 +22,14 @@ export default function TherapistLogin() {
   const navigate = useNavigate()
   const { storedTherapistToken, authenticateTherapist } = useContext(AuthContext)
 
-  const handleEmail = (e) =>{
+  const handleEmail = (e) => {
     console.log(e.target.value)
     setEmail(e.target.value)
   }
   const handlePassword = (e) => setPassword(e.target.value)
 
   const handleLoginSubmit = (e) => {
-    console.log('monkey')
+    console.log("monkey")
     e.preventDefault()
     const requestBody = { email, password }
 
@@ -64,8 +64,8 @@ export default function TherapistLogin() {
               as={Col}
               md="4"
               controlId="validationCustom02">
-              <Form.Label>Email</Form.Label>
               <Form.Control
+                className="mt-3"
                 required
                 placeholder="Your Email"
                 type="email"
@@ -79,9 +79,9 @@ export default function TherapistLogin() {
               as={Col}
               md="4"
               controlId="validationCustomUsername">
-              <Form.Label>Password</Form.Label>
               <InputGroup hasValidation>
                 <Form.Control
+                  className="mt-3"
                   placeholder="Password"
                   aria-describedby="inputGroupPrepend"
                   required
@@ -93,19 +93,19 @@ export default function TherapistLogin() {
                 <Form.Control.Feedback type="invalid">Please choose a username.</Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
-            {/*<Form.Group
-              className="align-items-end d-flex "
+
+            <Form.Group
+              className="align-items-end d-flex mt-3"
               as={Col}
-  md="4">*/}
+              md="4">
               <Button
-                className="mt-4 w-100"
-                
+                className=" w-100 "
                 md="12"
                 variant="light"
                 type="submit">
                 Log in
               </Button>
-           {/* </Form.Group> */}
+            </Form.Group>
           </Row>
         </Form>
 

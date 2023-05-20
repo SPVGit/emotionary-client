@@ -37,7 +37,8 @@ body {
 }
 
 .home-page p {
-  font-size: 7em;
+  width: 90vw;
+  font-size: 3em;
   font-family: "Comfortaa", cursive;
 }
 
@@ -52,7 +53,7 @@ body {
 
 .fade-in-out {
   opacity: 0;
-  animation: fade-in 6s ease-in forwards, fade-out 2s 2s ease-out forwards;
+  animation: fade-in 3s ease-in forwards, fade-out 2s 2s ease-out forwards;
 }
 
 .fade-in {
@@ -100,7 +101,7 @@ h2 {
 .name {
   color: white;
   text-align: center;
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 900;
   padding: 16px;
   text-justify: left;

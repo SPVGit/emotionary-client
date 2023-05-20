@@ -57,13 +57,13 @@ function SignupPage() {
 
   return (
     <Container className="d-flex justify-content-center">
-      <div className="SignupPage fade-in text-center mw-7  ">
+      <div className="SignupPage fade-in text-center mw-75  ">
         <h1>
           Join Emotionary, <br /> express yourself.
         </h1>
 
         <Form
-          style={{ padding: "40px", justifyContent: "center", display: "flex", flexDirection: "column" }}
+          style={{ padding: "0px 40px", justifyContent: "center", display: "flex", flexDirection: "column" }}
           noValidate
           validated={validated}
           onSubmit={handleSignupSubmit}>
@@ -74,8 +74,8 @@ function SignupPage() {
               as={Col}
               md="4"
               controlId="validationCustom01">
-              <Form.Label>Name</Form.Label>
               <Form.Control
+                className="mt-2"
                 required
                 placeholder="Your name"
                 type="text"
@@ -89,8 +89,8 @@ function SignupPage() {
               as={Col}
               md="4"
               controlId="validationCustom02">
-              <Form.Label>Email</Form.Label>
               <Form.Control
+                className="mt-2"
                 required
                 placeholder="Your Email"
                 type="email"
@@ -104,9 +104,9 @@ function SignupPage() {
               as={Col}
               md="4"
               controlId="validationCustomUsername">
-              <Form.Label>Password</Form.Label>
               <InputGroup hasValidation>
                 <Form.Control
+                  className="mt-2"
                   placeholder="Password"
                   aria-describedby="inputGroupPrepend"
                   required
@@ -126,8 +126,8 @@ function SignupPage() {
           </Button>
         </Form>
 
-        <Container style={{ padding: "40px", justifyContent: "center", display: "flex", flexDirection: "column", textAlign: "center", gap: "8px" }}>
-          <p>Already have account?</p>
+        <Container style={{ padding: "0px 40px 40px", justifyContent: "center", display: "flex", flexDirection: "column", textAlign: "center", gap: "8px" }}>
+          <p className="mt-3">Already have account?</p>
           <Button
             variant="dark"
             type="submit"

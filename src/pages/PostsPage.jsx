@@ -95,11 +95,50 @@ const PostsPage = () => {
   }, [])
 
   return (
-    <Container className="text-center ">
+    <Container
+      className="text-center "
+      style={{ height: "120vh" }}>
       <Row className="align-items-center  p-4">
-        <Col className="name d-flex m -2 text-white justify-content-start">Hello {user.name}</Col>
+        <Col className="name d-flex m -2 text-white justify-content-start">Hi {user.name}</Col>
 
-        <Col>
+        <Col className="align-items-center d-flex justify-content-end ">
+          <Link
+            className="p-2"
+            onClick={sortByDate}
+            variant="white">
+            <img
+              className="rounded"
+              src="sort-up.svg"
+              alt="sort-image"
+              style={{ width: "24px", height: "24px", backgroundColor: "white" }}
+            />
+          </Link>
+          <Link
+            to={`/profile/${user._id}`}
+            className="p-1">
+            <img
+              className="rounded"
+              style={{ backgroundColor: "white" }}
+              src="person-fill.svg"
+              alt="person-icon"
+              width="24px"
+              height="24px"
+            />
+          </Link>
+          <Link
+            to="/stats"
+            className="p-2">
+            <img
+              className="rounded"
+              style={{ backgroundColor: "white" }}
+              src="clipboard-data-fill.svg"
+              alt="clipboard-icon"
+              width="24px"
+              height="24px"
+            />
+          </Link>
+        </Col>
+        <Container>
           <Form.Select
             name="emotion"
             value={emotion}
@@ -118,46 +157,7 @@ const PostsPage = () => {
             <option value="embarrassed">Embarrassed</option>
             <option value="depressed">Depressed</option>
           </Form.Select>
-        </Col>
-        <Col>
-          <Container className="align-items-center d-flex justify-content-end ">
-            <Link
-              className="p-2"
-              onClick={sortByDate}
-              variant="white">
-              <img
-                className="rounded"
-                src="sort-up.svg"
-                alt="sort-image"
-                style={{ width: "30px", height: "30px", backgroundColor: "white" }}
-              />
-            </Link>
-            <Link
-              to={`/profile/${user._id}`}
-              className="p-1">
-              <img
-                className="rounded"
-                style={{ backgroundColor: "white" }}
-                src="person-fill.svg"
-                alt="person-icon"
-                width="30px"
-                height="30px"
-              />
-            </Link>
-            <Link
-              to="/stats"
-              className="p-2">
-              <img
-                className="rounded"
-                style={{ backgroundColor: "white" }}
-                src="clipboard-data-fill.svg"
-                alt="clipboard-icon"
-                width="30px"
-                height="30px"
-              />
-            </Link>
-          </Container>
-        </Col>
+        </Container>
       </Row>
 
       <Container>
@@ -189,6 +189,9 @@ const PostsPage = () => {
           )}
         </Row>
       </Container>
+
+      <div style={{ height: "80px" }}></div>
+
       <Col className="d-flex justify-content-center">
         <BottomNavbar />
       </Col>

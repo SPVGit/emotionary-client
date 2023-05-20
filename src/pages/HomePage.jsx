@@ -15,7 +15,7 @@ const HomePage = () => {
 
     return (
       <Container className="home-page">
-        <p className="fade-in-out text-center text-white mt-5">How are you feeling today?</p>
+        <p className="fade-in-out text-center text-white mt-5 mw-50">How are you feeling today?</p>
       </Container>
     )
   } else if (isLoggedIn && user) {
