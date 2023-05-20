@@ -9,11 +9,10 @@ import Container from "react-bootstrap/Container"
 
 const API_URL = process.env.REACT_APP_API_URL
 let socket = ""
-
-function ChatPage() {
+function TherChat() {
   // Assing a ref to the messages div
 
-  const { user } = useContext(AuthContext)
+  const { therapist } = useContext(AuthContext)
   const storedToken = localStorage.getItem("authToken")
 
   let messagesEnd = createRef()
@@ -77,8 +76,8 @@ function ChatPage() {
     messageContent = {
       uniqueId: create_UUID(),
       chatId,
-      sender: user,
-      senderName: user.name,
+      sender: therapist,
+      senderName: therapist.name,
       message: currentMessage,
     }
 
@@ -101,7 +100,7 @@ function ChatPage() {
               <div
                 key={val.uniqueId}
                 className="messageContainer"
-                id={val.senderName == user.name ? "You" : "Other"}>
+                id={val.senderName == therapist.name ? "You" : "Other"}>
                 <div className="messageIndividual">
                   {val.senderName}: {val.message}
                 </div>
@@ -130,4 +129,4 @@ function ChatPage() {
   )
 }
 
-export default ChatPage
+export default TherChat
