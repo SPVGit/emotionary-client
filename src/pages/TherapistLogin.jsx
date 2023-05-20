@@ -22,10 +22,14 @@ export default function TherapistLogin() {
   const navigate = useNavigate()
   const { storedTherapistToken, authenticateTherapist } = useContext(AuthContext)
 
-  const handleEmail = (e) => setEmail(e.target.value)
+  const handleEmail = (e) =>{
+    console.log(e.target.value)
+    setEmail(e.target.value)
+  }
   const handlePassword = (e) => setPassword(e.target.value)
 
   const handleLoginSubmit = (e) => {
+    console.log('monkey')
     e.preventDefault()
     const requestBody = { email, password }
 
@@ -89,19 +93,19 @@ export default function TherapistLogin() {
                 <Form.Control.Feedback type="invalid">Please choose a username.</Form.Control.Feedback>
               </InputGroup>
             </Form.Group>
-            <Form.Group
+            {/*<Form.Group
               className="align-items-end d-flex "
               as={Col}
-              md="4">
+  md="4">*/}
               <Button
                 className="mt-4 w-100"
-                as={Col}
+                
                 md="12"
                 variant="light"
                 type="submit">
                 Log in
               </Button>
-            </Form.Group>
+           {/* </Form.Group> */}
           </Row>
         </Form>
 
