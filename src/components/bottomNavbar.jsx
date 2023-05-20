@@ -1,17 +1,16 @@
 import React from "react"
+import { NavLink, useNavigate } from "react-router-dom"
+import { useContext, useState, useEffect } from "react"
+import { AuthContext } from "../context/auth.context"
+import axios from "axios"
 import Navbar from "react-bootstrap/Navbar"
 import Container from "react-bootstrap/Container"
 import Nav from "react-bootstrap/Nav"
-import { NavLink, useNavigate } from "react-router-dom"
-import { useContext, useState, useEffect } from "react"
-import axios from "axios"
-import { AuthContext } from "../context/auth.context"
-import Button from "react-bootstrap/Button"
 
 const API_URL = process.env.REACT_APP_API_URL
 
 export default function BottomNavbar() {
-  const { user } = useContext(AuthContext)
+  const { user, therapist } = useContext(AuthContext)
   const [theTherapist, setTheTherapist] = useState([])
   const storedToken = localStorage.getItem("authToken")
 
@@ -34,7 +33,7 @@ export default function BottomNavbar() {
 
   // CHAT button //
   const handleChatClick = (chatTherapistId) => {
-    //  const storedToken = localStorage.getItem("authToken");
+    //const storedToken = localStorage.getItem("authToken")
     /*   if(!user){
           navigate('/signin')
           return; 
@@ -43,10 +42,14 @@ export default function BottomNavbar() {
     let data = {
       participants: [chatTherapistId, user._id],
     }
-    axios.post(`${API_URL}/conversation`, data, { headers: { Authorization: `Bearer ${storedToken}` } }).then((response) => {
-      navigate(`/chat/${response.data._id}`)
-      console.log(response.data_id)
-    })
+    axios
+      .post(`${API_URL}/conversation`, data, { headers: { Authorization: `Bearer ${storedToken}` } })
+      .then((response) => {
+        const data = response.data._id
+        navigate(`/chat/${data}`)
+        console.log(data)
+      })
+      .catch((error) => console.log(error))
 
     //  }
   }
@@ -80,16 +83,14 @@ export default function BottomNavbar() {
 
           {theTherapist.map((chatTherapist) => {
             return (
-              <Nav.Link>
-                <img
-                  onClick={() => handleChatClick(chatTherapist.id)}
-                  className="icons "
-                  src="/chat-right-text-fill.svg"
-                  alt="icon-chat"
-                  width="32px"
-                  height="32px"
-                />
-              </Nav.Link>
+              <div
+                onClick={() => handleChatClick(chatTherapist._id)}
+                className="icons "
+                alt="icon-chat"
+                width="32px"
+                height="32px">
+                chat
+              </div>
             )
           })}
         </Nav>

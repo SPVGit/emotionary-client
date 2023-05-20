@@ -45,7 +45,7 @@ function UsersList() {
       participants: [chatUserId, therapist._id],
     }
     axios.post(`${API_URL}/conversation`, data, { headers: { Authorization: `Bearer ${storedToken}` } }).then((response) => {
-      navigate(`/chattherapist/${response.data._id}`)
+      navigate(`/therchat/${response.data._id}`)
     })
 
     //  }

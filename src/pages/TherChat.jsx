@@ -84,6 +84,7 @@ function TherChat() {
     await socket.emit("send_message", messageContent)
     setMessageList([...messageList, messageContent.content])
     setCurrentMessage("")
+    console.log(messageContent)
   }
 
   // if (loading) {
