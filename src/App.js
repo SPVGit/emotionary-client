@@ -49,6 +49,14 @@ function App() {
           }
         />
         <Route
+          path="/therapistlogin"
+          element={
+            <IsAnon>
+              <TherapistLogin />
+            </IsAnon>
+          }
+        />
+        <Route
           path="/posts"
           element={
             <IsPrivate>
@@ -124,11 +132,19 @@ function App() {
         />
 
         <Route
-          path="/therapistlogin"
+          path="/chat/:chatId"
           element={
-            <IsAnon>
-              <TherapistLogin />
-            </IsAnon>
+            <IsPrivate>
+              <ChatPage />
+            </IsPrivate>
+          }
+        />
+        <Route
+          path="/stats"
+          element={
+            <IsPrivate>
+              <StatsPage />
+            </IsPrivate>
           }
         />
         <Route
@@ -138,11 +154,6 @@ function App() {
               <UsersList />
             </IsTherapistPrivate>
           }
-        />
-
-        <Route
-          path="/chat/:chatId"
-          element={<ChatPage />}
         />
 
         {/*        <Route
@@ -161,14 +172,6 @@ function App() {
             </IsPrivate>
           }
         /> */}
-        <Route
-          path="/stats"
-          element={
-            <IsPrivate>
-              <StatsPage />
-            </IsPrivate>
-          }
-        />
         <Route
           path="/therchat/:chatId"
           element={
