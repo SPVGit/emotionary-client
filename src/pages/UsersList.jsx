@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom"
 const API_URL = process.env.REACT_APP_API_URL
 
 function UsersList() {
-  const { therapist, user } = useContext(AuthContext)
+  const { therapist } = useContext(AuthContext)
   const [users, setUsers] = useState([])
 
   const navigate = useNavigate()
@@ -33,6 +33,7 @@ function UsersList() {
     getUsers()
   }, [])
 
+  // CHAT button //
   const handleChatClick = (chatUserId) => {
     //  const storedToken = localStorage.getItem("authToken");
     /*   if(!user){
