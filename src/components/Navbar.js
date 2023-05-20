@@ -22,7 +22,7 @@ const NavbarComponent = () => {
             className="navlink"
             as={NavLink}>
             <img
-              src="/Emotionary-logo.png"
+              src="/Frame-35.png"
               alt="Emotionary Logo"
               width="140px"
               height="80px"
