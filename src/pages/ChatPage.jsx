@@ -2,11 +2,10 @@ import axios from "axios"
 import React, { createRef, useState, useEffect } from "react"
 
 import io from "socket.io-client"
-import { Navigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import { useContext } from "react"
 import { AuthContext } from "../context/auth.context"
 import Container from "react-bootstrap/Container"
-import { Col } from "react-bootstrap/Col"
 
 const API_URL = process.env.REACT_APP_API_URL
 let socket = ""

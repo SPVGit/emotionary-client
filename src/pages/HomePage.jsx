@@ -11,7 +11,7 @@ const HomePage = () => {
   if (!isLoggedIn) {
     setTimeout(() => {
       navigate("/signup")
-    }, 4000)
+    }, 7000)
 
     return (
       <Container className="home-page">

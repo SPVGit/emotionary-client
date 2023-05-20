@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { Link } from "react-router-dom"
-import { ListGroup, Button, Card, Container } from "react-bootstrap"
+import { ListGroup, Card, Container } from "react-bootstrap"
 
 const API_URL = process.env.REACT_APP_API_URL
 

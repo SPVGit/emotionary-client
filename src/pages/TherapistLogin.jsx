@@ -28,6 +28,7 @@ export default function TherapistLogin() {
   const handleLoginSubmit = (e) => {
     e.preventDefault()
     const requestBody = { email, password }
+    console.log(`${rew}`)
 
     axios
       .post(`${API_URL}/auth/therapistlogin`, requestBody)
@@ -92,16 +93,14 @@ export default function TherapistLogin() {
             <Form.Group
               className="align-items-end d-flex "
               as={Col}
-              md="4">
-              <Button
-                className="mt-4 w-100"
-                as={Col}
-                md="12"
-                variant="light"
-                type="submit">
-                Log in
-              </Button>
-            </Form.Group>
+              md="4"></Form.Group>
+            <Button
+              className="mt-4 w-100"
+              md="12"
+              variant="light"
+              type="submit">
+              Log in
+            </Button>
           </Row>
         </Form>
 
