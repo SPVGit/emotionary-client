@@ -32,6 +32,7 @@ export default function BottomNavbar() {
     getTherapist()
   }, [])
 
+  // CHAT button //
   const handleChatClick = (chatTherapistId) => {
     //  const storedToken = localStorage.getItem("authToken");
     /*   if(!user){
