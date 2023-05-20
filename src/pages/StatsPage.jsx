@@ -6,6 +6,7 @@ import PieChart from "../components/PieChart";
 import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
 import axios from "axios";
+import Button from "react-bootstrap/Button"
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -15,6 +16,8 @@ export default function App() {
   const { user } = useContext(AuthContext);
   //const [filteredData, setFilteredData] = useState([]);
   const storedToken = localStorage.getItem("authToken");
+  const [barChart, setBarChart] = useState(true)
+//  const [buttonText, setButtonText] = ('Change to Pie Chart')
 
   const [chartData, setChartData] = useState({
     labels: [
@@ -49,6 +52,17 @@ export default function App() {
       },
     ],
   });
+
+const toggleChart = () => {
+  if (barChart === true) {
+    setBarChart(false);
+ //   setButtonText('Change to Bar Chart')
+  }
+  else {
+    setBarChart(true);
+  //  setButtonText('Change to Pie Chart')
+  }
+}
 
   const getData = async () => {
     let response = await axios.get(`${API_URL}/stats`, {
@@ -92,7 +106,7 @@ export default function App() {
             "#4e4e4e",
           ],
           borderColor: "black",
-          borderWidth: 1,
+          borderWidth: 0,
         },
       ],
     })
@@ -175,8 +189,26 @@ export default function App() {
 
   return (
     <div>
+    {barChart &&
+    <div>
       <BarChart chartData={chartData} />
+      <Button
+          className="shadow"
+          variant="dark"
+          onClick={toggleChart}>
+         Change to Pie Chart
+        </Button>
+        </div>}
+      {!barChart &&
+      <div>
       <PieChart chartData={chartData} />
+      <Button
+          className="shadow"
+          variant="dark"
+          onClick={toggleChart}>
+         Change to Bar Chart
+        </Button>
+        </div>}
     </div>
   );
 }
