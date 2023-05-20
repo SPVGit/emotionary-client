@@ -13,7 +13,7 @@ function TherChat() {
   // Assing a ref to the messages div
 
   const { therapist } = useContext(AuthContext)
-  const storedToken = localStorage.getItem("authToken")
+  const storedToken = localStorage.getItem("authTherapistToken")
 
   let messagesEnd = createRef()
 
@@ -82,14 +82,16 @@ function TherChat() {
     }
 
     await socket.emit("send_message", messageContent)
-    setMessageList([...messageList, messageContent.content])
+    setMessageList([...messageList, messageContent])
     setCurrentMessage("")
-    console.log(messageContent)
+    
   }
 
   // if (loading) {
   //       <p>Loading all messages . . .</p>
   //   }
+
+  console.log('thermsglist' , messageList)
 
   return (
     <Container>

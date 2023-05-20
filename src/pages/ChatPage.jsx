@@ -58,7 +58,7 @@ function ChatPage() {
 
   const handleMessageInput = (e) => {
     setCurrentMessage(e.target.value)
-    console.log(e.target.value)
+  
   }
 
   const sendMessage = async () => {
@@ -83,13 +83,14 @@ function ChatPage() {
     }
 
     await socket.emit("send_message", messageContent)
-    setMessageList([...messageList, messageContent.content])
+    setMessageList([...messageList, messageContent])
     setCurrentMessage("")
   }
 
   // if (loading) {
   //       <p>Loading all messages . . .</p>
   //   }
+  console.log('usemsglist', messageList)
 
   return (
     <Container>
