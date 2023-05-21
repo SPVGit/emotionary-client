@@ -7,6 +7,7 @@ import { CategoryScale } from "chart.js"
 import Chart from "chart.js/auto"
 import axios from "axios"
 import Button from "react-bootstrap/Button"
+import Container from "react-bootstrap/Container"
 
 const API_URL = process.env.REACT_APP_API_URL
 
@@ -21,13 +22,12 @@ export default function App() {
 
   const [chartData, setChartData] = useState({
     labels: ["happy", "in-love", "excited", "satisfied", "calm", "sad", "anxious", "angry", "embarressed", "depressed"],
+
     datasets: [
       {
         label: "Emotion Percentage",
         data: calcEmoPercentage([]),
         backgroundColor: ["#ffff54", "#ff54ffad", "#ff7d00", "#00b400", "#0089e0", "#afafaf", "#6851ff", "#ff0000", "#4e4e4e"],
-        borderColor: "black",
-        borderWidth: 1,
       },
     ],
   })
@@ -52,15 +52,15 @@ export default function App() {
     //  console.log(calcEmoPercentage(filteredPosts))
     //   setFilteredData(await filteredPosts);
     // setFilteredData(filteredPosts)
+
     setChartData({
       labels: ["happy", "in-love", "excited", "satisfied", "calm", "sad", "anxious", "angry", "embarrassed", "depressed"],
+
       datasets: [
         {
           label: "Emotion Percentage",
           data: calcEmoPercentage(filteredPosts),
           backgroundColor: ["#ffff54", "#ff54ffad", "#ff7d00", "#00b400", "#0089e0", "#afafaf", "#6851ff", "#ff0000", "#ff8c8c", "#4e4e4e"],
-          borderColor: "black",
-          borderWidth: 0,
         },
       ],
     })
@@ -71,8 +71,6 @@ export default function App() {
   }, [])
 
   function calcEmoPercentage(data) {
-    console.log("monkey")
-
     if (data.length === 0) {
       return
     } else {
@@ -121,7 +119,7 @@ export default function App() {
       }
       newEmotionArray.push(parseFloat(happy / data.length), parseFloat(inLove / data.length), parseFloat(excited / data.length), parseFloat(satisfied / data.length), parseFloat(calm / data.length), parseFloat(sad / data.length), parseFloat(anxious / data.length), parseFloat(angry / data.length), parseFloat(embarrassed / data.length), parseFloat(depressed / data.length))
 
-      console.log("newEmotionArray", newEmotionArray)
+      // console.log("newEmotionArray", newEmotionArray)
       return newEmotionArray
     }
   }
@@ -129,26 +127,30 @@ export default function App() {
   return (
     <>
       {barChart && (
-        <>
-          <BarChart chartData={chartData} />
+        <Container className="d-flex justify-content-center">
           <Button
-            className="shadow"
-            variant="dark"
+            style={{ width: "800px", color: "black" }}
+            className="shadow glass"
             onClick={toggleChart}>
-            Change to Pie Chart
+            Click here to see Pie Chart{" "}
+            <BarChart
+              style={{ color: "white" }}
+              chartData={chartData}
+            />
           </Button>
-        </>
+        </Container>
       )}
       {!barChart && (
-        <>
-          <PieChart chartData={chartData} />
+        <Container className="d-flex justify-content-center">
           <Button
-            className="shadow"
+            style={{ width: "800px", color: "black" }}
+            className="shadow glass"
             variant="dark"
             onClick={toggleChart}>
-            Change to Bar Chart
+            Click here to see Bar Chart
+            <PieChart chartData={chartData} />
           </Button>
-        </>
+        </Container>
       )}
     </>
   )

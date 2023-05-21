@@ -96,6 +96,7 @@ h2 {
   padding: 16px;
   text-justify: left;
   font-family: "Comfortaa", cursive;
+  letter-spacing: 1.2px;
 }
 
 h3 {
@@ -125,6 +126,7 @@ p,
   font-size: 14px;
   text-justify: left;
   font-family: "Comfortaa", cursive;
+  letter-spacing: 1px;
 }
 
 .Navbar {
