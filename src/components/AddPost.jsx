@@ -77,9 +77,9 @@ const AddPost = () => {
             as={Col}
             md="4"
             controlId="validationCustom01">
-            <Form.Label>Date</Form.Label>
+            <Form.Label className="label ">Date</Form.Label>
             <Form.Control
-              required
+              wrequired
               type="date"
               name="date"
               value={newPost.date}
@@ -91,7 +91,7 @@ const AddPost = () => {
             as={Col}
             md="4"
             controlId="validationCustom02">
-            <Form.Label>Emotion:</Form.Label>
+            <Form.Label className="label ">Emotion:</Form.Label>
             <Form.Select
               name="emotion"
               value={newPost.emotion}
@@ -115,7 +115,7 @@ const AddPost = () => {
             as={Col}
             md="4"
             controlId="validationCustom03">
-            <Form.Label>Emotion Intensity:</Form.Label>
+            <Form.Label className="label ">Emotion Intensity:</Form.Label>
             <Form.Select
               name="rating"
               value={newPost.rating}
@@ -134,7 +134,7 @@ const AddPost = () => {
             className="mt-4"
             as={Col}
             controlId="validationCustom04">
-            <Form.Label>What made you feel that way?</Form.Label>
+            <Form.Label className="label ">What made you feel that way?</Form.Label>
             <Form.Control
               as="textarea"
               rows={3}
@@ -148,7 +148,7 @@ const AddPost = () => {
         </Row>
 
         <Button
-          className="shadow"
+          className=" shadow"
           variant="dark"
           type="submit">
           Submit

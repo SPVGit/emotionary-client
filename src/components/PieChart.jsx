@@ -1,8 +1,9 @@
-import { Pie } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2"
+import Container from "react-bootstrap/Container"
 
 function PieChart({ chartData }) {
   return (
-    <div className="chart-container">
+    <Container className="chart-container">
       <h2 style={{ textAlign: "center" }}>Pie Chart</h2>
       <Pie
         data={chartData}
@@ -10,13 +11,13 @@ function PieChart({ chartData }) {
           plugins: {
             title: {
               display: true,
-              text: "Users Gained between 2016-2020"
-            }
-          }
+              text: "Users Gained between 2016-2020",
+            },
+          },
         }}
       />
-    </div>
-  );
+    </Container>
+  )
 }
 
-export default PieChart;
+export default PieChart

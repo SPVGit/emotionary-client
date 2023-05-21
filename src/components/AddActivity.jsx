@@ -12,11 +12,19 @@ import Excited from "./emotions/Excited"
 import InLove from "./emotions/InLove"
 import Satisfied from "./emotions/Satisfied"
 
+import Form from "react-bootstrap/Form"
+import Col from "react-bootstrap/Col"
+import Container from "react-bootstrap/Container"
+import Button from "react-bootstrap/Button"
+import Row from "react-bootstrap/Row"
+
 const API_URL = process.env.REACT_APP_API_URL
 
 const AddActivity = () => {
   const { postId } = useParams()
   const navigate = useNavigate()
+  const [errorMessage, setErrorMessage] = useState(undefined)
+
   const [emotion, setEmotion] = useState("")
   const storedToken = localStorage.getItem("authToken")
   console.log("addActivity postId", postId)
@@ -61,9 +69,12 @@ const AddActivity = () => {
           successRating: "1",
           notes: "",
         })
-        navigate("/posts")
+        navigate(`/posts/${postId}`)
       })
-      .catch((error) => console.log(error))
+      .catch((error) => {
+        const errorDescription = error.response.data.message
+        setErrorMessage(errorDescription)
+      })
   }
 
   const getEmotion = () => {
@@ -81,57 +92,79 @@ const AddActivity = () => {
     getEmotion()
   }, [])
   return (
-    <div>
-      <h3>Add Activity</h3>
+    <Container className="mb-3">
+      <Form
+        style={{ padding: "40px", justifyContent: "center", display: "flex", flexDirection: "column", textAlign: "center" }}
+        onSubmit={handleSubmit}>
+        <h3>Add Activity</h3>
+        <Row>
+          <Form.Group
+            as={Col}
+            md="4">
+            <Form.Label className="label">Activity:</Form.Label>
+            {emotion === "happy" && <Happy handleChange={handleChange} />}
+            {emotion === "sad" && <Sad handleChange={handleChange} />}
+            {emotion === "angry" && <Angry handleChange={handleChange} />}
+            {emotion === "anxious" && <Anxious handleChange={handleChange} />}
+            {emotion === "calm" && <Calm handleChange={handleChange} />}
+            {emotion === "depressed" && <Depressed handleChange={handleChange} />}
+            {emotion === "embarrassed" && <Embarrassed handleChange={handleChange} />}
+            {emotion === "excited" && <Excited handleChange={handleChange} />}
+            {emotion === "in-love" && <InLove handleChange={handleChange} />}
+            {emotion === "satisfied" && <Satisfied handleChange={handleChange} />}
+          </Form.Group>
+          <Form.Group
+            as={Col}
+            md="4">
+            <Form.Label className="label">Level:</Form.Label>
+            <Form.Select
+              name="level"
+              value={newActivity.level}
+              onChange={handleChange}>
+              <option value="easy"> easy </option>
+              <option value="moderate">moderate</option>
+              <option value="difficult">difficult</option>
+            </Form.Select>
+          </Form.Group>
 
-      <form onSubmit={handleSubmit}>
-        <label>Activity:</label>
-        {emotion === "happy" && <Happy handleChange={handleChange} />}
-        {emotion === "sad" && <Sad handleChange={handleChange} />}
-        {emotion === "angry" && <Angry handleChange={handleChange} />}
-        {emotion === "anxious" && <Anxious handleChange={handleChange} />}
-        {emotion === "calm" && <Calm handleChange={handleChange} />}
-        {emotion === "depressed" && <Depressed handleChange={handleChange} />}
-        {emotion === "embarrassed" && <Embarrassed handleChange={handleChange} />}
-        {emotion === "excited" && <Excited handleChange={handleChange} />}
-        {emotion === "in-love" && <InLove handleChange={handleChange} />}
-        {emotion === "satisfied" && <Satisfied handleChange={handleChange} />}
+          <Form.Group
+            as={Col}
+            md="4">
+            <Form.Label className="label">Satisfaction:</Form.Label>
+            <Form.Select
+              name="successRating"
+              value={newActivity.successRating}
+              onChange={handleChange}
+              required>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </Form.Select>
+          </Form.Group>
+        </Row>
 
-        <label>Level:</label>
-        <select
-          name="level"
-          value={newActivity.level}
-          onChange={handleChange}
-          required>
-          <option value="easy"> easy </option>
-          <option value="moderate">moderate</option>
-          <option value="difficult">difficult</option>
-        </select>
-
-        <label>How successfully you applied the activity?</label>
-        <select
-          name="successRating"
-          value={newActivity.successRating}
-          onChange={handleChange}
-          required>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-
-        <label>Your impressions?</label>
-        <textarea
+        <Form.Label className="label">Your impressions?</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={3}
           type="text"
           name="notes"
           value={newActivity.notes}
           onChange={handleChange}
+          style={{ height: "40vh" }}
         />
 
-        <button type="submit">Add</button>
-      </form>
-    </div>
+        <Button
+          className="shadow"
+          variant="dark"
+          type="submit">
+          Add
+        </Button>
+      </Form>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
+    </Container>
   )
 }
 
