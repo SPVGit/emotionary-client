@@ -75,7 +75,9 @@ const SinglePostPage = (props) => {
               key={post._id}>
               {" "}
               <Col>
-                <Card.Header className="label d-flex  justify-content-between">
+                <Card.Header
+                  style={{ marginTop: "16px", marginBottom: "16px" }}
+                  className="label d-flex  justify-content-between">
                   <div className="label"> {post.date} </div>
                   <div className="label">
                     <b> {post.emotion.toUpperCase()} </b>
@@ -87,7 +89,7 @@ const SinglePostPage = (props) => {
                 <Card.Text>{post.description}</Card.Text>
               </Col>
               <Col>
-                <Accordion>
+                <Accordion style={{ marginTop: "16px" }}>
                   {post.activities.map(
                     (activity, index) =>
                       !isDeleted && (

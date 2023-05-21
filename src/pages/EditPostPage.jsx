@@ -74,11 +74,11 @@ const EditPostPage = () => {
         style={{ padding: "40px", justifyContent: "center", display: "flex", flexDirection: "column", textAlign: "center" }}
         onSubmit={handleSubmit}>
         <h3>Edit Emotion</h3>
+
         <Row className="mb-3 mt-3">
           <Form.Group
             as={Col}
-            md="4"
-            controlId="validationCustom01">
+            md="4">
             <Form.Label className="label ">Date</Form.Label>
             <Form.Control
               required
@@ -89,10 +89,10 @@ const EditPostPage = () => {
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
+
           <Form.Group
             as={Col}
-            md="4"
-            controlId="validationCustom02">
+            md="4">
             <Form.Label className="label ">Emotion:</Form.Label>
             <Form.Select
               name="emotion"
