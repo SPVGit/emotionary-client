@@ -64,7 +64,7 @@ const LoginPage = (props) => {
             className="mb-3"
             width="80vw">
             <Form.Group>
-              <Form.Label>Email</Form.Label>
+              <Form.Label className="label ">Email</Form.Label>
               <Form.Control
                 required
                 placeholder="Your Email"
@@ -76,7 +76,7 @@ const LoginPage = (props) => {
               <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
             </Form.Group>
             <Form.Group>
-              <Form.Label>Password</Form.Label>
+              <Form.Label className="label ">Password</Form.Label>
               <InputGroup hasValidation>
                 <Form.Control
                   placeholder="Password"

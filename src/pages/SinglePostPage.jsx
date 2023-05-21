@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { Link } from "react-router-dom"
-import { ListGroup, Button, Card, Container } from "react-bootstrap"
+import { ListGroup, Button, Card, Container, Accordion, Col, Row } from "react-bootstrap"
 
 const API_URL = process.env.REACT_APP_API_URL
 
@@ -10,6 +10,7 @@ const SinglePostPage = (props) => {
   const [post, setPost] = useState(null)
   const [activities, setActivities] = useState([])
   const { postId } = useParams()
+  const [isDeleted, setIsDeleted] = useState(false)
 
   const navigate = useNavigate()
 
@@ -21,6 +22,7 @@ const SinglePostPage = (props) => {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
+        setIsDeleted(false)
         const singlePost = response.data
         console.log("single post activity", singlePost.activities)
         console.log("response.data", response.data)
@@ -32,8 +34,9 @@ const SinglePostPage = (props) => {
 
   useEffect(() => {
     getPost()
-  }, [])
+  }, [isDeleted])
 
+  //DELETE POST
   const deletePost = () => {
     axios
       .delete(`${API_URL}/posts/${postId}`, {
@@ -41,76 +44,105 @@ const SinglePostPage = (props) => {
       })
       .then((response) => {
         console.log("delete response", response.data.message)
+
         navigate("/posts")
       })
       .catch((err) => console.log(err))
   }
 
+  // DELETE ACTIVITY
   const deleteActivity = (activityId) => {
     console.log("kitty")
-    //delete from the front end
-    setActivities((activities) => {
-      const newActivities = activities.filter((activity) => {
-        return activity._id !== activityId
+    setIsDeleted(true)
+
+    axios
+      .delete(`${API_URL}/posts/${postId}/${activityId}`, {
+        headers: { Authorization: `Bearer ${storedToken}` },
       })
-      return newActivities
-    })
-
-    axios.delete(`${API_URL}/posts/${postId}/${activityId}`, {
-      headers: { Authorization: `Bearer ${storedToken}` },
-    })
-
-    console.log("monkey")
-    navigate("/posts")
-
-    //  .catch((err) => console.log(err))
+      .then(() => {
+        navigate(`/posts/${postId}`)
+      })
+    // .catch((err) => console.log(err))
   }
 
   return (
-    <Container>
-      <Card className="SinglePostPage text-center p-3 glass col-3">
+    <Container className="w-75 glass p-3">
+      <>
         {post && (
-          <div
-            className={`${post.emotion} rounded`}
-            key={post._id}>
-            <Card.Header>{post.date}</Card.Header>
-            <Card.Title>{post.emotion.toUpperCase()}</Card.Title>
-            <Card.Text>{post.description}</Card.Text>
-            <Card.Text>{post.rating}</Card.Text>
-            {post.activities.map((activity) => (
-              <Container
-                key={activity._id}
-                className="d-flex justify-content-center m-2">
-                <Card style={{ width: "20rem" }}>
-                  <ListGroup.Item>{activity.title}</ListGroup.Item>
-                  <ListGroup.Item>{activity.level}</ListGroup.Item>
-                  <ListGroup.Item>{activity.time}</ListGroup.Item>
-                  <ListGroup.Item>{activity.successRating}</ListGroup.Item>
-                  <ListGroup.Item>{activity.notes}</ListGroup.Item>
-                  <Container className="d-flex flex-row">
-                    <p
-                      style={{ color: "red" }}
-                      className=" m-1"
-                      onClick={() => deleteActivity(activity._id)}>
-                      Delete
-                    </p>
-                    <Link
-                      className="m-1"
-                      to={`/posts/${postId}/edit/${activity._id}`}>
-                      Edit
-                    </Link>
-                  </Container>
-                </Card>
-              </Container>
-            ))}
-          </div>
+          <Row>
+            <Card
+              className={`${post.emotion} d-flex flex-wrap rounded myglass SinglePostPage text-center p-4`}
+              key={post._id}>
+              {" "}
+              <Col>
+                <Card.Header className="label d-flex  justify-content-between">
+                  <div className="label"> {post.date} </div>
+                  <div className="label">
+                    <b> {post.emotion.toUpperCase()} </b>
+                  </div>
+                  <div className="label">Intensity: {post.rating}</div>
+                </Card.Header>
+              </Col>
+              <Col>
+                <Card.Text>{post.description}</Card.Text>
+              </Col>
+              <Col>
+                <Accordion>
+                  {post.activities.map(
+                    (activity, index) =>
+                      !isDeleted && (
+                        <Accordion.Item
+                          key={activity._id}
+                          eventKey={`${index}`}>
+                          <Accordion.Header>{activity.title}</Accordion.Header>
+                          <Accordion.Body>{activity.level}</Accordion.Body>
+                          <Accordion.Body>{activity.successRating}</Accordion.Body>
+                          <Accordion.Body>{activity.notes}</Accordion.Body>
+                          <Accordion.Body>
+                            <Button
+                              style={{ color: "red", borderStyle: "none" }}
+                              className={`bg-white m-1`}
+                              onClick={() => deleteActivity(activity._id)}>
+                              Delete
+                            </Button>
+                            <Link
+                              className="m-1"
+                              to={`/posts/${postId}/edit/${activity._id}`}>
+                              Edit
+                            </Link>
+                          </Accordion.Body>
+                        </Accordion.Item>
+                      )
+                  )}
+                </Accordion>
+              </Col>
+            </Card>
+          </Row>
         )}
-        <Container>
-          <Link to={`/addActivity/${postId}`}>Add Activity</Link>
-          <Link to={`/posts/edit/${postId}`}>Edit Post</Link>
-          <Link onClick={deletePost}>Delete</Link>
-        </Container>
-      </Card>
+      </>
+
+      <Container style={{ padding: 20 }}>
+        <Col className="d-flex justify-content-center">
+          <Button
+            className="m-2"
+            variant="success"
+            onClick={() => navigate(`/addActivity/${postId}`)}>
+            Add Activity
+          </Button>
+          <Button
+            className="m-2"
+            variant="secondary"
+            onClick={() => navigate(`/posts/edit/${postId}`)}>
+            Edit Post
+          </Button>
+          <Button
+            className="m-2"
+            variant="danger"
+            onClick={deletePost}>
+            Delete
+          </Button>
+        </Col>
+      </Container>
     </Container>
   )
 }

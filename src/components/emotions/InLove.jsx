@@ -1,26 +1,19 @@
-import React from "react";
-import Form from "react-bootstrap/Form";
+import React from "react"
+import Form from "react-bootstrap/Form"
 
 const InLove = ({ handleChange }) => {
   return (
     <Form.Select
+      required
       name="title"
       aria-label="Default select example"
-      size="lg"
-      onChange={handleChange}
-    >
+      onChange={handleChange}>
       <option>Open this select menu</option>
-      <option value="Call a friend and share your happiness">
-        Call a friend and share your happiness
-      </option>
-      <option value="Do some charity! Spread your happiness!">
-        Do some charity! Spread your happiness!
-      </option>
-      <option value="Do stay in the moment and enjoy!">
-        Do stay in the moment and enjoy!
-      </option>
+      <option value="Call a friend and share your happiness">Call a friend and share your happiness</option>
+      <option value="Do some charity! Spread your happiness!">Do some charity! Spread your happiness!</option>
+      <option value="Do stay in the moment and enjoy!">Do stay in the moment and enjoy!</option>
     </Form.Select>
-  );
-};
+  )
+}
 
-export default InLove;
+export default InLove

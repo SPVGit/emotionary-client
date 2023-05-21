@@ -98,12 +98,31 @@ h2 {
   font-family: "Comfortaa", cursive;
 }
 
+h3 {
+  color: rgb(255, 255, 255);
+  text-align: center;
+  font-size: 24px;
+  font-weight: 900;
+  padding: 16px;
+  text-justify: left;
+  font-family: "Comfortaa", cursive;
+}
+
 .name {
-  color: white;
+  color: rgb(181, 181, 181);
   text-align: center;
   font-size: 16px;
   font-weight: 900;
   padding: 16px;
+  text-justify: left;
+  font-family: "Comfortaa", cursive;
+}
+
+p,
+.label {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  font-size: 14px;
   text-justify: left;
   font-family: "Comfortaa", cursive;
 }
@@ -164,7 +183,6 @@ h2 {
 }
 .depressed {
   background-color: #4e4e4e;
-  color: white;
 }
 
 /* .navlink:hover {
@@ -402,8 +420,7 @@ input {
 .glass {
   background: rgba(98, 98, 98, 0.25);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
