@@ -12,14 +12,12 @@ const API_URL = process.env.REACT_APP_API_URL
 let socket = ""
 
 function TherChat() {
-
   const { therapist } = useContext(AuthContext)
   const { chatId } = useParams()
-  let messagesEnd = createRef() 
+  let messagesEnd = createRef()
 
   const [messageList, setMessageList] = useState([])
   const [currentMessage, setCurrentMessage] = useState("")
-
 
   const scrollToBottom = () => {
     messagesEnd.scrollIntoView({ behavior: "smooth" })
@@ -28,12 +26,12 @@ function TherChat() {
   const storedToken = localStorage.getItem("authTherapistToken")
 
   useEffect(() => {
-
     //This sets up the socket connection with the server
 
     socket = io(`${API_URL}`)
 
-    const getMessages = async () => { //GETS LIST OF MESSAGES
+    const getMessages = async () => {
+      //GETS LIST OF MESSAGES
 
       let response = await axios.get(`${API_URL}/messages/${chatId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
       setMessageList(response.data)
@@ -54,7 +52,6 @@ function TherChat() {
   }, [])
 
   useEffect(() => {
-
     // makes the chat scroll to the bottom everytime a new message is sent or received
 
     scrollToBottom()
@@ -68,7 +65,8 @@ function TherChat() {
   const sendMessage = async () => {
     let messageContent = ""
 
-    function create_UUID() { //Creates a unique id for every message sent to prevent the key warning on console.
+    function create_UUID() {
+      //Creates a unique id for every message sent to prevent the key warning on console.
 
       var dt = new Date().getTime()
       var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
@@ -77,7 +75,6 @@ function TherChat() {
         return (c == "x" ? r : (r & 0x3) | 0x8).toString(16)
       })
       return uuid
-      
     }
 
     messageContent = {
@@ -91,22 +88,28 @@ function TherChat() {
     await socket.emit("send_message", messageContent)
     setMessageList([...messageList, messageContent])
     setCurrentMessage("")
-    
   }
 
   return (
-    <Container>
+    <Container className="d-flex flex-column align-items-center">
       <h3>You're in the Chat Page </h3>
-      <div className="chatContainer">
+      <div className="chatContainer glass">
         <div className="messages">
           {messageList.map((val) => {
             return (
               <div
-                key={val.uniqueId}  // If its the loggedin user's message, the message will be displayed on the right
+                key={val.uniqueId}
                 className="messageContainer"
-                id={val.senderName == therapist.name ? "You" : "Other"}> 
-                <div className="messageIndividual">
-                  {val.senderName}: {val.message}
+                id={val.senderName == therapist.name ? "You" : "Other"}>
+                <div
+                  className="messageIndividual d-flex flex-row "
+                  style={{ height: "auto", padding: "10px" }}>
+                  <div
+                    className="d-flex align-items-stretch"
+                    style={{ wordBreak: "break-word" }}>
+                    {" "}
+                    {val.senderName}: {val.message}{" "}
+                  </div>
                 </div>
               </div>
             )
