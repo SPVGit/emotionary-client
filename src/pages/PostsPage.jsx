@@ -2,7 +2,7 @@ import { AuthContext } from "../context/auth.context"
 import { useState, useEffect, useContext } from "react"
 import axios from "axios"
 import ListGroup from "react-bootstrap/ListGroup"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import BottomNavbar from "../components/bottomNavbar"
 import Card from "react-bootstrap/Card"
 import Form from "react-bootstrap/Form"
@@ -18,6 +18,9 @@ const PostsPage = () => {
   const [posts, setPosts] = useState([])
   const [oldest, setOldest] = useState(false)
   const [emotion, setEmotion] = useState("")
+
+  const location = useLocation()
+  console.log(location)
 
   const storedToken = localStorage.getItem("authToken")
 
@@ -58,9 +61,8 @@ const PostsPage = () => {
   }
 
   const filterByEmotion = (e) => {
- 
     setEmotion(e.target.value)
-  
+
     axios
       .get(`${API_URL}/posts`, {
         headers: { Authorization: `Bearer ${storedToken}` },

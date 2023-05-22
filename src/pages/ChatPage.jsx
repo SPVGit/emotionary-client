@@ -6,6 +6,8 @@ import { useParams } from "react-router-dom"
 import { useContext } from "react"
 import { AuthContext } from "../context/auth.context"
 import Container from "react-bootstrap/Container"
+import Form from "react-bootstrap/Form"
+import Button from "react-bootstrap/Button"
 
 const API_URL = process.env.REACT_APP_API_URL
 let socket = ""
@@ -58,7 +60,6 @@ function ChatPage() {
 
   const handleMessageInput = (e) => {
     setCurrentMessage(e.target.value)
-  
   }
 
   const sendMessage = async () => {
@@ -90,12 +91,12 @@ function ChatPage() {
   // if (loading) {
   //       <p>Loading all messages . . .</p>
   //   }
-  console.log('usemsglist', messageList)
+  console.log("usemsglist", messageList)
 
   return (
-    <Container>
+    <Container className="d-flex flex-column align-items-center rounded">
       <h3>You're in the Chat Page </h3>
-      <div className="chatContainer">
+      <div className="chatContainer glass d-flex justify-contente-center ">
         <div className="messages">
           {messageList.map((val) => {
             return (
@@ -103,8 +104,15 @@ function ChatPage() {
                 key={val.uniqueId}
                 className="messageContainer"
                 id={val.senderName == user.name ? "You" : "Other"}>
-                <div className="messageIndividual">
-                  {val.senderName}: {val.message}
+                <div
+                  className="messageIndividual d-flex flex-row "
+                  style={{ height: "auto", width: "50vw", padding: "10px" }}>
+                  <div
+                    className="d-flex align-items-stretch"
+                    style={{ wordBreak: "break-word" }}>
+                    {" "}
+                    {val.senderName}: {val.message}{" "}
+                  </div>
                 </div>
               </div>
             )
@@ -117,14 +125,21 @@ function ChatPage() {
             }}></div>
         </div>
 
-        <div className="messageInputs">
+        <div
+          className="messageInputs "
+          style={{ overflowY: "auto" }}>
           <input
+            className="rounded"
             value={currentMessage}
             type="text"
             placeholder="Message..."
             onChange={handleMessageInput}
           />
-          <button onClick={sendMessage}>Send</button>
+          <button
+            className="rounded"
+            onClick={sendMessage}>
+            Send
+          </button>
         </div>
       </div>
     </Container>

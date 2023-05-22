@@ -23,7 +23,6 @@ get rid of negative emotions */
 const API_URL = process.env.REACT_APP_API_URL
 
 const AddActivity = () => {
-
   const { postId } = useParams()
   const navigate = useNavigate()
 
@@ -37,7 +36,6 @@ const AddActivity = () => {
     notes: "",
   })
 
-
   const handleChange = (e) => {
     const { name, value } = e.target
     setNewActivity((activity) => ({ ...activity, [name]: value }))
@@ -46,7 +44,6 @@ const AddActivity = () => {
   const storedToken = localStorage.getItem("authToken")
 
   const handleSubmit = (e) => {
-
     e.preventDefault()
 
     const requestBody = {
@@ -62,7 +59,6 @@ const AddActivity = () => {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-   
         setNewActivity({
           title: "",
           level: "easy",
@@ -70,15 +66,14 @@ const AddActivity = () => {
           successRating: "1",
           notes: "",
         })
-
-        navigate(`/posts/${postId}`)
+        setTimeout(() => {
+          navigate(`/posts/${postId}`)
+        }, 5000)
       })
-
       .catch((error) => {
-
         const errorDescription = error.response.data.message
+        console.log("error", error)
         setErrorMessage(errorDescription)
-
       })
   }
 
@@ -99,14 +94,12 @@ const AddActivity = () => {
 
   return (
     <Container className="mb-3">
-
       <Form
         style={{ padding: "40px", justifyContent: "center", display: "flex", flexDirection: "column", textAlign: "center" }}
         onSubmit={handleSubmit}>
         <h3>Add Activity</h3>
 
         <Row>
-
           <Form.Group
             as={Col}
             md="4">
@@ -153,10 +146,9 @@ const AddActivity = () => {
               <option value="5">5</option>
             </Form.Select>
           </Form.Group>
-
         </Row>
 
-        <Form.Label className="label">Your impressions?</Form.Label>
+        <Form.Label className="label mt-3">Your impressions?</Form.Label>
         <Form.Control
           as="textarea"
           rows={3}
@@ -168,15 +160,13 @@ const AddActivity = () => {
         />
 
         <Button
-          className="shadow"
+          className="shadow mt-3"
           variant="dark"
           type="submit">
           Add
         </Button>
-
       </Form>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-      
     </Container>
   )
 }
