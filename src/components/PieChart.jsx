@@ -23,7 +23,7 @@ function PieChart({ chartData }) {
           },
           elements: {
             arc: {
-              borderWidth: 0, // Remove the border color
+              borderWidth: 0,
             },
           },
         }}

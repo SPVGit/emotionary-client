@@ -31,7 +31,7 @@ function IsPrivate({ children }) {
     return <Navigate to="/signup" />
   } else if (user) {
     // If the user is logged in, allow to see the page
-    console.log(children)
+
     return children
   }
 }

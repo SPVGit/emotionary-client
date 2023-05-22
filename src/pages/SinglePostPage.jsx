@@ -2,21 +2,22 @@ import { useState, useEffect } from "react"
 import { useParams, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { Link } from "react-router-dom"
-import { ListGroup, Button, Card, Container, Accordion, Col, Row } from "react-bootstrap"
+import { Button, Card, Container, Accordion, Col, Row } from "react-bootstrap"
 
 const API_URL = process.env.REACT_APP_API_URL
 
-const SinglePostPage = (props) => {
+const SinglePostPage = () => {
+
   const [post, setPost] = useState(null)
-  const [activities, setActivities] = useState([])
-  const { postId } = useParams()
   const [isDeleted, setIsDeleted] = useState(false)
 
   const navigate = useNavigate()
+  const { postId } = useParams()
 
   const storedToken = localStorage.getItem("authToken")
 
   const getPost = () => {
+
     axios
       .get(`${API_URL}/posts/${postId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -52,7 +53,6 @@ const SinglePostPage = (props) => {
 
   // DELETE ACTIVITY
   const deleteActivity = (activityId) => {
-    console.log("kitty")
     setIsDeleted(true)
 
     axios
@@ -62,7 +62,7 @@ const SinglePostPage = (props) => {
       .then(() => {
         navigate(`/posts/${postId}`)
       })
-    // .catch((err) => console.log(err))
+     .catch((err) => console.log(err))
   }
 
   return (
@@ -124,42 +124,36 @@ const SinglePostPage = (props) => {
       </>
 
       <Container style={{ padding: 20 }}>
+
         <Col className="d-flex justify-content-center">
+
           <Button
             className="m-2"
             variant="success"
             onClick={() => navigate(`/addActivity/${postId}`)}>
             Add Activity
           </Button>
+
           <Button
             className="m-2"
             variant="secondary"
             onClick={() => navigate(`/posts/edit/${postId}`)}>
             Edit Post
           </Button>
+
           <Button
             className="m-2"
             variant="danger"
             onClick={deletePost}>
             Delete
           </Button>
+
         </Col>
+
       </Container>
+
     </Container>
   )
 }
 
 export default SinglePostPage
-
-// <Card style={{ width: '18rem' }}>
-//       <Card.Body>
-//         <Card.Title>Card Title</Card.Title>
-//         <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-//         <Card.Text>
-//           Some quick example text to build on the card title and make up the
-//           bulk of the card's content.
-//         </Card.Text>
-//         <Card.Link href="#">Card Link</Card.Link>
-//         <Card.Link href="#">Another Link</Card.Link>
-//       </Card.Body>
-//     </Card>

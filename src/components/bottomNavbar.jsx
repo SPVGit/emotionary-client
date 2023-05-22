@@ -85,7 +85,7 @@ export default function BottomNavbar() {
 
           {theTherapist.map((chatTherapist) => {
             return (
-              <Nav.Link>
+              <Nav.Link key={chatTherapist._id}>
                 <img
                   onClick={() => handleChatClick(chatTherapist._id)}
                   src="/chat-right-text-fill.svg"

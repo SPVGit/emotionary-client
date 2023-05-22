@@ -12,34 +12,42 @@ import InputGroup from "react-bootstrap/InputGroup"
 import Row from "react-bootstrap/Row"
 import Container from "react-bootstrap/Container"
 
+/*This page authenticates the Therapist based on their JWT token */
+
 const API_URL = process.env.REACT_APP_API_URL
 
 export default function TherapistLogin() {
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState(undefined)
   const [validated, setValidated] = useState(false)
+  
   const navigate = useNavigate()
   const { storedTherapistToken, authenticateTherapist } = useContext(AuthContext)
 
   const handleEmail = (e) => {
-    console.log(e.target.value)
+
     setEmail(e.target.value)
+    
   }
+
   const handlePassword = (e) => setPassword(e.target.value)
 
   const handleLoginSubmit = (e) => {
-    console.log("monkey")
+
     e.preventDefault()
+
     const requestBody = { email, password }
 
     axios
       .post(`${API_URL}/auth/therapistlogin`, requestBody)
       .then((response) => {
-        console.log("JWT token", response.data.authTherapistToken)
+
         storedTherapistToken(response.data.authTherapistToken)
         authenticateTherapist()
-        navigate("/users") // <== ADD
+        navigate("/users")
+
       })
       .catch((error) => {
         const errorDescription = error.response.data.message

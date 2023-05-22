@@ -24,6 +24,7 @@ import TherChat from "./pages/TherChat"
 function App() {
   return (
     <div className="App">
+
       <Navbar />
 
       <Routes>
@@ -40,6 +41,7 @@ function App() {
             </IsAnon>
           }
         />
+
         <Route
           path="/signup"
           element={
@@ -48,6 +50,7 @@ function App() {
             </IsAnon>
           }
         />
+
         <Route
           path="/therapistlogin"
           element={
@@ -56,6 +59,7 @@ function App() {
             </IsAnon>
           }
         />
+
         <Route
           path="/posts"
           element={
@@ -64,6 +68,7 @@ function App() {
             </IsPrivate>
           }
         />
+
         <Route
           path="/posts/:postId"
           element={
@@ -72,14 +77,7 @@ function App() {
             </IsPrivate>
           }
         />
-        <Route
-          path="/addpost"
-          element={
-            <IsPrivate>
-              <PostFormPage />
-            </IsPrivate>
-          }
-        />
+
         <Route
           path="/posts/edit/:postId"
           element={
@@ -89,30 +87,6 @@ function App() {
           }
         />
 
-        <Route
-          path="/addactivity/:postId"
-          element={
-            <IsPrivate>
-              <ActivityFormPage />
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/calendar"
-          element={
-            <IsPrivate>
-              <CalendarFunc />
-            </IsPrivate>
-          }
-        />
-        <Route
-          path="/postsbydate/:postId"
-          element={
-            <IsPrivate>
-              <PostsByDate />
-            </IsPrivate>
-          }
-        />
         <Route
           path="/posts/:postId/:activityId"
           element={
@@ -132,13 +106,50 @@ function App() {
         />
 
         <Route
-          path="/chat/:chatId"
+          path="/addpost"
+          element={
+            <IsPrivate>
+              <PostFormPage />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/addactivity/:postId"
+          element={
+            <IsPrivate>
+              <ActivityFormPage />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/calendar"
+          element={
+            <IsPrivate>
+              <CalendarFunc />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+          path="/postsbydate/:postId"
+          element={
+            <IsPrivate>
+              <PostsByDate />
+            </IsPrivate>
+          }
+        />
+
+        <Route
+        path="/chat/:chatId"
           element={
             <IsPrivate>
               <ChatPage />
             </IsPrivate>
           }
         />
+
         <Route
           path="/stats"
           element={
@@ -156,31 +167,17 @@ function App() {
           }
         />
 
-        {/*        <Route
-          path="/profile/:userId"
-          element={
-            <IsPrivate>
-              <Profile />
-            </IsPrivate>
-          }
-        />
-         <Route
-          path="/api/image"
-          element={
-            <IsPrivate>
-              <Profile />
-            </IsPrivate>
-          }
-        /> */}
         <Route
-          path="/therchat/:chatId"
+         path="/therchat/:chatId"
           element={
             <IsTherapistPrivate>
               <TherChat />
             </IsTherapistPrivate>
           }
         />
+
       </Routes>
+
     </div>
   )
 }

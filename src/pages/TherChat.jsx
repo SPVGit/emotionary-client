@@ -1,46 +1,49 @@
 import axios from "axios"
 import React, { createRef, useState, useEffect } from "react"
-
 import io from "socket.io-client"
 import { useParams } from "react-router-dom"
 import { useContext } from "react"
 import { AuthContext } from "../context/auth.context"
 import Container from "react-bootstrap/Container"
 
+/* This is the therapist's chat box from which the therapist can chat to a user sharing the same chat ID */
+
 const API_URL = process.env.REACT_APP_API_URL
 let socket = ""
+
 function TherChat() {
-  // Assing a ref to the messages div
 
   const { therapist } = useContext(AuthContext)
-  const storedToken = localStorage.getItem("authTherapistToken")
+  const { chatId } = useParams()
+  let messagesEnd = createRef() 
 
-  let messagesEnd = createRef()
-
-  //const [loading, setLoading] = useState(true)
   const [messageList, setMessageList] = useState([])
   const [currentMessage, setCurrentMessage] = useState("")
-  // const [msgState, setMsgState] = useState(false)
-  const { chatId } = useParams()
+
 
   const scrollToBottom = () => {
     messagesEnd.scrollIntoView({ behavior: "smooth" })
   }
 
+  const storedToken = localStorage.getItem("authTherapistToken")
+
   useEffect(() => {
-    //setup your socket connection with the server
+
+    //This sets up the socket connection with the server
 
     socket = io(`${API_URL}`)
 
-    const getMessages = async () => {
+    const getMessages = async () => { //GETS LIST OF MESSAGES
+
       let response = await axios.get(`${API_URL}/messages/${chatId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
-      // setLoading(false)
       setMessageList(response.data)
 
-      // ensure that the user is connected to a specific chat via webSocket
+      // Ensures that the user is connected to a specific chat via webSocket
+
       socket.emit("join_chat", chatId)
 
-      //Handle incoming messages from webSocket
+      //Handles incoming messages from webSocket
+
       socket.on("receive_message", (data) => {
         console.log("Got data", data)
         setMessageList(data)
@@ -51,7 +54,9 @@ function TherChat() {
   }, [])
 
   useEffect(() => {
+
     // makes the chat scroll to the bottom everytime a new message is sent or received
+
     scrollToBottom()
   }, [messageList])
 
@@ -63,7 +68,8 @@ function TherChat() {
   const sendMessage = async () => {
     let messageContent = ""
 
-    function create_UUID() {
+    function create_UUID() { //Creates a unique id for every message sent to prevent the key warning on console.
+
       var dt = new Date().getTime()
       var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
         var r = (dt + Math.random() * 16) % 16 | 0
@@ -71,6 +77,7 @@ function TherChat() {
         return (c == "x" ? r : (r & 0x3) | 0x8).toString(16)
       })
       return uuid
+      
     }
 
     messageContent = {
@@ -87,12 +94,6 @@ function TherChat() {
     
   }
 
-  // if (loading) {
-  //       <p>Loading all messages . . .</p>
-  //   }
-
-  console.log('thermsglist' , messageList)
-
   return (
     <Container>
       <h3>You're in the Chat Page </h3>
@@ -101,9 +102,9 @@ function TherChat() {
           {messageList.map((val) => {
             return (
               <div
-                key={val.uniqueId}
+                key={val.uniqueId}  // If its the loggedin user's message, the message will be displayed on the right
                 className="messageContainer"
-                id={val.senderName == therapist.name ? "You" : "Other"}>
+                id={val.senderName == therapist.name ? "You" : "Other"}> 
                 <div className="messageIndividual">
                   {val.senderName}: {val.message}
                 </div>
@@ -112,7 +113,7 @@ function TherChat() {
           })}
 
           <div
-            style={{ float: "left", clear: "both" }}
+            style={{ float: "left", clear: "both" }} //If its the other user, the message will be displayed on the left
             ref={(el) => {
               messagesEnd = el
             }}></div>

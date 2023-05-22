@@ -6,6 +6,7 @@ function IsAnon({ children }) {
   const { isLoggedIn, isLoading, user, therapist } = useContext(AuthContext)
 
   // If the authentication is still loading
+  
   if (isLoading)
     return (
       <div className="outer-spinner-div">

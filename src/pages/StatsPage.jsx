@@ -9,16 +9,19 @@ import axios from "axios"
 import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
 
+//
+
 const API_URL = process.env.REACT_APP_API_URL
 
 Chart.register(CategoryScale)
 
 export default function App() {
+
   const { user } = useContext(AuthContext)
-  //const [filteredData, setFilteredData] = useState([]);
-  const storedToken = localStorage.getItem("authToken")
+
+ 
   const [barChart, setBarChart] = useState(true)
-  //  const [buttonText, setButtonText] = ('Change to Pie Chart')
+
 
   const [chartData, setChartData] = useState({
     labels: ["happy", "in-love", "excited", "satisfied", "calm", "sad", "anxious", "angry", "embarressed", "depressed"],
@@ -26,32 +29,32 @@ export default function App() {
     datasets: [
       {
         label: "Emotion Percentage",
-        data: calcEmoPercentage([]),
+        data: calcEmoPercentage([]), //useState initially sets an empty array
         backgroundColor: ["#ffff54", "#ff54ffad", "#ff7d00", "#00b400", "#0089e0", "#afafaf", "#6851ff", "#ff0000", "#4e4e4e"],
       },
     ],
   })
 
-  const toggleChart = () => {
+  const toggleChart = () => { //this can be used to toggle between whether the user wants to see their emotions in barchart or piechart form
+
     if (barChart === true) {
       setBarChart(false)
-      //   setButtonText('Change to Bar Chart')
+    
     } else {
       setBarChart(true)
-      //  setButtonText('Change to Pie Chart')
+     
     }
   }
 
-  const getData = async () => {
+  const storedToken = localStorage.getItem("authToken")
+
+  const getData = async () => { //gets the data from backend to display on the charts
+
     let response = await axios.get(`${API_URL}/stats`, {
       headers: { Authorization: `Bearer ${storedToken}` },
     })
 
     let filteredPosts = await response.data.filter((post) => post.user === user._id)
-    console.log("filteredPosts", filteredPosts)
-    //  console.log(calcEmoPercentage(filteredPosts))
-    //   setFilteredData(await filteredPosts);
-    // setFilteredData(filteredPosts)
 
     setChartData({
       labels: ["happy", "in-love", "excited", "satisfied", "calm", "sad", "anxious", "angry", "embarrassed", "depressed"],
@@ -59,7 +62,7 @@ export default function App() {
       datasets: [
         {
           label: "Emotion Percentage",
-          data: calcEmoPercentage(filteredPosts),
+          data: calcEmoPercentage(filteredPosts), //On receiving the data, the filtered post's array is set into the chartData state
           backgroundColor: ["#ffff54", "#ff54ffad", "#ff7d00", "#00b400", "#0089e0", "#afafaf", "#6851ff", "#ff0000", "#ff8c8c", "#4e4e4e"],
         },
       ],
@@ -70,7 +73,8 @@ export default function App() {
     getData()
   }, [])
 
-  function calcEmoPercentage(data) {
+  function calcEmoPercentage(data) { //Funciton to calculate the percentage of each emotion out of all the emotions posted 
+
     if (data.length === 0) {
       return
     } else {
@@ -117,9 +121,9 @@ export default function App() {
           depressed += 1
         }
       }
+
       newEmotionArray.push(parseFloat(happy / data.length), parseFloat(inLove / data.length), parseFloat(excited / data.length), parseFloat(satisfied / data.length), parseFloat(calm / data.length), parseFloat(sad / data.length), parseFloat(anxious / data.length), parseFloat(angry / data.length), parseFloat(embarrassed / data.length), parseFloat(depressed / data.length))
 
-      // console.log("newEmotionArray", newEmotionArray)
       return newEmotionArray
     }
   }
@@ -140,6 +144,7 @@ export default function App() {
           </Button>
         </Container>
       )}
+
       {!barChart && (
         <Container className="d-flex justify-content-center">
           <Button

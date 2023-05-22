@@ -19,15 +19,6 @@ const PostsPage = () => {
   const [oldest, setOldest] = useState(false)
   const [emotion, setEmotion] = useState("")
 
-  /*  const getAllPosts = () => {
-    const storedToken = localStorage.getItem("authToken")
-    axios
-      .get(`${API_URL}/posts`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
-      })
-      .then((response) => setPosts(response.data))
-      .catch((error) => console.log(error))
-  } */
   const storedToken = localStorage.getItem("authToken")
 
   const latestToOldest = (data) => {
@@ -67,9 +58,9 @@ const PostsPage = () => {
   }
 
   const filterByEmotion = (e) => {
-    console.log("e.target.value", e.target.value)
+ 
     setEmotion(e.target.value)
-    console.log("emotion", emotion)
+  
     axios
       .get(`${API_URL}/posts`, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -78,11 +69,6 @@ const PostsPage = () => {
         if (e.target.value === "all") {
           latestToOldest(response.data)
         } else {
-          console.log("emotion", emotion)
-          /*       const filteredByEmotionArr = response.data.filter(
-            (post) => post.emotion === e.target.value
-          ); */
-
           latestToOldest(response.data.filter((post) => post.emotion === e.target.value))
         }
       })
