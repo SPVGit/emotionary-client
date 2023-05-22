@@ -21,7 +21,7 @@ const HomePage = () => {
   } else if (isLoggedIn && user) {
     navigate("/posts")
   } else if (isLoggedIn && therapist) {
-    navigate("/users")
+   navigate("/users")
   }
 }
 

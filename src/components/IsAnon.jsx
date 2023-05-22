@@ -27,9 +27,9 @@ function IsAnon({ children }) {
       </div>
     )
 
-  if (isLoggedIn && user) {
+  if (user) {
     return <Navigate to="/posts" />
-  } else if (isLoggedIn && therapist) {
+  } else if (therapist) {
     return <Navigate to="/users" />
   } else {
     return children

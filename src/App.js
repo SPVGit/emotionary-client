@@ -28,6 +28,7 @@ function App() {
       <Navbar />
 
       <Routes>
+
         <Route
           path="/"
           element={<HomePage />}
@@ -142,7 +143,7 @@ function App() {
         />
 
         <Route
-        path="/chat/:chatId"
+          path="/chat/:chatId"
           element={
             <IsPrivate>
               <ChatPage />
@@ -168,7 +169,7 @@ function App() {
         />
 
         <Route
-         path="/therchat/:chatId"
+          path="/therchat/:chatId"
           element={
             <IsTherapistPrivate>
               <TherChat />

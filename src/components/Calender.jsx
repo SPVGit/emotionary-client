@@ -80,18 +80,12 @@ function CalendarFunc() {
         weekendCellTextColor="white"
         weekDayCellBackgroundColor="rgba(75, 68, 83, 0.69)"
         weekDayCellTextColor="white"
-        // selectionColor="black"
-        // selectionTextColor="white"
-        // maxRangeSelection={20}
-        // minRangeSelection={10}
         firstDayOfWeek="Monday"
         maxYear={2032}
         minYear={2022}
         readonlyCalendar={false}
         showWeekSeparator={true}
         showTodayButton={true}
-        // enableYearToYearSelection={false}
-        //  enableWeekendSelection={true}
         minCellWidth={50}
         showSeparatorInHeader={false}
         enableEventOverwriting={true}
@@ -108,19 +102,6 @@ function CalendarFunc() {
           }, 1)
         }}
 
-        /*onEventSinglePickInterception={(date, eventName, clearSelectedCell) => {
-          console.table([eventName, date.toDate()])
-        }}*/
-        /*  onRangePick={(eventStartDate, eventEndDate, clearSecondSelectedCell, clearSelection) => {
-          setTimeout(() => {
-            clearSelection()
-          }, 3000)
-        }}*/
-        /* onEventRangePickInterception={(eventFirstDate, eventLastDate, eventsToBeDeleted, eventsToBeUpdated, clearSecondSelectedCell, clearSelection) => {
-          setTimeout(() => {
-            clearSelection()
-          }, 3000)
-        }}*/
       />
     </Container>
   )

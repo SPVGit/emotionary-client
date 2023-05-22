@@ -19,14 +19,14 @@ const ActivityPage = () => {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        console.log("response.data", response.data)
+    
         setActivity(response.data)
       })
   }
 
   useEffect(() => {
     getActivity()
-    console.log("activity", activity)
+
   }, [])
 
   return (

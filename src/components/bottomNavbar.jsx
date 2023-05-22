@@ -21,7 +21,6 @@ export default function BottomNavbar() {
       .get(`${API_URL}/therapist`, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
         const myTherapist = response.data
-        console.log("response.data", response.data)
         setTheTherapist(myTherapist)
       })
       .catch((error) => console.log(error))
@@ -47,7 +46,7 @@ export default function BottomNavbar() {
       .then((response) => {
         const data = response.data._id
         navigate(`/chat/${data}`)
-        console.log(data)
+     
       })
       .catch((error) => console.log(error))
 
