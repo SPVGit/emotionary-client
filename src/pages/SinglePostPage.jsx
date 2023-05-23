@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate, Link } from "react-router-dom"
 import axios from "axios"
-import { Link } from "react-router-dom"
+
 import { Button, Card, Container, Accordion, Col, Row } from "react-bootstrap"
+import BottomNavbar from "../components/bottomNavbar"
 
 const API_URL = process.env.REACT_APP_API_URL
 
@@ -148,6 +149,7 @@ const SinglePostPage = () => {
           </Button>
         </Col>
       </Container>
+      <BottomNavbar />
     </Container>
   )
 }
