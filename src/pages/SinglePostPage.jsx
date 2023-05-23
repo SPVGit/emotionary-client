@@ -93,18 +93,23 @@ const SinglePostPage = () => {
                           key={activity._id}
                           eventKey={`${index}`}>
                           <Accordion.Header>{activity.title}</Accordion.Header>
-                          <Accordion.Body>{activity.level}</Accordion.Body>
-                          <Accordion.Body>Success: {activity.successRating}</Accordion.Body>
-                          <Accordion.Body>{activity.notes}</Accordion.Body>
+                          <Accordion.Body style={{ marginBottom: -30 }}>
+                            <div className="text-start p-2">
+                              <div className=""> Difficulty level: {activity.level.charAt(0).toUpperCase() + activity.level.slice(1)}</div> <div> Success: {activity.successRating} </div>
+                            </div>
+                          </Accordion.Body>
                           <Accordion.Body>
+                            <div className="text-start p-2"> Activity note: {activity.notes}</div>
+                          </Accordion.Body>
+                          <Accordion.Body className="text-end">
                             <Button
                               style={{ color: "red", borderStyle: "none" }}
-                              className={`bg-white m-1`}
+                              className={`bg-white p-1`}
                               onClick={() => deleteActivity(activity._id)}>
                               Delete
                             </Button>
                             <Link
-                              className="m-1"
+                              className="p-1"
                               to={`/posts/${postId}/edit/${activity._id}`}>
                               Edit
                             </Link>

@@ -15,7 +15,6 @@ able to chat to the users */
 const API_URL = process.env.REACT_APP_API_URL
 
 function UsersList() {
-
   const { therapist } = useContext(AuthContext)
   const navigate = useNavigate()
 
@@ -23,8 +22,9 @@ function UsersList() {
 
   const storedToken = localStorage.getItem("authTherapistToken")
 
-  const getUsers = () => { //GETS LIST OF USERS
-    
+  const getUsers = () => {
+    //GETS LIST OF USERS
+
     axios
       .get(`${API_URL}/users`, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
@@ -32,14 +32,14 @@ function UsersList() {
         setUsers(allUsers)
       })
       .catch((error) => console.log(error))
-
   }
 
   useEffect(() => {
     getUsers()
   }, [])
 
-  const handleChatClick = (chatUserId) => {  //CHAT BUTTON
+  const handleChatClick = (chatUserId) => {
+    //CHAT BUTTON
 
     let data = {
       participants: [chatUserId, therapist._id],
@@ -47,7 +47,6 @@ function UsersList() {
     axios.post(`${API_URL}/conversation`, data, { headers: { Authorization: `Bearer ${storedToken}` } }).then((response) => {
       navigate(`/therchat/${response.data._id}`)
     })
- 
   }
 
   return (
@@ -63,7 +62,7 @@ function UsersList() {
               <Card style={{ margin: "10px", padding: 10, width: "40vw" }}>
                 <Card.Header>
                   <Card.Title>
-                    <h5>{chatUser.name.toUpperCase()}</h5>
+                    <h5>{chatUser.name.charAt(0).toUpperCase() + chatUser.name.slice(1)}</h5>
                   </Card.Title>
                 </Card.Header>
                 <Button
