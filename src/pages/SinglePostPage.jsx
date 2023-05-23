@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useParams, useNavigate} from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import { Button, Card, Container, Accordion, Col, Row } from "react-bootstrap"
@@ -7,19 +7,15 @@ import { Button, Card, Container, Accordion, Col, Row } from "react-bootstrap"
 const API_URL = process.env.REACT_APP_API_URL
 
 const SinglePostPage = () => {
-
   const navigate = useNavigate()
   const { postId } = useParams()
-
 
   const [post, setPost] = useState(null)
   const [isDeleted, setIsDeleted] = useState(false)
 
-
   const storedToken = localStorage.getItem("authToken")
 
   const getPost = () => {
-
     axios
       .get(`${API_URL}/posts/${postId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -44,7 +40,6 @@ const SinglePostPage = () => {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(() => {
-
         navigate("/posts")
       })
       .catch((err) => console.log(err))
@@ -59,7 +54,7 @@ const SinglePostPage = () => {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(() => {})
-     .catch((err) => console.log(err))
+      .catch((err) => console.log(err))
   }
 
   return (
@@ -70,25 +65,20 @@ const SinglePostPage = () => {
             <Card
               className={`${post.emotion} d-flex flex-wrap rounded myglass SinglePostPage text-center p-4`}
               key={post._id}>
-              {" "}
               <Col>
                 <Card.Header
                   style={{ marginTop: "16px", marginBottom: "16px" }}
                   className="label d-flex  justify-content-start">
                   <div className="label"> {post.date} </div>
-                  
-                  
-                </Card.Header >
-                <Card.Header className="label d-flex  justify-content-center" 
-                style={{ marginTop: "16px", marginBottom: "16px" }}>
-                <div className="label">
-                    <b> {post.emotion.toUpperCase()} </b>
-                  </div>
                 </Card.Header>
 
-                <Card.Header className="label d-flex  justify-content-end" 
-                style={{ marginTop: "16px", marginBottom: "16px" }}>
-                <div className="label">Intensity: {post.rating}</div>
+                <Card.Header
+                  className="label d-flex  justify-content-center"
+                  style={{ marginTop: "16px", marginBottom: "16px" }}>
+                  <div className="label">
+                    <b> {post.emotion.toUpperCase()} </b>
+                    <div className="label">Intensity: {post.rating}</div>
+                  </div>
                 </Card.Header>
               </Col>
               <Col>
@@ -130,9 +120,7 @@ const SinglePostPage = () => {
       </>
 
       <Container style={{ padding: 20 }}>
-
         <Col className="d-flex justify-content-center">
-
           <Button
             className="m-2"
             variant="success"
@@ -153,11 +141,8 @@ const SinglePostPage = () => {
             onClick={deletePost}>
             Delete
           </Button>
-
         </Col>
-
       </Container>
-
     </Container>
   )
 }
