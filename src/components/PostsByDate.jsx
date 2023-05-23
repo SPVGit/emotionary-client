@@ -2,8 +2,15 @@ import { useContext } from "react"
 import { AuthContext } from "../context/auth.context"
 import { useState, useEffect } from "react"
 import axios from "axios"
-import ListGroup from "react-bootstrap/ListGroup"
 import { useParams, Link } from "react-router-dom"
+import ListGroup from "react-bootstrap/ListGroup"
+import BottomNavbar from "../components/bottomNavbar"
+import Card from "react-bootstrap/Card"
+import Form from "react-bootstrap/Form"
+
+import Container from "react-bootstrap/Container"
+import Col from "react-bootstrap/Col"
+import Row from "react-bootstrap/Row"
 
 const API_URL = process.env.REACT_APP_API_URL
 
@@ -41,36 +48,46 @@ function PostsByDate() {
   }, [])
 
   return (
-    <>
-      <div className="over-flow ">
-        <h2>View All Posts On {post.date}</h2>
+    <Container className="text-center "
+    style={{ height: "120vh" }}>
+       <Container>
+        <Row className="d-flex flex-row">
+  
+        <h3>View All Posts On: </h3>
+        <h4 style={{color:'white'}}>{post.date}</h4>
+
         {allPosts.map(
-          (post) =>
-            post.user === user._id && (
-              <Link
-                to={`/posts/${post._id}`}
-                key={post._id}>
-                <ListGroup style={{ padding: 8 }}>
-                  <ListGroup.Item
-                    className={post.emotion}
-                    style={{ height: 80 }}>
-                    <span>{post.date}</span>
-                    <h2>{post.emotion}</h2>
-                  </ListGroup.Item>
-                </ListGroup>
-              </Link>
-            )
-        )}
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-      </div>
-    </>
+            (post) =>
+              post.user === user._id && (
+                <Col
+                  style={{ minWidth: "320px" }}
+                  key={post._id}>
+                  <Link
+                    style={{ textDecoration: "none", color: "black" }}
+                    to={`/posts/${post._id}`}>
+                    <Card
+                      className={post.emotion}
+                      style={{ padding: 16, margin: 8 }}>
+                      <ListGroup>
+                        <Card.Title>
+                          <h2>{post.emotion.toUpperCase()}</h2>
+                        </Card.Title>
+                      </ListGroup>
+                    </Card>
+                  </Link>
+                </Col>
+              )
+          )}
+   
+      
+      </Row>
+      </Container>
+      <div style={{ height: "80px" }}></div>
+
+      <Col className="d-flex justify-content-center">
+        <BottomNavbar />
+      </Col>
+    </Container >
   )
 }
 

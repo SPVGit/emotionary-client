@@ -3,9 +3,11 @@ import { AuthContext } from "../context/auth.context"
 import { Navigate } from "react-router-dom"
 
 function IsPrivate({ children }) {
+
   const { isLoggedIn, isLoading, user } = useContext(AuthContext)
 
-  // If the authentication is still loading
+  // If the authentication is still loading, then show the spinner
+
   if (isLoading)
     return (
       <div className="outer-spinner-div">
@@ -27,11 +29,10 @@ function IsPrivate({ children }) {
     )
 
   if (!isLoggedIn) {
-    // If the user is not logged in
+    // If the user is not logged in go back to signup
     return <Navigate to="/signup" />
   } else if (user) {
     // If the user is logged in, allow to see the page
-
     return children
   }
 }

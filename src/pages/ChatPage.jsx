@@ -70,7 +70,7 @@ function ChatPage() {
       var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
         var r = (dt + Math.random() * 16) % 16 | 0
         dt = Math.floor(dt / 16)
-        return (c == "x" ? r : (r & 0x3) | 0x8).toString(16)
+        return (c === "x" ? r : (r & 0x3) | 0x8).toString(16)
       })
       return uuid
     }
@@ -88,11 +88,6 @@ function ChatPage() {
     setCurrentMessage("")
   }
 
-  // if (loading) {
-  //       <p>Loading all messages . . .</p>
-  //   }
-  console.log("usemsglist", messageList)
-
   return (
     <Container className="d-flex flex-column align-items-center rounded">
       <h3>You're in the Chat Page </h3>
@@ -103,7 +98,7 @@ function ChatPage() {
               <div
                 key={val.uniqueId}
                 className="messageContainer"
-                id={val.senderName == user.name ? "You" : "Other"}>
+                id={val.senderName === user.name ? "You" : "Other"}>
                 <div
                   className="messageIndividual d-flex flex-row "
                   style={{ height: "auto", width: "50vw", padding: "10px" }}>
