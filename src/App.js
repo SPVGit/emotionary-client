@@ -21,16 +21,12 @@ import ChatPage from "./pages/ChatPage"
 import StatsPage from "./pages/StatsPage"
 import TherChat from "./pages/TherChat"
 
-
 function App() {
-
   return (
     <div className="App">
-
       <Navbar />
 
       <Routes>
-
         <Route
           path="/"
           element={<HomePage />}
@@ -42,15 +38,6 @@ function App() {
             <IsAnon>
               <TherapistLogin />
             </IsAnon>
-          }
-        />
-
-        <Route
-          path="/posts"
-          element={
-            <IsPrivate>
-              <PostsPage />
-            </IsPrivate>
           }
         />
 
@@ -178,9 +165,15 @@ function App() {
             </IsAnon>
           }
         />
-
+        <Route
+          path="/posts"
+          element={
+            <IsPrivate>
+              <PostsPage />
+            </IsPrivate>
+          }
+        />
       </Routes>
-
     </div>
   )
 }

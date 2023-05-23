@@ -7,7 +7,9 @@ const API_URL = process.env.REACT_APP_API_URL
 
 function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isLoggedInTher, setIsLoggedInTher] = useState()
   const [isLoading, setIsLoading] = useState(true)
+  const [isLoadingTher, setIsLoadingTher] = useState(true)
   const [user, setUser] = useState(null)
   const [therapist, setTherapist] = useState(null)
 
@@ -30,6 +32,7 @@ function AuthProviderWrapper(props) {
         .then((response) => {
           // If the server verifies that the JWT token is valid
           const user = response.data
+
           // Update state variables
           setIsLoggedIn(true)
           setIsLoading(false)
@@ -38,6 +41,7 @@ function AuthProviderWrapper(props) {
         .catch((error) => {
           // If the server sends an error response (invalid token)
           // Update state variables
+          console.error(error)
           setIsLoggedIn(false)
           setIsLoading(false)
           setUser(null)
@@ -60,18 +64,19 @@ function AuthProviderWrapper(props) {
         .then((response) => {
           const therapist = response.data
 
-          setIsLoggedIn(true)
-          setIsLoading(false)
+          setIsLoggedInTher(true)
+          setIsLoadingTher(false)
           setTherapist(therapist)
         })
         .catch((error) => {
-          setIsLoggedIn(false)
-          setIsLoading(false)
+          console.error(error)
+          setIsLoggedInTher(false)
+          setIsLoadingTher(false)
           setTherapist(null)
         })
     } else {
-      setIsLoggedIn(false)
-      setIsLoading(false)
+      setIsLoggedInTher(false)
+      setIsLoadingTher(false)
       setTherapist(null)
     }
   }
@@ -95,9 +100,6 @@ function AuthProviderWrapper(props) {
 
   useEffect(() => {
     authenticateUser()
-  }, [])
-
-  useEffect(() => {
     authenticateTherapist()
   }, [])
 
@@ -105,7 +107,9 @@ function AuthProviderWrapper(props) {
     <AuthContext.Provider
       value={{
         isLoggedIn,
+        isLoggedInTher,
         isLoading,
+        isLoadingTher,
         user,
         therapist,
         storedTherapistToken,

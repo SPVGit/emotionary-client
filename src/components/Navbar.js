@@ -6,8 +6,7 @@ import Nav from "react-bootstrap/Nav"
 import Navbar from "react-bootstrap/Navbar"
 
 const NavbarComponent = () => {
-  
-  const { isLoggedIn, user, therapist, logOutUser } = useContext(AuthContext)
+  const { isLoggedIn, isLoggedInTher, user, therapist, logOutUser } = useContext(AuthContext)
 
   return (
     <Navbar
@@ -58,7 +57,7 @@ const NavbarComponent = () => {
         )}
 
         <Nav className="'me-auto">
-          {isLoggedIn && (
+          {(isLoggedIn || isLoggedInTher) && (
             <NavLink
               className="navlink"
               style={{ textDecoration: "none", color: "white", fontWeight: "bold", marginRight: "20px", fontSize: "16px" }}

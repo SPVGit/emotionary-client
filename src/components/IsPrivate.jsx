@@ -1,14 +1,13 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { AuthContext } from "../context/auth.context"
 import { Navigate } from "react-router-dom"
 
 function IsPrivate({ children }) {
-
   const { isLoggedIn, isLoading, user } = useContext(AuthContext)
 
   // If the authentication is still loading, then show the spinner
 
-  if (isLoading)
+  if (isLoading) {
     return (
       <div className="outer-spinner-div">
         <div className="lds-default">
@@ -27,8 +26,7 @@ function IsPrivate({ children }) {
         </div>
       </div>
     )
-
-  if (!isLoggedIn) {
+  } else if (!isLoggedIn) {
     // If the user is not logged in go back to signup
     return <Navigate to="/signup" />
   } else if (user) {
