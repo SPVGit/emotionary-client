@@ -43,7 +43,6 @@ function TherChat() {
       //Handles incoming messages from webSocket
 
       socket.on("receive_message", (data) => {
-        console.log("Got data", data)
         setMessageList(data)
       })
     }
@@ -59,7 +58,7 @@ function TherChat() {
 
   const handleMessageInput = (e) => {
     setCurrentMessage(e.target.value)
-    console.log(e.target.value)
+    
   }
 
   const sendMessage = async () => {
@@ -72,7 +71,7 @@ function TherChat() {
       var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
         var r = (dt + Math.random() * 16) % 16 | 0
         dt = Math.floor(dt / 16)
-        return (c == "x" ? r : (r & 0x3) | 0x8).toString(16)
+        return (c === "x" ? r : (r & 0x3) | 0x8).toString(16)
       })
       return uuid
     }
@@ -100,7 +99,7 @@ function TherChat() {
               <div
                 key={val.uniqueId}
                 className="messageContainer"
-                id={val.senderName == therapist.name ? "You" : "Other"}>
+                id={val.senderName === therapist.name ? "You" : "Other"}>
                 <div
                   className="messageIndividual d-flex flex-row "
                   style={{ height: "auto", padding: "10px" }}>

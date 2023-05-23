@@ -17,7 +17,7 @@ import Container from "react-bootstrap/Container"
 import Button from "react-bootstrap/Button"
 import Row from "react-bootstrap/Row"
 
-/* This component is inserted into the activity form page. Activities can be added to help prolong positive emotions or 
+/* This component is imported into the activity form page. Activities can be added to help prolong positive emotions or 
 get rid of negative emotions */
 
 const API_URL = process.env.REACT_APP_API_URL
@@ -66,13 +66,12 @@ const AddActivity = () => {
           successRating: "1",
           notes: "",
         })
-        setTimeout(() => {
+        
           navigate(`/posts/${postId}`)
-        }, 5000)
+    
       })
       .catch((error) => {
         const errorDescription = error.response.data.message
-        console.log("error", error)
         setErrorMessage(errorDescription)
       })
   }
@@ -83,7 +82,7 @@ const AddActivity = () => {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
-        console.log("response Emotion AddActivity", response.data)
+      
         setEmotion(response.data.emotion)
       })
   }

@@ -17,7 +17,6 @@ function CalendarFunc() {
   const [events, setEvents] = useState([])
 
   const [posts, setPosts] = useState(null)
-  console.log("posts", posts)
 
   function colorOfEmotion(emotion) {
     if (emotion === "happy") return "#ffff54"
@@ -39,7 +38,6 @@ function CalendarFunc() {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then(async (response) => {
-        console.log("dammit work", response.data)
 
         const postsArr = await response.data.filter((post) => post.user === user._id)
 

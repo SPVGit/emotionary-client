@@ -11,11 +11,9 @@ import Button from "react-bootstrap/Button"
 
 const API_URL = process.env.REACT_APP_API_URL
 
-console.log(process.env.REACT_APP_API_URL)
-
 const AddPost = () => {
+
   const { user } = useContext(AuthContext)
-  const myDay = new Date()
 
   const [newPost, setNewPost] = useState({
     userId: user._id,
@@ -25,7 +23,6 @@ const AddPost = () => {
     description: "",
   })
 
-  console.log("Date now", myDay.getDate())
   const navigate = useNavigate()
 
   const handleChange = (e) => {
@@ -34,6 +31,7 @@ const AddPost = () => {
   }
 
   const handleSubmit = (e) => {
+
     e.preventDefault()
 
     const requestBody = {
@@ -44,9 +42,8 @@ const AddPost = () => {
       description: newPost.description,
     }
 
-    console.log("requestBody", requestBody)
-
     const storedToken = localStorage.getItem("authToken")
+    
     axios
       .post(`${API_URL}/addpost`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },

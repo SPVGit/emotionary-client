@@ -38,12 +38,10 @@ const EditPostPage = () => {
       .catch((error) => console.log(error))
   }, [postId])
 
-  console.log("initial post", editedPost)
-
   const handleChange = (e) => {
     const { name, value } = e.target
     setEditedPost((post) => ({ ...post, [name]: value }))
-    console.log("handleChange editedPost", editedPost)
+
   }
 
   const handleSubmit = (e) => {
@@ -56,8 +54,6 @@ const EditPostPage = () => {
       rating: editedPost.rating,
       description: editedPost.description,
     }
-
-    console.log("in submit function reqBody", requestBody)
 
     axios
       .put(`${API_URL}/posts/edit/${postId}`, requestBody, {

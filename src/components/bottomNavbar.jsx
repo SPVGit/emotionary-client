@@ -31,13 +31,9 @@ export default function BottomNavbar() {
   }, [])
 
   // CHAT button //
+  
   const handleChatClick = (chatTherapistId) => {
-    //const storedToken = localStorage.getItem("authToken")
-    /*   if(!user){
-          navigate('/signin')
-          return; 
-      }*/
-    //   else {
+
     let data = {
       participants: [chatTherapistId, user._id],
     }

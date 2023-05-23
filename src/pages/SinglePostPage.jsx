@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate} from "react-router-dom"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import { Button, Card, Container, Accordion, Col, Row } from "react-bootstrap"
@@ -8,11 +8,13 @@ const API_URL = process.env.REACT_APP_API_URL
 
 const SinglePostPage = () => {
 
+  const navigate = useNavigate()
+  const { postId } = useParams()
+
+
   const [post, setPost] = useState(null)
   const [isDeleted, setIsDeleted] = useState(false)
 
-  const navigate = useNavigate()
-  const { postId } = useParams()
 
   const storedToken = localStorage.getItem("authToken")
 
@@ -25,8 +27,6 @@ const SinglePostPage = () => {
       .then((response) => {
         setIsDeleted(false)
         const singlePost = response.data
-        console.log("single post activity", singlePost.activities)
-        console.log("response.data", response.data)
 
         setPost(singlePost)
       })
@@ -43,8 +43,7 @@ const SinglePostPage = () => {
       .delete(`${API_URL}/posts/${postId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .then((response) => {
-        console.log("delete response", response.data.message)
+      .then(() => {
 
         navigate("/posts")
       })
@@ -59,9 +58,7 @@ const SinglePostPage = () => {
       .delete(`${API_URL}/posts/${postId}/${activityId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
       })
-      .then(() => {
-        navigate(`/posts/${postId}`)
-      })
+      .then(() => {})
      .catch((err) => console.log(err))
   }
 
@@ -77,16 +74,25 @@ const SinglePostPage = () => {
               <Col>
                 <Card.Header
                   style={{ marginTop: "16px", marginBottom: "16px" }}
-                  className="label d-flex  justify-content-between">
+                  className="label d-flex  justify-content-start">
                   <div className="label"> {post.date} </div>
-                  <div className="label">
+                  
+                  
+                </Card.Header >
+                <Card.Header className="label d-flex  justify-content-center" 
+                style={{ marginTop: "16px", marginBottom: "16px" }}>
+                <div className="label">
                     <b> {post.emotion.toUpperCase()} </b>
                   </div>
-                  <div className="label">Intensity: {post.rating}</div>
+                </Card.Header>
+
+                <Card.Header className="label d-flex  justify-content-end" 
+                style={{ marginTop: "16px", marginBottom: "16px" }}>
+                <div className="label">Intensity: {post.rating}</div>
                 </Card.Header>
               </Col>
               <Col>
-                <Card.Text>{post.description}</Card.Text>
+                <Card.Text className="d-flex  justify-content-start">Notes: {post.description}</Card.Text>
               </Col>
               <Col>
                 <Accordion style={{ marginTop: "16px" }}>
@@ -98,7 +104,7 @@ const SinglePostPage = () => {
                           eventKey={`${index}`}>
                           <Accordion.Header>{activity.title}</Accordion.Header>
                           <Accordion.Body>{activity.level}</Accordion.Body>
-                          <Accordion.Body>{activity.successRating}</Accordion.Body>
+                          <Accordion.Body>Success: {activity.successRating}</Accordion.Body>
                           <Accordion.Body>{activity.notes}</Accordion.Body>
                           <Accordion.Body>
                             <Button

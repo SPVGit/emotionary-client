@@ -1,11 +1,12 @@
-import { useContext } from "react"
+import { useContext} from "react"
 import { AuthContext } from "../context/auth.context"
-import { Navigate } from "react-router-dom"
+import { Navigate} from "react-router-dom"
 
 function IsAnon({ children }) {
-  const { isLoggedIn, isLoading, user, therapist } = useContext(AuthContext)
+  
+  const { isLoading, user, therapist } = useContext(AuthContext)
 
-  // If the authentication is still loading
+  // If the authentication is still loading, show the spinner
 
   if (isLoading)
     return (
@@ -27,11 +28,15 @@ function IsAnon({ children }) {
       </div>
     )
 
+  // Else if user logs in, go to /posts page, or if therapist logs in, go to /users page, otherwise navigate back to sign up page
+
   if (user) {
     return <Navigate to="/posts" />
-  } else if (therapist) {
+  } 
+  else if (therapist) {
     return <Navigate to="/users" />
-  } else {
+  } 
+  else {
     return children
   }
 }

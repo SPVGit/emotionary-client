@@ -11,10 +11,10 @@ import Button from "react-bootstrap/Button"
 const API_URL = process.env.REACT_APP_API_URL
 
 const EditActivityPage = () => {
+  
   const { postId, activityId } = useParams()
   const navigate = useNavigate()
   const storedToken = localStorage.getItem("authToken")
-  console.log("editActivity Id", activityId)
   const [updatedActivity, setUpdatedActivity] = useState({})
 
   // Create useEffect to editActivity
@@ -48,8 +48,6 @@ const EditActivityPage = () => {
       post: postId,
     }
 
-    console.log("editActivity req.body", requestBody)
-
     axios
       .put(`${API_URL}/posts/${postId}/edit/${activityId}`, requestBody, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -62,7 +60,6 @@ const EditActivityPage = () => {
   const handleChange = (e) => {
     const { name, value } = e.target
     setUpdatedActivity((activity) => ({ ...activity, [name]: value }))
-    console.log("handleChange updatedActivity", updatedActivity)
   }
 
   return (

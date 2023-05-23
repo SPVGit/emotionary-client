@@ -21,7 +21,9 @@ import ChatPage from "./pages/ChatPage"
 import StatsPage from "./pages/StatsPage"
 import TherChat from "./pages/TherChat"
 
+
 function App() {
+
   return (
     <div className="App">
 
@@ -32,24 +34,6 @@ function App() {
         <Route
           path="/"
           element={<HomePage />}
-        />
-
-        <Route
-          path="/login"
-          element={
-            <IsAnon>
-              <LoginPage />
-            </IsAnon>
-          }
-        />
-
-        <Route
-          path="/signup"
-          element={
-            <IsAnon>
-              <SignUpPage />
-            </IsAnon>
-          }
         />
 
         <Route
@@ -174,6 +158,24 @@ function App() {
             <IsTherapistPrivate>
               <TherChat />
             </IsTherapistPrivate>
+          }
+        />
+
+        <Route
+          path="/login"
+          element={
+            <IsAnon>
+              <LoginPage />
+            </IsAnon>
+          }
+        />
+
+        <Route
+          path="/signup"
+          element={
+            <IsAnon>
+              <SignUpPage />
+            </IsAnon>
           }
         />
 

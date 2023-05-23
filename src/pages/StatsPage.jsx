@@ -9,8 +9,6 @@ import axios from "axios"
 import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
 
-//
-
 const API_URL = process.env.REACT_APP_API_URL
 
 Chart.register(CategoryScale)

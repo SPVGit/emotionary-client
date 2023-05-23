@@ -12,9 +12,8 @@ import Row from "react-bootstrap/Row"
 
 const API_URL = process.env.REACT_APP_API_URL
 
-console.log("Api_URL", API_URL)
+const LoginPage = () => {
 
-const LoginPage = (props) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [errorMessage, setErrorMessage] = useState(undefined)
@@ -37,12 +36,11 @@ const LoginPage = (props) => {
     axios
       .post(`${API_URL}/auth/login`, requestBody)
       .then((response) => {
-        console.log("JWT token", response.data.authToken)
 
         storedToken(response.data.authToken)
         authenticateUser()
 
-        navigate("/posts") // <== ADD
+        navigate("/posts") 
       })
       .catch((error) => {
         const errorDescription = error.response.data.message

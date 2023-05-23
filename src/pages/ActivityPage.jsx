@@ -10,9 +10,6 @@ const ActivityPage = () => {
 
   const storedToken = localStorage.getItem("authToken")
 
-  console.log("postId ", postId)
-  console.log("activityId", activityId)
-
   const getActivity = () => {
     axios
       .get(`${API_URL}/posts/${postId}/${activityId}`, {
