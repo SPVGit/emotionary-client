@@ -66,9 +66,13 @@ const AddActivity = () => {
           successRating: "1",
           notes: "",
         })
+
+
+        navigate(`/posts/${postId}`)
+
         
           navigate(`/posts/${postId}`)
-    
+
       })
       .catch((error) => {
         const errorDescription = error.response.data.message
