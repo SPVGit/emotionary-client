@@ -2,7 +2,7 @@ import { AuthContext } from "../context/auth.context"
 import { useState, useEffect, useContext } from "react"
 import axios from "axios"
 import ListGroup from "react-bootstrap/ListGroup"
-import { Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 import BottomNavbar from "../components/bottomNavbar"
 import Card from "react-bootstrap/Card"
 import Form from "react-bootstrap/Form"
@@ -84,7 +84,7 @@ const PostsPage = () => {
       className="text-center "
       style={{ height: "120vh" }}>
       <Row className="align-items-center  p-4">
-        <Col className="name d-flex m -2 text-white justify-content-start">Hi {user.name}</Col>
+        <Col className="name d-flex m -2 text-white justify-content-start">Hi {user.name.charAt(0).toUpperCase() + user.name.slice(1)}</Col>
 
         <Col className="align-items-center d-flex justify-content-end ">
           <Link
