@@ -66,9 +66,8 @@ const AddActivity = () => {
           successRating: "1",
           notes: "",
         })
-        setTimeout(() => {
-          navigate(`/posts/${postId}`)
-        }, 5000)
+
+        navigate(`/posts/${postId}`)
       })
       .catch((error) => {
         const errorDescription = error.response.data.message
