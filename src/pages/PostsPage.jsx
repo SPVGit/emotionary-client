@@ -21,7 +21,7 @@ const PostsPage = () => {
 
   const storedToken = localStorage.getItem("authToken")
 
-  const latestToOldest = (data) => {
+  const latestToOldest = (data) => { //Function arranges all emotion posts from latest to Oldest
     const sortedByDate = [...data].sort(function (a, b) {
       const [aYear, aMonth, aDay] = a.date.split("-")
       const [bYear, bMonth, bDay] = b.date.split("-")
@@ -58,6 +58,7 @@ const PostsPage = () => {
   }
 
   const filterByEmotion = (e) => {
+    
     setEmotion(e.target.value)
 
     axios
@@ -75,6 +76,7 @@ const PostsPage = () => {
 
   // We set this effect will run only once, after the initial render
   // by setting the empty dependency array - []
+
   useEffect(() => {
     sortByDate()
   }, [])

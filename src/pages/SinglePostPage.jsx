@@ -17,6 +17,9 @@ const SinglePostPage = () => {
   const storedToken = localStorage.getItem("authToken")
 
   const getPost = () => {
+
+    //Gets a single post by id as well as its activities array
+
     axios
       .get(`${API_URL}/posts/${postId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },
@@ -35,6 +38,7 @@ const SinglePostPage = () => {
   }, [isDeleted])
 
   //DELETE POST
+
   const deletePost = () => {
     axios
       .delete(`${API_URL}/posts/${postId}`, {
@@ -47,6 +51,7 @@ const SinglePostPage = () => {
   }
 
   // DELETE ACTIVITY
+
   const deleteActivity = (activityId) => {
     setIsDeleted(true)
 

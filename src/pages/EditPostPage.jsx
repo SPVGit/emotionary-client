@@ -22,7 +22,7 @@ const EditPostPage = () => {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/posts/${postId}`, {
+      .get(`${API_URL}/posts/${postId}`, { //this gets the post details by its id, to prefill the form which will be edited
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -40,11 +40,11 @@ const EditPostPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setEditedPost((post) => ({ ...post, [name]: value }))
+    setEditedPost((post) => ({ ...post, [name]: value })) //this sets all changes in the form in the State
 
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => { //Sends updated emotion post to the database
     e.preventDefault()
 
     const requestBody = {

@@ -10,7 +10,7 @@ const ActivityPage = () => {
 
   const storedToken = localStorage.getItem("authToken")
 
-  const getActivity = () => {
+  const getActivity = () => { //gets all activites to display on single emotions post page
     axios
       .get(`${API_URL}/posts/${postId}/${activityId}`, {
         headers: { Authorization: `Bearer ${storedToken}` },

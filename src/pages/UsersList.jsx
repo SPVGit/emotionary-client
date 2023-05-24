@@ -23,7 +23,8 @@ function UsersList() {
   const storedToken = localStorage.getItem("authTherapistToken")
 
   const getUsers = () => {
-    //GETS LIST OF USERS
+
+    //GETS LIST OF USERS TO SHOW ON THERAPIST'S DASHBOARD
 
     axios
       .get(`${API_URL}/users`, { headers: { Authorization: `Bearer ${storedToken}` } })
@@ -39,6 +40,7 @@ function UsersList() {
   }, [])
 
   const handleChatClick = (chatUserId) => {
+
     //CHAT BUTTON
 
     let data = {

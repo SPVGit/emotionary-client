@@ -17,11 +17,10 @@ const EditActivityPage = () => {
   const storedToken = localStorage.getItem("authToken")
   const [updatedActivity, setUpdatedActivity] = useState({})
 
-  // Create useEffect to editActivity
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/posts/${postId}/${activityId}`, {
+      .get(`${API_URL}/posts/${postId}/${activityId}`, { //gets activity by its id to prefill the edit form
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -37,7 +36,7 @@ const EditActivityPage = () => {
       .catch((error) => console.log(error))
   }, [activityId])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => { // on submit the edited activity is sent to the database
     e.preventDefault()
 
     const requestBody = {

@@ -30,7 +30,7 @@ const AddPost = () => {
     setNewPost((post) => ({ ...post, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => { //adds a new emotion post on submit
 
     e.preventDefault()
 
@@ -45,7 +45,7 @@ const AddPost = () => {
     const storedToken = localStorage.getItem("authToken")
     
     axios
-      .post(`${API_URL}/addpost`, requestBody, {
+      .post(`${API_URL}/addpost`, requestBody, {  //new post created is sent to the database via the backend
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {

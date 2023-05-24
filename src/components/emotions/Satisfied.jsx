@@ -1,7 +1,7 @@
 import React from "react"
 import Form from "react-bootstrap/Form"
 
-const Satisfied = ({ handleChange }) => {
+const Satisfied = ({ handleChange }) => {//if feeling positive, choose from a list of specific activities to prolong the feeling of positivity
   return (
     <Form.Select
       required

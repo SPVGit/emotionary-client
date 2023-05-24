@@ -5,10 +5,10 @@ import { useContext } from "react"
 import { AuthContext } from "../context/auth.context"
 
 const HomePage = () => {
-  const { isLoggedIn, user, therapist } = useContext(AuthContext)
+  const { isLoggedIn, isLoggedInTher, user, therapist } = useContext(AuthContext)
   const navigate = useNavigate()
 
-  if (!isLoggedIn) {
+  if (!isLoggedIn || !isLoggedInTher) {
     setTimeout(() => {
       navigate("/signup")
     }, 4000)

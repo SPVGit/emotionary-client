@@ -10,13 +10,14 @@ import Nav from "react-bootstrap/Nav"
 const API_URL = process.env.REACT_APP_API_URL
 
 export default function BottomNavbar() {
-  const { user, therapist } = useContext(AuthContext)
+  
+  const { user } = useContext(AuthContext)
   const [theTherapist, setTheTherapist] = useState([])
   const storedToken = localStorage.getItem("authToken")
 
   const navigate = useNavigate()
 
-  const getTherapist = () => {
+  const getTherapist = () => { //Gets therapist details and sets it to the State, so on bottom Navbar chat button onClick, user will navigate directly to chat box based on chat id created / found with this particular therapist
     axios
       .get(`${API_URL}/therapist`, { headers: { Authorization: `Bearer ${storedToken}` } })
       .then((response) => {
