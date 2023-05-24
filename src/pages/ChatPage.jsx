@@ -43,7 +43,7 @@ function ChatPage() {
       // ensure that the user is connected to a specific chat via webSocket
       socket.emit("join_chat", chatId)
 
-      //Handle incoming messages from webSocket
+      //Handle incoming messages from webSocket and also sets it into State
       socket.on("receive_message", (data) => {
         console.log("Got data", data)
         setMessageList(data)
@@ -64,8 +64,8 @@ function ChatPage() {
 
   const sendMessage = async () => {
     let messageContent = ""
-
-    function create_UUID() {
+ 
+    function create_UUID() { //sets a unique key to each message to prevent key warning on console
       var dt = new Date().getTime()
       var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
         var r = (dt + Math.random() * 16) % 16 | 0
@@ -83,7 +83,7 @@ function ChatPage() {
       message: currentMessage,
     }
 
-    await socket.emit("send_message", messageContent)
+    await socket.emit("send_message", messageContent) //sends the message to the backend and also sets it into State
     setMessageList([...messageList, messageContent])
     setCurrentMessage("")
   }

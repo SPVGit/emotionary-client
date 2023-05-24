@@ -1,7 +1,7 @@
 import React from "react"
 import Form from "react-bootstrap/Form"
 
-const Sad = ({ handleChange }) => {
+const Sad = ({ handleChange }) => {//if negative emotion, select from a lists of specific activites to ward off the negative emotion
   return (
     <Form.Select
       required

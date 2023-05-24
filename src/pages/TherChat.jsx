@@ -31,6 +31,7 @@ function TherChat() {
     socket = io(`${API_URL}`)
 
     const getMessages = async () => {
+      
       //GETS LIST OF MESSAGES
 
       let response = await axios.get(`${API_URL}/messages/${chatId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
@@ -51,6 +52,7 @@ function TherChat() {
   }, [])
 
   useEffect(() => {
+
     // makes the chat scroll to the bottom everytime a new message is sent or received
 
     scrollToBottom()
@@ -65,6 +67,7 @@ function TherChat() {
     let messageContent = ""
 
     function create_UUID() {
+
       //Creates a unique id for every message sent to prevent the key warning on console.
 
       var dt = new Date().getTime()
@@ -97,7 +100,7 @@ function TherChat() {
           {messageList.map((val) => {
             return (
               <div
-                key={val.uniqueId}
+                key={val.uniqueId} //if its the current logged in therapist, message will be displayed on the right
                 className="messageContainer"
                 id={val.senderName === therapist.name ? "You" : "Other"}>
                 <div
@@ -107,7 +110,7 @@ function TherChat() {
                     className="d-flex align-items-stretch"
                     style={{ wordBreak: "break-word" }}>
                     {" "}
-                    {val.senderName}: {val.message}{" "}
+                    {val.senderName}: {val.message}
                   </div>
                 </div>
               </div>

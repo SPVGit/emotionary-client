@@ -4,11 +4,11 @@ import { Navigate} from "react-router-dom"
 
 function IsAnon({ children }) {
   
-  const { isLoading, user, therapist } = useContext(AuthContext)
+  const { isLoading, isLoadingTher, user, therapist } = useContext(AuthContext)
 
   // If the authentication is still loading, show the spinner
 
-  if (isLoading)
+  if (isLoading || isLoadingTher)
     return (
       <div className="outer-spinner-div">
         <div className="lds-default">

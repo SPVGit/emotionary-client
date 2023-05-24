@@ -40,7 +40,7 @@ const LoginPage = () => {
         storedToken(response.data.authToken)
         authenticateUser()
 
-        navigate("/posts") 
+        navigate("/posts")  //if user logs in, navigate to the /posts page
       })
       .catch((error) => {
         const errorDescription = error.response.data.message

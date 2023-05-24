@@ -55,7 +55,7 @@ const AddActivity = () => {
     }
 
     axios
-      .post(`${API_URL}/addactivity/${postId}`, requestBody, {
+      .post(`${API_URL}/addactivity/${postId}`, requestBody, { //posts the new activity added to the backend
         headers: { Authorization: `Bearer ${storedToken}` },
       })
       .then((response) => {
@@ -68,10 +68,7 @@ const AddActivity = () => {
         })
 
 
-        navigate(`/posts/${postId}`)
-
-        
-          navigate(`/posts/${postId}`)
+        navigate(`/posts/${postId}`) // On adding a new activity, navigate back to the single post page on which the activities added will be listed under the emotion post
 
       })
       .catch((error) => {
@@ -83,7 +80,7 @@ const AddActivity = () => {
   const getEmotion = () => {
     axios
       .get(`${API_URL}/posts/${postId}`, {
-        headers: { Authorization: `Bearer ${storedToken}` },
+        headers: { Authorization: `Bearer ${storedToken}` },  //gets the single emotion post by id so that an activity can be added to that specific emotion post.
       })
       .then((response) => {
       

@@ -27,7 +27,7 @@ function AuthProviderWrapper(props) {
     if (storedToken) {
       axios
 
-        .get(`${API_URL}/auth/userverify`, { headers: { Authorization: `Bearer ${storedToken}` } })
+        .get(`${API_URL}/auth/userverify`, { headers: { Authorization: `Bearer ${storedToken}` } }) //this verifies the user
 
         .then((response) => {
           // If the server verifies that the JWT token is valid
@@ -59,7 +59,7 @@ function AuthProviderWrapper(props) {
     if (storedTherapistToken) {
       axios
 
-        .get(`${API_URL}/auth/therapistverify`, { headers: { Authorization: `Bearer ${storedTherapistToken}` } })
+        .get(`${API_URL}/auth/therapistverify`, { headers: { Authorization: `Bearer ${storedTherapistToken}` } }) //this verifies the therapist
 
         .then((response) => {
           const therapist = response.data

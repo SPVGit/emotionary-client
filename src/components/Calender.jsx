@@ -10,6 +10,7 @@ import Container from "react-bootstrap/esm/Container"
 const API_URL = process.env.REACT_APP_API_URL
 
 function CalendarFunc() {
+
   const navigate = useNavigate()
 
   const { user } = useContext(AuthContext)
@@ -19,6 +20,7 @@ function CalendarFunc() {
   const [posts, setPosts] = useState(null)
 
   function colorOfEmotion(emotion) {
+
     if (emotion === "happy") return "#ffff54"
     else if (emotion === "embarrassed") return "#ff8c8c"
     else if (emotion === "in-love") return "#ff54ff"
@@ -28,10 +30,12 @@ function CalendarFunc() {
     else if (emotion === "sad") return "#717171"
     else if (emotion === "anxious") return "#6851ff"
     else if (emotion === "angry") return "#ff0000"
-    else if (emotion === "depressed") return "#000000"
+    else if (emotion === "depressed") return "#4e4e4e"
+
   }
 
-  const getAllPosts = () => {
+  const getAllPosts = () => { //gets all posts and then filters out only the ones that match to logged in users id
+
     const storedToken = localStorage.getItem("authToken")
     axios
       .get(`${API_URL}/posts`, {
@@ -49,7 +53,7 @@ function CalendarFunc() {
             startDate: dayjs(`${post.date}`),
             endDate: dayjs(`${post.date}`),
             eventBgColor: colorOfEmotion(`${post.emotion}`),
-            eventTextColor: "white",
+            eventTextColor: "black",
           }
         })
         setEvents(postsArray)
@@ -65,7 +69,7 @@ function CalendarFunc() {
     <Container
       className="mt-3 p-2 rounded 
     ">
-      <ReactFullYearScheduler
+      <ReactFullYearScheduler //Built in calender design and functions to display events 
         className="p-3"
         events={events}
         locale="en"
@@ -87,7 +91,9 @@ function CalendarFunc() {
         minCellWidth={50}
         showSeparatorInHeader={false}
         enableEventOverwriting={true}
+
         onDatePick={(eventDate, clearSelectedCell) => {
+
           let myDate = eventDate.format("YYYY-MM-DD")
 
           for (let post of posts) {

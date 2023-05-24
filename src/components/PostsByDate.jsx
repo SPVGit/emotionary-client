@@ -36,7 +36,7 @@ function PostsByDate() {
             headers: { Authorization: `Bearer ${storedToken}` },
           })
           .then((response) => {
-            setAllPosts(response.data.filter((data) => data.user === user._id && data.date === thePost.date))
+            setAllPosts(response.data.filter((data) => data.user === user._id && data.date === thePost.date))  //this gets all the posts on same day as per the date clicked on the calender and sets it in State
           })
           .catch((error) => console.log(error))
       })

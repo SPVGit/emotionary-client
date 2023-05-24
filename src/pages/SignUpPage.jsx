@@ -44,7 +44,7 @@ function SignupPage() {
     const requestBody = { email, password, name }
 
     axios
-      .post(`${API_URL}/auth/signup`, requestBody)
+      .post(`${API_URL}/auth/signup`, requestBody) //sign up of users
       .then((response) => {
         console.log(response.data)
       })
@@ -52,7 +52,7 @@ function SignupPage() {
         const errorDescription = error.response.data.message
         setErrorMessage(errorDescription)
       })
-    navigate("/login")
+    navigate("/login") //login to user login page
   }
 
   return (
