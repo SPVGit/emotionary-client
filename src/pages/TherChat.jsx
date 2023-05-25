@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom"
 import { useContext } from "react"
 import { AuthContext } from "../context/auth.context"
 import Container from "react-bootstrap/Container"
+import Form from "react-bootstrap/Form"
+import Button from "react-bootstrap/Button"
 
 /* This is the therapist's chat box from which the therapist can chat to a user sharing the same chat ID */
 
@@ -31,7 +33,6 @@ function TherChat() {
     socket = io(`${API_URL}`)
 
     const getMessages = async () => {
-      
       //GETS LIST OF MESSAGES
 
       let response = await axios.get(`${API_URL}/messages/${chatId}`, { headers: { Authorization: `Bearer ${storedToken}` } })
@@ -52,7 +53,6 @@ function TherChat() {
   }, [])
 
   useEffect(() => {
-
     // makes the chat scroll to the bottom everytime a new message is sent or received
 
     scrollToBottom()
@@ -60,14 +60,13 @@ function TherChat() {
 
   const handleMessageInput = (e) => {
     setCurrentMessage(e.target.value)
-    
   }
 
-  const sendMessage = async () => {
+  const handleOnSubmit = async (e) => {
+    e.preventDefault()
     let messageContent = ""
 
     function create_UUID() {
-
       //Creates a unique id for every message sent to prevent the key warning on console.
 
       var dt = new Date().getTime()
@@ -95,7 +94,7 @@ function TherChat() {
   return (
     <Container className="d-flex flex-column align-items-center">
       <h3>You're in the Chat Page </h3>
-      <div className="chatContainer glass">
+      <Container className="chatContainer glass">
         <div className="messages">
           {messageList.map((val) => {
             return (
@@ -124,16 +123,20 @@ function TherChat() {
             }}></div>
         </div>
 
-        <div className="messageInputs">
+        <Form
+          className="messageInputs "
+          style={{ overflowY: "auto" }}
+          onSubmit={handleOnSubmit}>
           <input
+            className="rounded"
             value={currentMessage}
             type="text"
             placeholder="Message..."
             onChange={handleMessageInput}
           />
-          <button onClick={sendMessage}>Send</button>
-        </div>
-      </div>
+          <Button type="submit">Send</Button>
+        </Form>
+      </Container>
     </Container>
   )
 }

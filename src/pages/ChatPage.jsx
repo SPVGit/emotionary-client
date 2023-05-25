@@ -62,10 +62,12 @@ function ChatPage() {
     setCurrentMessage(e.target.value)
   }
 
-  const sendMessage = async () => {
+  const handleOnSubmit = async (e) => {
+    e.preventDefault()
     let messageContent = ""
- 
-    function create_UUID() { //sets a unique key to each message to prevent key warning on console
+
+    function create_UUID() {
+      //sets a unique key to each message to prevent key warning on console
       var dt = new Date().getTime()
       var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
         var r = (dt + Math.random() * 16) % 16 | 0
@@ -91,7 +93,7 @@ function ChatPage() {
   return (
     <Container className="d-flex flex-column align-items-center rounded">
       <h3>You're in the Chat Page </h3>
-      <div className="chatContainer glass d-flex justify-contente-center ">
+      <Container className="chatContainer glass d-flex justify-contente-center ">
         <div className="messages">
           {messageList.map((val) => {
             return (
@@ -120,9 +122,10 @@ function ChatPage() {
             }}></div>
         </div>
 
-        <div
+        <Form
           className="messageInputs "
-          style={{ overflowY: "auto" }}>
+          style={{ overflowY: "auto" }}
+          onSubmit={handleOnSubmit}>
           <input
             className="rounded"
             value={currentMessage}
@@ -130,13 +133,14 @@ function ChatPage() {
             placeholder="Message..."
             onChange={handleMessageInput}
           />
-          <button
+
+          <Button
             className="rounded"
-            onClick={sendMessage}>
+            type="submit">
             Send
-          </button>
-        </div>
-      </div>
+          </Button>
+        </Form>
+      </Container>
     </Container>
   )
 }
