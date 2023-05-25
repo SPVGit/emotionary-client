@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+#EMOTIONARY-CLIENT (MERN APPLICATION) by ALESSANDRO IADAROLA, SUBARNA PAUL VIGNARAJAH & VANYA MARKOVA
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+    GitHub Link to server - https://github.com/SPVGit/emotionary-server
 
-## Available Scripts
+##DESCRIPTION:
 
-In the project directory, you can run:
+    Emotionary is an app that helps you track and understand your emotions, providing suggestions to improve your wellbeing. It allows you to record and analyze your emotions, offering personalized recommendations for managing them. The app also features a chat function to connect with your therapist for support. Emotionary's mission is to enhance self-awareness, address emotional challenges, and promote overall welfare.
 
-### `npm start`
+##APP LINK:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    https://emotionary-client.netlify.app
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+##FOLDER STRUCTURE:
 
-### `npm test`
+    emotionary-client
+        |
+        |---public---index.html
+        |
+        |
+        |
+        |---src---components---emotions---Angry.jsx, Anxious.jsx, Calm.jsx, Depressed.jsx, Embarassed.jsx, Excited.jsx, Happy.jsx, InLove.jsx, Sad.jsx, Satisfied.jsx
+            |         |
+            |         |---AddActivity.jsx, AddPost.jsx, BarChart.jsx, bottomNavbar.jsx, Calender.jsx, IsAnon.jsx, IsPrivate.jsx, IsTherapistPrivate.jsx, Navbar.jsx
+            |         |---PieChart.jsx, PostsByDate.jsx
+            |            
+            |                 
+            |---context---auth.context.js
+            |
+            |
+            |---pages---ActivityFormPage.jsx, ActivityPage.jsx, ChatPage.jsx, EditActivityPage.jsx, EditPostPage.jsx, HomePage.jsx, LoginPage.jsx, PostFormPage.jsx
+            |     |-----PostsPage.jsx, SignUpPage.jsx, SinglePostPage.jsx, StatsPage.jsx, TherapistLogin.jsx, TherChat.jsx, UserList.jsx
+            |
+            |
+            |---App.js
+            |
+            |
+            |---index.css
+            |
+            |
+            |---index.js
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##DEPENDENCIES
 
-### `npm run build`
+    To run the app: npm install 
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    The following dependencies were used in the app:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+        @testing-library/react 
+        axios 
+        bootstrap 
+        chart.js
+        dayjs
+        react 
+        react-bootstrap 
+        react-chartjs-2 
+        react-dom 
+        react-full-year-scheduler 
+        react-router-dom
+        react-scripts
+        socket.io-client
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+##REFERENCES- 
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    The code for chat funcitonality was obtained and adapted from https://github.com/ManishPoduval/simple-chat-socketio
