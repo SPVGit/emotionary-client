@@ -14,12 +14,9 @@ const API_URL = process.env.REACT_APP_API_URL
 Chart.register(CategoryScale)
 
 export default function App() {
-
   const { user } = useContext(AuthContext)
 
- 
   const [barChart, setBarChart] = useState(true)
-
 
   const [chartData, setChartData] = useState({
     labels: ["happy", "in-love", "excited", "satisfied", "calm", "sad", "anxious", "angry", "embarressed", "depressed"],
@@ -33,20 +30,20 @@ export default function App() {
     ],
   })
 
-  const toggleChart = () => { //this can be used to toggle between whether the user wants to see their emotions in barchart or piechart form
+  const toggleChart = () => {
+    //this can be used to toggle between whether the user wants to see their emotions in barchart or piechart form
 
     if (barChart === true) {
       setBarChart(false)
-    
     } else {
       setBarChart(true)
-     
     }
   }
 
   const storedToken = localStorage.getItem("authToken")
 
-  const getData = async () => { //gets the data from backend to display on the charts
+  const getData = async () => {
+    //gets the data from backend to display on the charts
 
     let response = await axios.get(`${API_URL}/stats`, {
       headers: { Authorization: `Bearer ${storedToken}` },
@@ -71,7 +68,8 @@ export default function App() {
     getData()
   }, [])
 
-  function calcEmoPercentage(data) { //Funciton to calculate the percentage of each emotion out of all the emotions posted 
+  function calcEmoPercentage(data) {
+    //Funciton to calculate the percentage of each emotion out of all the emotions posted
 
     if (data.length === 0) {
       return
@@ -148,7 +146,6 @@ export default function App() {
           <Button
             style={{ width: "800px", color: "black" }}
             className="shadow glass"
-            variant="dark"
             onClick={toggleChart}>
             Click here to see Bar Chart
             <PieChart chartData={chartData} />
