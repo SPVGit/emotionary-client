@@ -129,6 +129,7 @@ export default function App() {
       {barChart && (
         <Container className="d-flex justify-content-center">
           <Button
+            variant="transparent"
             style={{ width: "800px", color: "black" }}
             className="shadow glass"
             onClick={toggleChart}>
@@ -144,6 +145,7 @@ export default function App() {
       {!barChart && (
         <Container className="d-flex justify-content-center">
           <Button
+            variant="transparent"
             style={{ width: "800px", color: "black" }}
             className="shadow glass"
             onClick={toggleChart}>
